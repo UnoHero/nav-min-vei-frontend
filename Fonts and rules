@@ -1,0 +1,19 @@
+The font we use is Source® Sans 3
+
+We have a total of 8 sizes in the design system. 14, 16, 18, 20, 24, 28, 32 and 40 pixels.
+
+The basic size for text and digital products is **18px.**På WCAG-nivå A og AA, dvs. de nivåene vi er pålagt til å oppfylle, er det ikke noe krav om minimum tekststørrelse eller linjehøyde.
+
+Det reglene krever er at brukeren kan justere tekststørrelse og linjehøyde. Dersom du bruker typografikomponentene, sikrer du at fontene dine er kodet på en måte som lar brukeren justere disse.
+
+For best readability for all users, there should be no more than 50-75 characters per line including spaces.
+
+At WCAG level A and AA, i.e. the levels we are required to meet, there is no requirement for a minimum text size or line height.
+
+What the rules require is that the user can adjust the text size and line height.
+
+If you use the typography components, you ensure that your fonts are coded in a way that allows the user to adjust them.
+
+WCAG also requires good color contrast.
+
+The typography components alone cannot stand for good contrast, since it is you as the designer or developer who controls the color choices.
