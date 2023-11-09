@@ -1,26 +1,150 @@
+/* App.css */
+
+.App {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
 
 .App-header {
-  min-height: 100vh;
+  background-color: #ffffff; /* White background as specified */
   display: flex;
-  flex-direction: column;
+  justify-content: start;
+  padding: 10px 30px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border-bottom: 1px solid #e5e5e5;
 }
 
-h1 {
-  color: rgb(103, 103, 190);
-  width: auto;
+.App-logo {
+  height: 35px;
+  margin-right: 20px;
+}
+
+.App-navigation {
+  display: flex;
+  list-style-type: none;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  margin-right: auto;
+}
+
+.nav-link {
+  color: #4a4a4a;
+  text-decoration: none;
+  padding: 5px 0;
+  position: relative;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: #005bac;
+}
+
+.nav-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: transparent;
+  transition: width .3s, background-color .3s;
+  margin-top: 5px;
+}
+
+.nav-link:hover::after,
+.nav-link:focus::after {
+  width: 100%;
+  background: #005bac;
+}
+
+/* General button styles */
+.button {
+  border: none;
+  cursor: pointer;
+  font-size: 18px; /* Larger text size */
+  padding: 8px 16px;
+  margin-left: 10px;
+  transition: background-color .3s, color .3s;
+  background: none; /* Transparent background */
+  color: #0073e6; /* Blue color to match the image */
+  text-decoration: none; /* No underline by default */
+}
+
+/* Hover and focus styles for buttons */
+.button:hover,
+.button:focus {
+  text-decoration: underline; /* Underline on hover and focus */
+  background: none; /* No background change on hover */
+  color: #0073e6; /* Keep the color consistent on hover */
+}
+
+/* Styles specific to the login button */
+.login-button {
+  background: none; /* Transparent background */
+  color: #0073e6; /* Blue color to match the image */
+  border-radius: 0; /* No rounded corners */
+  padding: 8px 0; /* Vertical padding only */
+}
+
+.login-button img {
+  vertical-align: middle; /* Vertically center the image */
+  margin-right: 8px; /* Space between the image and text */
+}
+
+.login-button:hover,
+.login-button:focus {
+  text-decoration: underline; /* Underline on hover and focus */
+  color: #0073e6; /* Keep the color consistent on hover */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.firstsection { /* Blue first section on the page */
+  height: 20em; 
+  background-color: rgb(211, 230, 237);
 
 }
 
-.firstsection {
-  height: 20em;
-  position: relative ;
-  background-color: lightblue ;
-  background-size: cover;
-  width: auto;
 
-  
+
+
+
+.logo {
+  text-align: center;
+
+ }
+
+button {
+  color: blue;
+  outline: none;
 }
+
+.section-name {
+  text-align: center;
+  color: blue;
+}
+
+p{
+ max-width: 30%;
+ text-align: left;
+}
+
+
