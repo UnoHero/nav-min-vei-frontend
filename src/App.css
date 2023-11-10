@@ -147,4 +147,39 @@ p{
  text-align: left;
 }
 
+/*styles for the search button*/
+.search-button {
+  background: none; 
+  border-radius: 0; 
+  padding: 8px 0; 
+}
 
+.search-button img {
+  vertical-align: middle; 
+  margin-right: 8px; 
+}
+
+.search-button:hover,
+.search-button:focus {
+  text-decoration: underline; 
+  color: #0073e6; 
+}
+
+/* Styles for the menu button*/
+.menu-button {
+  background: none; 
+  color: #0073e6; 
+  border-radius: 0; 
+  padding: 8px 0; 
+}
+
+.menu-button img {
+  vertical-align: middle; 
+  margin-right: 8px; 
+}
+
+.menu-button:hover,
+.menu-button:focus {
+  text-decoration: underline; 
+  color: #0073e6; 
+}
