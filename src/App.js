@@ -38,10 +38,10 @@ function App() {
         </center>
       </section>
     </div>
-        <center>
-<p>Lurer du på hva du kan ha rett på av hjelp og økonomisk støtte fra det offentlige i Norge?
-  <br/>
-  Gjennom min veileder kan du utforske dette. </p>
+        <center className='p-tekst'>
+        <p>Lurer du på hva du kan ha rett på av hjelp og økonomisk støtte fra det offentlige i Norge?
+        <br/>
+        Gjennom min veileder kan du utforske dette. </p>
 
         </center>
      </>
