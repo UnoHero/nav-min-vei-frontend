@@ -183,3 +183,99 @@ p{
   text-decoration: underline; 
   color: #0073e6; 
 }
+
+
+.firstsection {
+  height: 20em; 
+  background-color: rgb(211, 230, 237);
+}
+
+.logo {
+  width: 25%;
+  height: auto; 
+  display: block; 
+  margin: 0 auto; 
+} 
+
+
+button {
+  color: blue;
+  outline: none;
+}
+
+.section-name {
+  text-align: center;
+  color: blue;
+}
+
+p {
+  max-width: 90%; 
+  text-align: left;
+  margin: 0 auto; 
+  font-size: 1em; 
+}
+
+
+@media (max-width: 768px) {
+  .firstsection {
+    height: 15em; 
+  }
+
+  .logo {
+    width: 50%; 
+  }
+
+  p {
+    max-width: 95%; 
+    font-size: 0.9em; 
+  }
+}
+
+@media (max-width: 480px) {
+  .firstsection {
+    height: 10em;
+  }
+
+  .logo {
+    width: 70%; 
+  }
+
+  p {
+    max-width: 100%;
+    font-size: 0.8em; 
+  }
+}
+
+@media (min-width: 1025px) {
+  .firstsection {
+    height: 25em; 
+  }
+
+  .logo {
+    width: 35%; 
+  }
+
+  p {
+    max-width: 50%; 
+    font-size: 1.2em; 
+  }
+}
+
+@media (min-width: 1440px) {
+  .firstsection {
+    height: 30em; 
+  }
+
+  .logo {
+    width: 25%; 
+  }
+
+  p {
+    max-width: 40%;
+    font-size: 1.4em; 
+}
+
+
+
+}
+
