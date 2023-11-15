@@ -94,7 +94,8 @@
 .login-button:hover,
 .login-button:focus {
   text-decoration: underline; 
-  color: #0073e6; 
+  color: white;
+  background: #0073e6; 
 }
 
 
@@ -162,7 +163,8 @@ p{
 .search-button:hover,
 .search-button:focus {
   text-decoration: underline; 
-  color: #0073e6; 
+  color: white;
+  background: #0073e6; 
 }
 
 /* Styles for the menu button*/
@@ -181,7 +183,8 @@ p{
 .menu-button:hover,
 .menu-button:focus {
   text-decoration: underline; 
-  color: #0073e6; 
+  color: white;
+  background: #0073e6; 
 }
 
 
@@ -277,5 +280,9 @@ p {
 
 
 
+}
+
+.p-tekst {
+  margin-top: 2%; 
 }
 
