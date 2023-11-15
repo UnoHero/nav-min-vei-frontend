@@ -12,7 +12,9 @@
   padding: 10px 30px;
   align-items: center;
   border-bottom: 1px solid #e5e5e5;
+  font-weight: bold;
 }
+
 
 .App-logo {
   height: 35px;
@@ -27,6 +29,7 @@
   padding: 0;
   font-size: 16px;
   margin-right: auto;
+  
 }
 
 .nav-link {
@@ -57,50 +60,59 @@
   background: #005bac;
 }
 
-/* General button styles */
-.button {
-  border: none;
+
+/* The container that contains all buttons and logos in the nav bar*/
+.App-header-actions {
+  margin-left: 2%;
+}
+
+/* Base styles for buttons */
+.button, .login-button, .search-button, .menu-button {
+  box-sizing: border-box; /* Inkluderer padding og border i totalstørrelsen */
+  border: 2px solid transparent; /* Transparent border i normal tilstand */
   cursor: pointer;
-  font-size: 18px; 
-  padding: 8px 16px;
-  margin-left: 10px;
-  transition: background-color .3s, color .3s;
+  font-size: 18px;
+  padding: 6px 14px; /* Justert padding */
+  margin-right: 10px; /* Juster etter behov for å redusere mellomrom */
+  transition: background-color .3s, color .3s, border-color .3s, padding .3s; /* Transition for flere egenskaper */
   background: none;
-  color: #0073e6; 
-  text-decoration: none; 
+  color: #3386E0;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-/* Hover and focus styles for buttons */
 .button:hover,
-.button:focus {
-  text-decoration: underline; 
-  background: none; 
-  color: #0073e6; 
-}
-
-/* Styles specific to the login button */
-.login-button {
-  background: none; 
-  color: #0073e6; 
-  border-radius: 0; 
-  padding: 8px 0; 
-}
-
-.login-button img {
-  vertical-align: middle; 
-  margin-right: 8px; 
-}
-
+.button:focus,
 .login-button:hover,
-.login-button:focus {
-  text-decoration: underline; 
+.login-button:focus,
+.search-button:hover,
+.search-button:focus,
+.menu-button:hover,
+.menu-button:focus {
+  background-color: #99C3FF; /* Endrer bakgrunnsfarge på hover */
+  border-color: #3386E0; /* Synlig grensefarge på hover */
+  padding: 8px 16px; /* Tilbakestill padding til original størrelse */
+}
+
+.login-button, .search-button, .menu-button {
+  background: none;
+  color: #3386E0;
+  border-radius: 0;
+}
+
+.login-button img, .search-button img, .menu-button img {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+/* Justeringer kan være nødvendig for disse også, avhengig av din spesifikke layout */
+.login-button:focus, .search-button:focus, .menu-button:focus {
   color: white;
-  background: #0073e6; 
+  background: #0073e6;
 }
 
 
-
-
+/* ALT OVER ER NAV MENY */
 
 
 
@@ -125,7 +137,6 @@
 }
 
 
-/*ng*/
 
 
 
@@ -149,44 +160,6 @@ p{
  text-align: left;
 }
 
-/*styles for the search button*/
-.search-button {
-  background: none; 
-  border-radius: 0; 
-  padding: 8px 0; 
-}
-
-.search-button img {
-  vertical-align: middle; 
-  margin-right: 8px; 
-}
-
-.search-button:hover,
-.search-button:focus {
-  text-decoration: underline; 
-  color: white;
-  background: #0073e6; 
-}
-
-/* Styles for the menu button*/
-.menu-button {
-  background: none; 
-  color: #0073e6; 
-  border-radius: 0; 
-  padding: 8px 0; 
-}
-
-.menu-button img {
-  vertical-align: middle; 
-  margin-right: 8px; 
-}
-
-.menu-button:hover,
-.menu-button:focus {
-  text-decoration: underline; 
-  color: white;
-  background: #0073e6; 
-}
 
 
 .firstsection {
@@ -285,5 +258,82 @@ p {
 
 .p-tekst {
   margin-top: 2%; 
+  margin-left: 5%;
 }
 
+
+/*Bottom text styles*/
+.b-text {
+  margin-top: 2%;
+  margin-left: 29%;
+}
+
+.start-veileder, .help-b {
+  padding: 15px 15px; /* Equal padding for square shape */
+  border-radius: 2px; /* Square corners */
+  transition: all 0.3s ease;
+  cursor: pointer;
+  height: 10%; /* Equal height for both buttons */
+  font-size: medium; /* Larger text size */
+}
+
+.start-veileder {
+  margin-left: 29%;
+  margin-top: 2%;
+  color: white;
+  background-color: #095bb2;
+  border: none;
+}
+
+.start-veileder:hover {
+  background-color: #0056b3;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.help-b {
+  margin-left: 1%;
+  width: 20%;
+  background-color: white;
+  color: ;
+  border: 2px solid #0056b3;
+}
+
+.help-b:hover {
+  border-color: #0056b3;
+  color: #0056b3;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+
+
+
+
+/*Styles for the dropdown buttons*/
+.accordion-header {
+  color: blue;
+  cursor: pointer;
+  padding: 10px 0;
+  font-size: 16px;
+  position: relative;
+}
+
+.accordion-header::before {
+  content: '▼';
+  color: blue;
+  position: absolute;
+  left: -20px;
+  transition: transform 0.3s ease;
+}
+
+.panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  padding-left: 20px;
+}
+
+.panel.open {
+  max-height: 500px; /* Juster denne verdien basert på ditt innhold */
+}
