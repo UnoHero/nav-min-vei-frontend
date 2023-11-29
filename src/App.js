@@ -7,6 +7,9 @@ import menu from './MenuHamburger.svg';
 import Form from './Form'; // Import the form component
 import './App.css';
 import "@navikt/ds-css";
+import setupAccordion from './AccordionItems.js';
+import AccordionItem from './AccordionItems.js';
+
 
 function App() {
   return (
