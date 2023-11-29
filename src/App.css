@@ -337,3 +337,8 @@ p {
 .panel.open {
   max-height: 500px; /* Juster denne verdien basert på ditt innhold */
 }
+
+.radio-box{
+  background-color: #00bfff42;
+  text-align: center;
+}

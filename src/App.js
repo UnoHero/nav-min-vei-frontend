@@ -1,20 +1,16 @@
 import React from 'react';
-import logo from './Pictures/logo.png'; // Your logo file
-import logo2 from './Pictures/logo_stor.png'; // Your logo file
+import logo from './Pictures/logo.png';
+import logo2 from './Pictures/logo_stor.png';
 import login from './Enter.svg';
 import search from './MagnifyingGlass.svg';
 import menu from './MenuHamburger.svg';
-
-import pilned from "./pilned.svg";
-import "./dropdown.js";
+import Form from './Form'; // Import the form component
 import './App.css';
-import AccordionItem from './AccordionItems.js';
-
-
+import "@navikt/ds-css";
 
 function App() {
   return (
-    <><><><div className="App">
+    <div className="App">
       <header className="App-header">
         <img src={logo} alt="MinVei Logo" className="App-logo" />
 
@@ -31,64 +27,50 @@ function App() {
         </div>
       </header>
 
-
-
-
       {/* Section for 'MinVeiLeder' */}
       <section className="firstsection">
         <center>
           <img src={logo2} alt="MinVei Logo" className="logo" width="25%" height="10%" />
         </center>
       </section>
-    </div>
+
       <center className='p-tekst'>
         <p>Lurer du på hva du kan ha rett på av hjelp og økonomisk
-           <br />
-           støtte fra det offentlige i Norge?
+          <br />
+          støtte fra det offentlige i Norge?
           <br />
           Gjennom min veileder kan du utforske dette. </p>
       </center>
 
-
-      {/* dropdown buttons*/}
-
-
-
-       <div class="accordion">
+      {/* Dropdown buttons */}
+      <div class="accordion">
         <div class="accordion-item">
           <p class="accordion-header">Hva kan min veileder hjelpe med?</p>
           <div class="panesl">
             <p>Detaljert informasjon om hva veilederen kan hjelpe med.</p>
           </div>
         </div>
+      </div>
 
-        <div class="accordion-item">
-          <p class="accordion-header"><img src={pilned} /> er min veileder?</p>
-          <div class="panel">
-            <p>Informasjon om veilederens rolle og funksjoner.</p>
-          </div>
-        </div>
-      </div> 
+      {/* Form component */}
+      <Form />
 
-
-
-
-      {/*code for bottom text and buttons under the dropdown buttons*/}
-      
-    </><div className='bottom-text'>
+      {/* Code for bottom text and buttons under the dropdown buttons */}
+      <div className='bottom-text'>
         <p className='b-text'>Det er viktig å understreke at MinVeileder kun kan foreslå
           <br />
           ytelser/tjenester du kan ha krav på. For å få endelig svar
           <br />
-          må du sende inn en søknad.</p>
+          må du sende inn en søknad.
+        </p>
       </div>
 
-      </><div>
-        <button className='start-veileder'><b>Start veilederen</b></button>   <button className='help-b'><b>Få hjelp med veileder</b></button>
-        </div></>
-
+      <div>
+        <button className='start-veileder'><b>Start veilederen</b></button>
+        <button className='help-b'><b>Få hjelp med veileder</b></button>
+      </div>
+    </div>
   );
 }
-
 
 export default App;
