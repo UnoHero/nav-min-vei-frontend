@@ -1,15 +1,19 @@
-var accHeaders = document.getElementsByClassName("accordion-header");
-var i;
+// In AccordionHandler.js
+const setupAccordion = () => {
+  var accHeaders = document.getElementsByClassName("accordion-header");
+  var i;
 
+  for (i = 0; i < accHeaders.length; i++) {
+    accHeaders[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
+  }
+};
 
-for (i = 0; i < accHeaders.length; i++) {
-  accHeaders[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
-  });
-}
+export default setupAccordion;
