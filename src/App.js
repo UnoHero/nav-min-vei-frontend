@@ -8,8 +8,8 @@ import menu from './MenuHamburger.svg';
 import pilned from "./pilned.svg";
 import "./dropdown.js";
 import './App.css';
+import setupAccordion from './AccordionItems.js';
 import AccordionItem from './AccordionItems.js';
-
 
 
 function App() {
