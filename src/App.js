@@ -4,12 +4,14 @@ import logo2 from './Pictures/logo_stor.png'; // Your logo file
 import login from './Enter.svg';
 import search from './MagnifyingGlass.svg';
 import menu from './MenuHamburger.svg';
-
+import "@navikt/ds-css"
 import pilned from "./pilned.svg";
 import "./dropdown.js";
 import './App.css';
-import setupAccordion from './AccordionItems.js';
-import AccordionItem from './AccordionItems.js';
+import { Accordion } from "@navikt/ds-react";
+import { Button } from "@navikt/ds-react";
+
+
 
 
 function App() {
@@ -48,29 +50,46 @@ function App() {
           <br />
           Gjennom min veileder kan du utforske dette. </p>
       </center>
-
-
+      <center>
+<div className = "centerdown">
       {/* dropdown buttons*/}
+      {
+  (() => {
+    const Example = () => {
+    return (<Accordion>
+      <Accordion.Item>
+        <Accordion.Header>Til deg som er mellom 62 og 67 år</Accordion.Header>
+        <Accordion.Content>
+          Hvis du er mellom 62 og 67 år når du søker, må du som hovedregel ha
+          hatt en pensjonsgivende inntekt som tilsvarer x G, året før du fikk
+          nedsatt arbeidsevnen. NAV kan gjøre <a href="#Unntak">unntak</a>.
+        </Accordion.Content>
+      </Accordion.Item>
+      <Accordion.Item>
+        <Accordion.Header>
+          Til deg som har yrkesskade eller yrkessykdom
+        </Accordion.Header>
+        <Accordion.Content>
+          Med yrkesskade mener vi at du har fått en skade som følge av en
+          arbeidsulykke. Vi kan godkjenne en sykdom som yrkessykdom hvis den
+          kommer av skadelig påvirkning fra arbeidsmiljøet.
+        </Accordion.Content>
+      </Accordion.Item>
+      <Accordion.Item>
+        <Accordion.Header>Til deg som er helt frisk</Accordion.Header>
+        <Accordion.Content>
+          Da er det lite som trengs å gjøres.
+        </Accordion.Content>
+      </Accordion.Item>
+    </Accordion>);
 
+};
 
-
-       <div class="accordion">
-        <div class="accordion-item">
-          <p class="accordion-header">Hva kan min veileder hjelpe med?</p>
-          <div class="panesl">
-            <p>Detaljert informasjon om hva veilederen kan hjelpe med.</p>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <p class="accordion-header"><img src={pilned} /> er min veileder?</p>
-          <div class="panel">
-            <p>Informasjon om veilederens rolle og funksjoner.</p>
-          </div>
-        </div>
-      </div> 
-
-
+    return <Example />
+  })()
+}
+</div>
+</center>
 
 
       {/*code for bottom text and buttons under the dropdown buttons*/}
@@ -82,13 +101,27 @@ function App() {
           <br />
           må du sende inn en søknad.</p>
       </div>
+      {
+  (() => {
+    const Example = () => {
+    return (<div className="flex flex-wrap gap-2">
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+    </div>);
+};
+
+    return <Example />
+  })()
+}
 
       </><div>
-        <button className='start-veileder'><b>Start veilederen</b></button>   <button className='help-b'><b>Få hjelp med veileder</b></button>
         </div></>
 
   );
+
+
 }
+
 
 
 export default App;
