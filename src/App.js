@@ -6,6 +6,16 @@ import login from './Enter.svg';
 import search from './MagnifyingGlass.svg';
 import menu from './MenuHamburger.svg';
 
+import Form from './Form'; // Import the form component
+import './App.css';
+import "@navikt/ds-css";
+import setupAccordion from './AccordionItems.js';
+import AccordionItem from './AccordionItems.js';
+
+import "@navikt/ds-css"
+import pilned from "./pilned.svg";
+
+
 import Footer from './footer.js';
 import { Accordion } from "@navikt/ds-react";
 import './App.css';

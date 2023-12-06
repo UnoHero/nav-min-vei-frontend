@@ -13,6 +13,7 @@
   align-items: center;
   border-bottom: 1px solid #e5e5e5;
   font-weight: bold;
+  
 }
 
 
@@ -30,7 +31,7 @@
   padding: 0;
   font-size: 16px;
   margin-right: auto;
-  
+
 }
 
 .nav-link {
@@ -66,6 +67,7 @@
 .App-header-actions {
   margin-left: 2%;
 }
+
 
 /* Base styles for buttons */
 .button, .login-button, .search-button, .menu-button {
@@ -395,7 +397,6 @@ display: flex;
 align-items: center;
 justify-content: center;
 max-width: 700px;
-
-
 }
+
 
