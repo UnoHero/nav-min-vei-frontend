@@ -1,4 +1,5 @@
 import React from 'react';
+import { ArrowUpIcon } from '@navikt/aksel-icons';
 import './App.css';
 
 
@@ -15,7 +16,7 @@ class ScrollToTop extends React.Component {
       <div className='scrollUp'>
 
         {/* Link to go to the top of the page */}
-        <button className='scrollUpButton' onClick={this.scrollToTop}>Til toppen</button>
+        <button className='scrollUpButton' onClick={this.scrollToTop}><ArrowUpIcon title="a11y-title" fontSize="1.5rem" />Til toppen</button>
       </div>
     );
   }

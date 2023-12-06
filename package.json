@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@navikt/aksel-icons": "^5.11.4",
     "@navikt/ds-css": "^5.11.3",
     "@navikt/ds-react": "^5.11.3",
     "@testing-library/jest-dom": "^5.17.0",

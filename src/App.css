@@ -351,6 +351,29 @@ p {
 
 
 /*Css for footer til hovedsiden og informasjonssiden */
+h1 {
+  font-size: 18px;
+  text-align: center;
+  color: #99C4DD;
+  margin-top: 5%;
+}
+
+.h1-column-2-3 {
+  margin-top: 15%;
+}
+
+.p-footer-column-1 {
+  text-align: center;
+  font-size: 16px;
+} 
+
+.p-footer {
+  font-size: 16px;
+  text-align: center;
+}
+
+
+
 .footer {
   margin-top: 7%;
   background-color: #134852; /* Set your desired background color */
@@ -359,16 +382,22 @@ p {
   font-size: 18px;
 }
 
-.footer-container {
+.grid-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Three equal-width columns */
-  gap: 20px; /* Add some space between the columns */
+  grid-template-columns: 500px 400px 343px;
+  gap: 0px; /* Adjust the gap as needed */
 }
 
-.footer-column {
-  font-size: 18px;
-  /* Add styling for each column if needed */
+.column-1 {
+  padding: 0px; /* Add padding as needed */
+  text-align: left; /* Align text to the left */
+  justify-content: left;
 }
+
+.column-2, .column-3 {
+  padding: 0px; /* Add padding as needed */
+}
+
 
 a {
   text-decoration: none;
@@ -392,6 +421,7 @@ a {
 text-align: center;
 }
 
+/* Dropdown css*/
 .centerdown {
 display: flex;
 align-items: center;
