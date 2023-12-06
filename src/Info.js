@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { Accordion, Button, Radio, RadioGroup } from "@navikt/ds-react";
+import './App.css';
+import "@navikt/ds-css";
 
 
-const Form = () => {
+const Info = () => {
   // State variables to store form data
   const [part1, setPart1] = useState('');
   const [part2, setPart2] = useState('');
   const [part3, setPart3] = useState('');
   const [part4, setPart4] = useState('');
+
+  console.log('Info component rendered!');
 
   // Function to handle form submission
   const handleSubmit = (e) => {
@@ -42,7 +46,7 @@ return(
       <Accordion.Item>
         <Accordion.Header>Hvem hentes infoen fra?</Accordion.Header>
         <Accordion.Content>
-          <div class = "radio-box">
+          <div className = "radio-box">
             <RadioGroup
             legend = "Ønsker du å hente data fra det ofentlige?"
 
@@ -59,4 +63,4 @@ return(
 )
 };
 
-export default Form;
+export default Info;
