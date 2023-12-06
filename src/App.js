@@ -99,19 +99,21 @@ function App() {
           ytelser/tjenester du kan ha krav på. For å få endelig svar
           <br />
           må du sende inn en søknad.</p>
-      </div>
+            </div>
+            <div classname="knapp">
       {
-  (() => {
+(() => {
     const Example = () => {
     return (<div className="flex flex-wrap gap-2">
-      <Button variant="primary">Primary</Button>
-      <Button variant="secondary">Secondary</Button>
+      <Button variant="primary">Start veileder</Button>
+      <Button variant="secondary">Få hjelp med velederen</Button>
     </div>);
 };
 
     return <Example />
   })()
 }
+</div>
 
       </><div>
         </div></>
