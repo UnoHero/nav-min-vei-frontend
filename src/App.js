@@ -4,6 +4,13 @@ import logo2 from './Pictures/logo_stor.png';
 import login from './Enter.svg';
 import search from './MagnifyingGlass.svg';
 import menu from './MenuHamburger.svg';
+
+import Form from './Form'; // Import the form component
+import './App.css';
+import "@navikt/ds-css";
+import setupAccordion from './AccordionItems.js';
+import AccordionItem from './AccordionItems.js';
+
 import "@navikt/ds-css"
 import pilned from "./pilned.svg";
 
@@ -13,6 +20,7 @@ import "./dropdown.js";
 import './App.css';
 import { Accordion } from "@navikt/ds-react";
 import { Button } from "@navikt/ds-react";
+
 
 
 
@@ -35,6 +43,10 @@ function App() {
         </div>
       </header>
 
+
+      {/* Section for 'MinVeiLeder' */}
+
+
       <section className="firstsection">
         <center>
           <img src={logo2} alt="MinVei Logo" className="logo" width="25%" height="10%" />
@@ -42,6 +54,20 @@ function App() {
       </section>
 
       <center className='p-tekst'>
+
+        <p>Lurer du på hva du kan ha rett på av hjelp og økonomisk
+          <br />
+          støtte fra det offentlige i Norge?
+          <br />
+          Gjennom min veileder kan du utforske dette. </p>
+      </center>
+
+      {/* Dropdown buttons */}
+      <div class="accordion">
+        <div class="accordion-item">
+          <p class="accordion-header">Hva kan min veileder hjelpe med?</p>
+          <div class="panesl">
+
         <p>Lurer du på hva du kan ha rett på av hjelp og økonomisk<br />støtte fra det offentlige i Norge?<br />Gjennom min veileder kan du utforske dette.</p>
       </center>
 
@@ -49,9 +75,24 @@ function App() {
         <div className="accordion-item">
           <p className="accordion-header">Hva kan min veileder hjelpe med?</p>
           <div className="panel">
+
             <p>Detaljert informasjon om hva veilederen kan hjelpe med.</p>
           </div>
         </div>
+      </div>
+
+
+      {/* Form component */}
+      <Form />
+
+      {/* Code for bottom text and buttons under the dropdown buttons */}
+      <div className='bottom-text'>
+        <p className='b-text'>Det er viktig å understreke at MinVeileder kun kan foreslå
+          <br />
+          ytelser/tjenester du kan ha krav på. For å få endelig svar
+          <br />
+          må du sende inn en søknad.
+        </p>
 
         <div className="accordion-item">
           <p className="accordion-header"><img src={pilned} /> er min veileder?</p>
@@ -113,6 +154,7 @@ function App() {
         
       <div>
         <Footer></Footer>
+
       </div>
       {
   (() => {
@@ -128,8 +170,15 @@ function App() {
 }
 
 
+
+      <div>
+        <button className='start-veileder'><b>Start veilederen</b></button>
+        <button className='help-b'><b>Få hjelp med veileder</b></button>
+      </div>
+
       </><div>
         </div></>
+
 
 
     </div>
@@ -140,3 +189,7 @@ function App() {
 
 
 export default App;
+
+
+export default App;
+

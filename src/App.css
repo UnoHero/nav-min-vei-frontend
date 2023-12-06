@@ -342,6 +342,12 @@ p {
 }
 
 
+.radio-box{
+  background-color: #00bfff42;
+  text-align: center;
+}
+
+
 /*Css for footer til hovedsiden og informasjonssiden */
 .footer {
   margin-top: 7%;
@@ -392,3 +398,4 @@ max-width: 700px;
 
 
 }
+
