@@ -114,6 +114,8 @@
   background: #0073e6;
 }
 
+
+/* ALT OVER ER NAV MENY */
 /* ALT OVER ER NAV MENY */
 
 
@@ -313,25 +315,6 @@ p {
 }
 
 
-
-
-/*Styles for the dropdown buttons*/
-.accordion-header {
-  color: rgb(255, 0, 68);
-  cursor: pointer;
-  padding: 10px 0;
-  font-size: 16px;
-  position: relative;
-}
-
-.accordion-header::before {
-  content: '▼';
-  color: blue;
-  position: absolute;
-  left: -20px;
-  transition: transform 0.3s ease;
-}
-
 .panel {
   max-height: 0;
   overflow: hidden;
@@ -357,3 +340,7 @@ max-width: 700px;
 
 }
 
+.flex  {
+padding: 30px;
+
+}

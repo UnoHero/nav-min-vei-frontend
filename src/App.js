@@ -106,6 +106,7 @@ function App() {
     const Example = () => {
     return (<div className="flex flex-wrap gap-2">
       <Button variant="primary">Start veileder</Button>
+    
       <Button variant="secondary">Få hjelp med velederen</Button>
     </div>);
 };
