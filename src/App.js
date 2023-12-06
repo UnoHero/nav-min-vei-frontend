@@ -110,7 +110,6 @@ function App() {
     const Example = () => {
     return (<Accordion>
       <Accordion.Item>
-        <Accordion.Header>Til deg som er mellom 62 og 67 år</Accordion.Header>
         <Accordion.Content>
           Hvis du er mellom 62 og 67 år når du søker, må du som hovedregel ha
           hatt en pensjonsgivende inntekt som tilsvarer x G, året før du fikk
