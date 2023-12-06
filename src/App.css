@@ -282,7 +282,7 @@ p {
 }
 
 .start-veileder {
-  margin-left: 29%;
+  margin-left: 0%;
   margin-top: 2%;
   color: white;
   background-color: #095bb2;
@@ -340,6 +340,45 @@ p {
 .panel.open {
   max-height: 500px; /* Juster denne verdien basert på ditt innhold */
 }
+
+
+/*Css for footer til hovedsiden og informasjonssiden */
+.footer {
+  margin-top: 7%;
+  background-color: #134852; /* Set your desired background color */
+  color: white; /* Set your desired text color */
+  padding: 20px; /* Add padding to the footer */
+  font-size: 18px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three equal-width columns */
+  gap: 20px; /* Add some space between the columns */
+}
+
+.footer-column {
+  font-size: 18px;
+  /* Add styling for each column if needed */
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/*Css til scrollUp button i footer */
+.scrollUpButton {
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+}
+
 
 .flex {
 text-align: center;
