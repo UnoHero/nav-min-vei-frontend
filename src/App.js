@@ -6,10 +6,12 @@ import search from './MagnifyingGlass.svg';
 import menu from './MenuHamburger.svg';
 import "@navikt/ds-css"
 import pilned from "./pilned.svg";
-import "./dropdown.js";
+import Footer from'./footer.js';
+import { ReadMore } from "@navikt/ds-react";
 import './App.css';
 import { Accordion } from "@navikt/ds-react";
 import { Button } from "@navikt/ds-react";
+
 
 
 
@@ -43,6 +45,7 @@ function App() {
         </center>
       </section>
     </div>
+
       <center className='p-tekst'>
         <p>Lurer du på hva du kan ha rett på av hjelp og økonomisk
            <br />
@@ -50,47 +53,23 @@ function App() {
           <br />
           Gjennom min veileder kan du utforske dette. </p>
       </center>
-      <center>
+
+
 <div className = "centerdown">
-      {/* dropdown buttons*/}
-      {
-  (() => {
-    const Example = () => {
-    return (<Accordion>
-      <Accordion.Item>
-        <Accordion.Content>
-          Hvis du er mellom 62 og 67 år når du søker, må du som hovedregel ha
-          hatt en pensjonsgivende inntekt som tilsvarer x G, året før du fikk
-          nedsatt arbeidsevnen. NAV kan gjøre <a href="#Unntak">unntak</a>.
-        </Accordion.Content>
-      </Accordion.Item>
-      <Accordion.Item>
-        <Accordion.Header>
-          Til deg som har yrkesskade eller yrkessykdom
-        </Accordion.Header>
-        <Accordion.Content>
-          Med yrkesskade mener vi at du har fått en skade som følge av en
-          arbeidsulykke. Vi kan godkjenne en sykdom som yrkessykdom hvis den
-          kommer av skadelig påvirkning fra arbeidsmiljøet.
-        </Accordion.Content>
-      </Accordion.Item>
-      <Accordion.Item>
-        <Accordion.Header>Til deg som er helt frisk</Accordion.Header>
-        <Accordion.Content>
-          Da er det lite som trengs å gjøres.
-        </Accordion.Content>
-      </Accordion.Item>
-    </Accordion>);
-
-};
-
-    return <Example />
-  })()
-}
+    <ReadMore header="Hva er MinVeileder?">
+      Med helsemessige begrensninger mener vi funksjonshemming, sykdom,
+      allergier som hindrer deg i arbeidet eller andre årsaker som må tas hensyn
+      til når du skal finne nytt arbeid. Du må oppgi hva som gjelder for deg, og
+      dokumentere de helsemessige årsakene du viser til.
+    </ReadMore>
+    <ReadMore header="Hva kan MinVeileder hjelpe deg med?">
+      Med helsemessige begrensninger mener vi funksjonshemming, sykdom,
+      allergier som hindrer deg i arbeidet eller andre årsaker som må tas hensyn
+      til når du skal finne nytt arbeid. Du må oppgi hva som gjelder for deg, og
+      dokumentere de helsemessige årsakene du viser til.
+    </ReadMore>
+  
 </div>
-</center>
-
-
       {/*code for bottom text and buttons under the dropdown buttons*/}
       
     </><div className='bottom-text'>
@@ -101,6 +80,7 @@ function App() {
           må du sende inn en søknad.</p>
             </div>
             <div classname="knapp">
+              
       {
 (() => {
     const Example = () => {
@@ -116,6 +96,7 @@ function App() {
 </div>
 
       </><div>
+        <Footer/>
         </div></>
 
   );
