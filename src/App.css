@@ -452,6 +452,7 @@ h1 {
 .footer-column {
   flex: 1;
   max-width: 300px;
+}
 
 .grid-container {
   display: grid;
