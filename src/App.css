@@ -13,7 +13,7 @@
   align-items: center;
   border-bottom: 1px solid #e5e5e5;
   font-weight: bold;
-  
+  height: 80px;
 }
 
 
@@ -65,8 +65,49 @@
 
 /* The container that contains all buttons and logos in the nav bar*/
 .App-header-actions {
-  margin-left: 2%;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
 }
+
+.button,
+.login-button,
+.search-button,
+.menu-button {
+  /* ... existing styles ... */
+  display: flex;
+  align-items: center;
+  margin: 0 10px; /* Adjust the default margin */
+}
+
+.button img,
+.login-button img,
+.search-button img,
+.menu-button img {
+  margin-right: 8px;
+}
+
+/* Media query for screens up to 768px */
+@media (max-width: 768px) {
+  .button,
+  .login-button,
+  .search-button,
+  .menu-button {
+    margin: 0 5px; /* Adjust the margin for smaller screens */
+  }
+}
+
+/* Media query for screens up to 480px */
+@media (max-width: 480px) {
+  .button,
+  .login-button,
+  .search-button,
+  .menu-button {
+    margin: 0 3px; /* Further adjust the margin for smaller screens */
+  }
+}
+
+
 
 
 /* Base styles for buttons */
@@ -92,15 +133,16 @@
 .search-button:focus,
 .menu-button:hover,
 .menu-button:focus {
-  background-color: #99C3FF; /* Endrer bakgrunnsfarge på hover */
+  background-color: #cae0ff; /* Endrer bakgrunnsfarge på hover */
   border-color: #3386E0; /* Synlig grensefarge på hover */
   padding: 8px 16px; /* Tilbakestill padding til original størrelse */
+  border-radius: 5px;
 }
 
 .login-button, .search-button, .menu-button {
   background: none;
   color: #3386E0;
-  border-radius: 0;
+  border-radius: 5px;
 }
 
 .login-button img, .search-button img, .menu-button img {
@@ -112,8 +154,11 @@
 .login-button:focus, .search-button:focus, .menu-button:focus {
   color: white;
   background: #0073e6;
+  
 }
 
+
+/* ALT OVER ER NAV MENY */
 /* ALT OVER ER NAV MENY */
 
 
@@ -313,25 +358,6 @@ p {
 }
 
 
-
-
-/*Styles for the dropdown buttons*/
-.accordion-header {
-  color: rgb(255, 0, 68);
-  cursor: pointer;
-  padding: 10px 0;
-  font-size: 16px;
-  position: relative;
-}
-
-.accordion-header::before {
-  content: '▼';
-  color: blue;
-  position: absolute;
-  left: -20px;
-  transition: transform 0.3s ease;
-}
-
 .panel {
   max-height: 0;
   overflow: hidden;
@@ -351,6 +377,39 @@ p {
 
 
 /*Css for footer til hovedsiden og informasjonssiden */
+
+
+
+.flex {
+text-align: center;
+}
+
+.centerdown {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+@media (max-width: 600px) {
+  .centerdown {
+    max-width: 100%;
+    padding: 0 10px; /* Legger til litt padding på sidene for mobilvisning */
+  }
+}
+
+
+
+.flex  {
+padding: 30px;
+
+}
+
+
+
 h1 {
   font-size: 18px;
   text-align: center;
@@ -374,13 +433,25 @@ h1 {
 
 
 
+
 .footer {
   margin-top: 7%;
-  background-color: #134852; /* Set your desired background color */
-  color: white; /* Set your desired text color */
-  padding: 20px; /* Add padding to the footer */
+  background-color: #134852;
+  color: white;
   font-size: 18px;
 }
+
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-column {
+  flex: 1;
+  max-width: 300px;
 
 .grid-container {
   display: grid;
@@ -396,6 +467,7 @@ h1 {
 
 .column-2, .column-3 {
   padding: 0px; /* Add padding as needed */
+
 }
 
 
@@ -404,7 +476,6 @@ a {
   color: white;
 }
 
-/*Css til scrollUp button i footer */
 .scrollUpButton {
   background-color: transparent;
   border: none;
@@ -415,6 +486,7 @@ a {
   cursor: pointer;
   outline: none;
 }
+
 
 
 .flex {
@@ -428,5 +500,6 @@ align-items: center;
 justify-content: center;
 max-width: 700px;
 }
+
 
 
