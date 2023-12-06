@@ -3,64 +3,76 @@ import { Accordion, Button, Radio, RadioGroup } from "@navikt/ds-react";
 import './App.css';
 import "@navikt/ds-css";
 
-
 const Info = () => {
-  // State variables to store form data
-  const [part1, setPart1] = useState('');
-  const [part2, setPart2] = useState('');
-  const [part3, setPart3] = useState('');
-  const [part4, setPart4] = useState('');
+  // State variable to store the username
+  const [username, setUsername] = useState('');
 
-  console.log('Info component rendered!');
+  // State variable to store user data
+  const [userData, setUserData] = useState(null);
+
+  // State variable to track if "Yes" is selected in the radio group
+  const [isYesSelected, setIsYesSelected] = useState(false);
 
   // Function to handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // You can handle the form data as needed, for example, send it to a server
-
-    // Reset the form after submission
-    setPart1('');
-    setPart2('');
-    setPart3('');
-    setPart4('');
+    // Check if "Yes" is selected and a username is provided
+    if (isYesSelected && username.trim() !== '') {
+      try {
+        const response = await fetch(`http://localhost:3000/hent/${username}`);
+        const data = await response.json();
+        setUserData(data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    }
   };
 
-return(
-    <form>
-    <Accordion>
-      <Accordion.Item>
-        <Accordion.Header>Hvorfor hente data</Accordion.Header>
-        <Accordion.Content>
-        ---- Forklaring her ---
-        </Accordion.Content>
-      </Accordion.Item>
-      <Accordion.Item>
-        <Accordion.Header>
-          Hvordan viker datasamlingen?
-        </Accordion.Header>
-        <Accordion.Content>
-          ---- Forklaring her ---
-        </Accordion.Content>
-      </Accordion.Item>
-      <Accordion.Item>
-        <Accordion.Header>Hvem hentes infoen fra?</Accordion.Header>
-        <Accordion.Content>
-          <div className = "radio-box">
-            <RadioGroup
-            legend = "Ønsker du å hente data fra det ofentlige?"
-
-            >
-             <Radio value="Yes">Ja</Radio>
-             <Radio value="No">Nei</Radio>   
-            </RadioGroup>
-            <Button variant='primary'>Gå videre</Button>
-          </div>
-        </Accordion.Content>
-      </Accordion.Item>
-    </Accordion>
+  return (
+    <form onSubmit={handleSubmit}>    
+      <Accordion>
+        <Accordion.Item>
+          <Accordion.Header>Hvorfor hente data</Accordion.Header>
+          <Accordion.Content>
+            ---- Forklaring her ---
+          </Accordion.Content>
+        </Accordion.Item>
+        <Accordion.Item>
+          <Accordion.Header>
+            Hvordan virker datasamlingen?
+          </Accordion.Header>
+          <Accordion.Content>
+            ---- Forklaring her ---
+          </Accordion.Content>
+        </Accordion.Item>
+        <Accordion.Item>
+          <Accordion.Header>Hvem hentes infoen fra?</Accordion.Header>
+          <Accordion.Content>
+            <div className="radio-box">
+              <RadioGroup
+                legend="Ønsker du å hente data fra det offentlige?"
+                onChange={(value) => setIsYesSelected(value === 'Yes')}
+              >
+                <label htmlFor="username">Brukernavn:</label>
+                <input
+                  type="text"
+                  id="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+                <Radio value="Yes">Ja</Radio>
+                <Radio value="No">Nei</Radio>
+              </RadioGroup>
+              <Button type="submit" variant='primary' disabled={!isYesSelected || username.trim() === ''}>
+                Gå videre
+              </Button>
+            </div>
+          </Accordion.Content>
+        </Accordion.Item>
+      </Accordion>
     </form>
-)
+  );
 };
 
 export default Info;
