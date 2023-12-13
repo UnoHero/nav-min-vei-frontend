@@ -166,6 +166,9 @@
 
 
 
+.Over-dropdown-text {
+  margin-bottom: 2%;
+}
 
 
 
@@ -378,13 +381,16 @@ p {
 
 /*Css for footer til hovedsiden og informasjonssiden */
 
-
-.Over-dropdown-text {
-  margin-bottom: 2%;
+.scrollUp {
+  margin-top: 2%;
+  margin-left: 35%;
+  margin-bottom: 5%;
 }
 
 
-
+.flex {
+text-align: center;
+}
 
 
 .centerdown {
@@ -411,27 +417,37 @@ padding: 30px;
 
 }
 
-
+.h1-column-1 {
+  font-size: 14px;
+}
 
 h1 {
-  font-size: 18px;
+  font-size: 14px;
   text-align: center;
-  color: #99C4DD;
+  color: #4cadcd;
   margin-top: 5%;
 }
 
 .h1-column-2-3 {
-  margin-top: 15%;
+  margin-top: 20%;
+  font-size: 14px;
+}
+
+.column-3 {
+  margin-top: 4%;
 }
 
 .p-footer-column-1 {
   text-align: center;
   font-size: 16px;
+  color: white;
 } 
 
 .p-footer {
   font-size: 16px;
   text-align: center;
+  margin-top: 5%;
+  color: white;
 }
 
 
@@ -439,9 +455,13 @@ h1 {
 
 .footer {
   margin-top: 7%;
-  background-color: #134852;
+  background-color: #00243a;
   color: white;
   font-size: 18px;
+}
+
+.farge-på-tekst {
+  color: white;
 }
 
 
@@ -470,6 +490,7 @@ h1 {
   padding: 0px; /* Add padding as needed */
   text-align: left; /* Align text to the left */
   justify-content: left;
+  margin-top: 3%;
 }
 
 .column-2, .column-3 {
