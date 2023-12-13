@@ -6,14 +6,16 @@
 }
 
 .App-header {
-  background-color: #ffffff; /* White background as specified */
+  background-color: white; /* White background as specified */
   display: flex;
   justify-content: start;
   padding: 10px 30px;
   align-items: center;
   border-bottom: 1px solid #e5e5e5;
   font-weight: bold;
+  height: 80px;
 }
+
 
 
 .App-logo {
@@ -29,7 +31,7 @@
   padding: 0;
   font-size: 16px;
   margin-right: auto;
-  
+
 }
 
 .nav-link {
@@ -63,8 +65,50 @@
 
 /* The container that contains all buttons and logos in the nav bar*/
 .App-header-actions {
-  margin-left: 2%;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
 }
+
+.button,
+.login-button,
+.search-button,
+.menu-button {
+  /* ... existing styles ... */
+  display: flex;
+  align-items: center;
+  margin: 0 10px; /* Adjust the default margin */
+}
+
+.button img,
+.login-button img,
+.search-button img,
+.menu-button img {
+  margin-right: 8px;
+}
+
+/* Media query for screens up to 768px */
+@media (max-width: 768px) {
+  .button,
+  .login-button,
+  .search-button,
+  .menu-button {
+    margin: 0 5px; /* Adjust the margin for smaller screens */
+  }
+}
+
+/* Media query for screens up to 480px */
+@media (max-width: 480px) {
+  .button,
+  .login-button,
+  .search-button,
+  .menu-button {
+    margin: 0 3px; /* Further adjust the margin for smaller screens */
+  }
+}
+
+
+
 
 /* Base styles for buttons */
 .button, .login-button, .search-button, .menu-button {
@@ -89,15 +133,16 @@
 .search-button:focus,
 .menu-button:hover,
 .menu-button:focus {
-  background-color: #99C3FF; /* Endrer bakgrunnsfarge på hover */
+  background-color: #cae0ff; /* Endrer bakgrunnsfarge på hover */
   border-color: #3386E0; /* Synlig grensefarge på hover */
   padding: 8px 16px; /* Tilbakestill padding til original størrelse */
+  border-radius: 5px;
 }
 
 .login-button, .search-button, .menu-button {
   background: none;
   color: #3386E0;
-  border-radius: 0;
+  border-radius: 5px;
 }
 
 .login-button img, .search-button img, .menu-button img {
@@ -109,9 +154,11 @@
 .login-button:focus, .search-button:focus, .menu-button:focus {
   color: white;
   background: #0073e6;
+  
 }
 
 
+/* ALT OVER ER NAV MENY */
 /* ALT OVER ER NAV MENY */
 
 
@@ -146,8 +193,10 @@
  }
 
 button {
+  text-align: center;
   color: blue;
   outline: none;
+  text-align: center;
 }
 
 .section-name {
@@ -176,8 +225,10 @@ p{
 
 
 button {
-  color: blue;
+  color: rgb(40, 40, 201);
   outline: none;
+  text-align: center;
+  margin-left: 20%;
 }
 
 .section-name {
@@ -307,26 +358,6 @@ p {
 }
 
 
-
-
-
-/*Styles for the dropdown buttons*/
-.accordion-header {
-  color: blue;
-  cursor: pointer;
-  padding: 10px 0;
-  font-size: 16px;
-  position: relative;
-}
-
-.accordion-header::before {
-  content: '▼';
-  color: blue;
-  position: absolute;
-  left: -20px;
-  transition: transform 0.3s ease;
-}
-
 .panel {
   max-height: 0;
   overflow: hidden;
@@ -338,32 +369,122 @@ p {
   max-height: 500px; /* Juster denne verdien basert på ditt innhold */
 }
 
+
+.radio-box{
+  background-color: #00bfff42;
+  text-align: center;
+}
+
+
 /*Css for footer til hovedsiden og informasjonssiden */
+
+
+.Over-dropdown-text {
+  margin-bottom: 2%;
+}
+
+
+
+.flex {
+text-align: center;
+}
+
+.centerdown {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+@media (max-width: 600px) {
+  .centerdown {
+    max-width: 100%;
+    padding: 0 10px; /* Legger til litt padding på sidene for mobilvisning */
+  }
+}
+
+
+
+.flex  {
+padding: 30px;
+
+}
+
+
+
+h1 {
+  font-size: 18px;
+  text-align: center;
+  color: #99C4DD;
+  margin-top: 5%;
+}
+
+.h1-column-2-3 {
+  margin-top: 15%;
+}
+
+.p-footer-column-1 {
+  text-align: center;
+  font-size: 16px;
+} 
+
+.p-footer {
+  font-size: 16px;
+  text-align: center;
+}
+
+
+
+
 .footer {
   margin-top: 7%;
-  background-color: #134852; /* Set your desired background color */
-  color: white; /* Set your desired text color */
-  padding: 20px; /* Add padding to the footer */
+  background-color: #134852;
+  color: white;
   font-size: 18px;
 }
 
+
+
 .footer-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Three equal-width columns */
-  gap: 20px; /* Add some space between the columns */
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .footer-column {
-  font-size: 18px;
-  /* Add styling for each column if needed */
+  flex: 1;
+  max-width: 300px;
+
 }
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 500px 400px 343px;
+  gap: 0px; /* Adjust the gap as needed */
+}
+
+.column-1 {
+  padding: 0px; /* Add padding as needed */
+  text-align: left; /* Align text to the left */
+  justify-content: left;
+}
+
+.column-2, .column-3 {
+  padding: 0px; /* Add padding as needed */
+
+}
+
 
 a {
   text-decoration: none;
   color: white;
 }
 
-/*Css til scrollUp button i footer */
 .scrollUpButton {
   background-color: transparent;
   border: none;
@@ -373,5 +494,19 @@ a {
   padding: 0;
   cursor: pointer;
   outline: none;
+}
+
+
+
+.flex {
+text-align: center;
+}
+
+/* Dropdown css*/
+.centerdown {
+display: flex;
+align-items: center;
+justify-content: center;
+max-width: 700px;
 }
 
