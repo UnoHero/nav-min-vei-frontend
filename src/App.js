@@ -12,6 +12,10 @@ import Footer from './footer.js';
 import { Accordion } from "@navikt/ds-react";
 import './App.css';
 import Info from './Info.js';
+import { ReadMore } from "@navikt/ds-react";
+import { Button } from "@navikt/ds-react";
+
+
 
 const Home = () => (
   <div className="App">
@@ -36,6 +40,7 @@ const Home = () => (
         <img src={logo2} alt="MinVei Logo" className="logo" width="25%" height="10%" />
       </center>
     </section>
+    <div className='align'>
 
             <div className='Over-dropdown-text'>
               <p className='b-text'>Lurer du på hva du kan ha rett på av hjelp og økonmisk
@@ -45,43 +50,39 @@ const Home = () => (
                 Gjennom MinVeileder kan du utforske dette.
                 </p>
             </div>
+            <center>
 
-    <center>
-          <div className="centerdown">
-            <Accordion>
-              <Accordion.Item>
-                <Accordion.Header>Til deg som har yrkesskade eller yrkessykdom</Accordion.Header>
-                <Accordion.Content>
-                  Med yrkesskade mener vi at du har fått en skade som følge av en
-                  arbeidsulykke. Vi kan godkjenne en sykdom som yrkessykdom hvis den
-                  kommer av skadelig påvirkning fra arbeidsmiljøet.
-                </Accordion.Content>
-              </Accordion.Item>
-              <Accordion.Item>
-                <Accordion.Header>Til deg som er helt frisk</Accordion.Header>
-                <Accordion.Content>
-                  Da er det lite som trengs å gjøres.
-                </Accordion.Content>
-              </Accordion.Item>
-            </Accordion>
-          </div>
-        </center>
+            <div className='dropdown'>
 
-    <div className='bottom-text'>
+                  <ReadMore header="Hva er MinVeileder">
+                    Med helsemessige begrensninger mener vi funksjonshemming, sykdom,
+                    allergier som hindrer deg i arbeidet eller andre årsaker som må tas hensyn
+                    til når du skal finne nytt arbeid. Du må oppgi hva som gjelder for deg, og
+                    dokumentere de helsemessige årsakene du viser til.
+                  </ReadMore>
+                  <ReadMore header="Hva kan MinVeileder hjelpe deg med?">
+                    Med helsemessige begrensninger mener vi funksjonshemming, sykdom,
+                    allergier som hindrer deg i arbeidet eller andre årsaker som må tas hensyn
+                    til når du skal finne nytt arbeid. Du må oppgi hva som gjelder for deg, og
+                    dokumentere de helsemessige årsakene du viser til.
+                  </ReadMore>
+            </div>
+            </center>
+            <div className='bottom-text'>
       <p className='b-text'>Det er viktig å understreke at MinVeileder kun kan foreslå<br />ytelser/tjenester du kan ha krav på. For å få endelig svar<br />må du sende inn en søknad.</p>
     </div>
 
-    <div>
-      <button className='start-veileder'><Link to="/info"><b>Start veilederen</b></Link></button>
-      <button className='help-b'><b>Få hjelp med veileder</b></button>
+    <div className="flex flex-wrap gap-2">
+      <Button variant="primary">Start veilederen</Button>
+      <Button variant="secondary">Få help med veilederen</Button>
     </div>
-
-
+    </div>
     <div>
       <Footer></Footer>
     </div>
+    </div>
 
-  </div>
+
 );
 
 const App = () => {
