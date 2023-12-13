@@ -80,35 +80,7 @@ const Home = () => (
     <div>
       <Footer></Footer>
     </div>
-  </div>
-);
 
-const App = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/info" element={<Info />} />
-      </Routes>
-    </Router>
-  );
-
-}
-
-    <div className='bottom-text'>
-      <p className='b-text'>Det er viktig å understreke at MinVeileder kun kan foreslå<br />ytelser/tjenester du kan ha krav på. For å få endelig svar<br />må du sende inn en søknad.</p>
-    </div>
-
-
-    <div>
-      <button className='start-veileder'><Link to="/info"><b>Start veilederen</b></Link></button>
-      <button className='help-b'><b>Få hjelp med veileder</b></button>
-    </div>
-
-
-    <div>
-      <Footer></Footer>
-    </div>
   </div>
 );
 
