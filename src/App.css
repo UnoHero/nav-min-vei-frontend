@@ -385,9 +385,7 @@ p {
 
 
 
-.flex {
-text-align: center;
-}
+
 
 .centerdown {
   display: flex;
@@ -503,10 +501,28 @@ text-align: center;
 }
 
 /* Dropdown css*/
-.centerdown {
-display: flex;
-align-items: center;
-justify-content: center;
-max-width: 700px;
+.dropdown {
+align-items: left;
+text-align: left;
+justify-content: left;
+max-width: 43%;
+margin-bottom: 20px; /* Legger til 20px margin under hver dropdown */
+
 }
 
+
+
+.align {
+  align-items: left; /* Sentrerer elementene vertikalt */
+  justify-content: left; /* Sentrerer elementene horisontalt */
+  gap: 20px; 
+  }
+
+  .flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Juster som nødvendig for mellomrom mellom knappene */
+    justify-content: center; /* Sentrerer elementene horisontalt */
+    align-items: center; /* Sentrerer elementene vertikalt */
+    height: 100%; /* Juster eller fjern denne basert på dine behov */
+}
