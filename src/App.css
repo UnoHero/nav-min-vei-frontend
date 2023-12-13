@@ -379,6 +379,11 @@ p {
 /*Css for footer til hovedsiden og informasjonssiden */
 
 
+.Over-dropdown-text {
+  margin-bottom: 2%;
+}
+
+
 
 .flex {
 text-align: center;
@@ -442,6 +447,7 @@ h1 {
 }
 
 
+
 .footer-container {
   display: flex;
   justify-content: space-between;
@@ -452,6 +458,9 @@ h1 {
 .footer-column {
   flex: 1;
   max-width: 300px;
+
+}
+
 
 .grid-container {
   display: grid;
@@ -500,6 +509,4 @@ align-items: center;
 justify-content: center;
 max-width: 700px;
 }
-
-
 
