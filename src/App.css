@@ -351,6 +351,46 @@ p {
 
 
 /*Css for footer til hovedsiden og informasjonssiden */
+<<<<<<< Updated upstream
+=======
+
+.Over-dropdown-text {
+  margin-bottom: 2%;
+}
+
+
+
+.flex {
+text-align: center;
+}
+
+.centerdown {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+@media (max-width: 600px) {
+  .centerdown {
+    max-width: 100%;
+    padding: 0 10px; /* Legger til litt padding på sidene for mobilvisning */
+  }
+}
+
+
+
+.flex  {
+padding: 30px;
+
+}
+
+
+
+>>>>>>> Stashed changes
 h1 {
   font-size: 18px;
   text-align: center;
@@ -382,6 +422,22 @@ h1 {
   font-size: 18px;
 }
 
+<<<<<<< Updated upstream
+=======
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-column {
+  flex: 1;
+  max-width: 300px;
+}
+
+>>>>>>> Stashed changes
 .grid-container {
   display: grid;
   grid-template-columns: 500px 400px 343px;
@@ -428,5 +484,8 @@ align-items: center;
 justify-content: center;
 max-width: 700px;
 }
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
