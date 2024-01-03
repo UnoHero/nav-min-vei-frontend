@@ -72,8 +72,12 @@ const Info = () => {
                       type="number"
                       id="userId"
                       value={userId}
-                      onChange={(e) => setUserId(e.target.value)}
-/>
+                      onChange={(e) =>{
+                        if(/^\d*$/.test(e.target.value)){
+                          setUserId(e.target.value)}
+                        }
+                      }  
+                    />
                   <Button
                     type="button"
                     variant="primary"
