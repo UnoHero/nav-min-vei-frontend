@@ -16,6 +16,20 @@ const Info = () => {
   // State variable to track the selected version for each field
   const [selectedVersions, setSelectedVersions] = useState({});
 
+  // Norwegian labels for fields
+  const norwegianLabels = {
+    firstName: "Fornavn",
+    middleName: "Mellomnavn",
+    lastName: "Etternavn",
+    country: "Land",
+    city: "By",
+    postalCode: "Postnummer",
+    address: "Adresse",
+    relations: "Relasjoner",
+    grossIncome: "Bruttoinntekt",
+    insurance: "Forsikring",
+  };
+
   // Function to handle form submission and fetching data
   const handleDataFetch = async () => {
     if (isYesSelected && userId.trim() !== '') {
@@ -93,106 +107,18 @@ const Info = () => {
             <Accordion.Header>Datavalg</Accordion.Header>
             <Accordion.Content>
               <ul>
-                <li>
-                  First Name:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('firstName', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.firstName?.skatt}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.firstName?.folkReg}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.firstName?.aaReg}</Radio>
-                  </RadioGroup>
-                </li>
-                <li>
-                  Middle Name:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('middleName', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.middleName?.skatt}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.middleName?.folkReg}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.middleName?.aaReg}</Radio>
-                  </RadioGroup>
-                </li>
-                <li>
-                  Last Name:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('lastName', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.lastName?.skatt}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.lastName?.folkReg}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.lastName?.aaReg}</Radio>
-                  </RadioGroup>
-                </li>
-                <li>
-                  Country:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('country', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.country?.skatt}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.country?.folkReg}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.country?.aaReg}</Radio>
-                  </RadioGroup>
-                </li>
-                <li>
-                  City:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('city', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.city?.skatt}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.city?.folkReg}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.city?.aaReg}</Radio>
-                  </RadioGroup>
-                </li>
-                <li>
-                  Postal Code:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('postalCode', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.postalCode?.skatt}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.postalCode?.folkReg}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.postalCode?.aaReg}</Radio>
-                  </RadioGroup>
-                </li>
-                <li>
-                  Address:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('address', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.address?.skatt}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.address?.folkReg}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.address?.aaReg}</Radio>
-                  </RadioGroup>
-                </li>
-                <li>
-                  Relations:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('relations', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.relations?.skatt}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.relations?.folkReg}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.relations?.aaReg}</Radio>
-                  </RadioGroup>
-                </li>
-                <li>
-                  Gross Income:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('grossIncome', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.grossIncome}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.grossIncome}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.grossIncome}</Radio>
-                  </RadioGroup>
-                </li>
-                <li>
-                  Insurance:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('insurance', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.insurance}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.insurance}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.insurance}</Radio>
-                  </RadioGroup>
-                </li>
+                {Object.keys(norwegianLabels).map((field) => (
+                  <li key={field}>
+                    {norwegianLabels[field]}:
+                    <RadioGroup
+                      onChange={(value) => handleVersionSelection(field, value)}
+                    >
+                      <Radio value="skatt">Skatt: {userData?.[field]?.skatt}</Radio>
+                      <Radio value="folkReg">Folkeregister: {userData?.[field]?.folkReg}</Radio>
+                      <Radio value="aaReg">AA-register: {userData?.[field]?.aaReg}</Radio>
+                    </RadioGroup>
+                  </li>
+                ))}
               </ul>
             </Accordion.Content>
           </Accordion.Item>
@@ -202,7 +128,7 @@ const Info = () => {
               <ul>
                 {Object.keys(selectedVersions).map((field) => (
                   <li key={field}>
-                    {field}: {userData?.[field]?.[selectedVersions[field]]}
+                    {norwegianLabels[field]}: {userData?.[field]?.[selectedVersions[field]]}
                   </li>
                 ))}
               </ul>
