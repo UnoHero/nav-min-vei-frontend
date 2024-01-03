@@ -23,7 +23,6 @@ const Info = () => {
         const response = await fetch(`http://localhost:3000/user/${userId}`);
         const data = await response.json();
         setUserData(data);
-        console.log(data)
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
