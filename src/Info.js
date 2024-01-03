@@ -21,7 +21,7 @@ const Info = () => {
         const response = await fetch(`http://localhost:3000/user/${userId}`);
         const data = await response.json();
         setUserData(data);
-        console.log(userData)
+        console.log(data)
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
@@ -58,10 +58,16 @@ const Info = () => {
                     <label htmlFor="userId">ID:</label>
                     <input
                       required
-                      type="number"
+                      type="text"
                       id="userId"
                       value={userId}
-                      onChange={(e) => setUserId(e.target.value)}
+                      autoComplete='off'
+                      onChange={(e) =>{
+                        if(/^\d*$/.test(e.target.value)){
+                          setUserId(e.target.value)}
+
+                        }
+                      }  
                     />
                   </form>
                 }
