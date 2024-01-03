@@ -5,7 +5,7 @@ import "@navikt/ds-css";
 
 const Info = () => {
   // State variable to store the username
-  const [username, setUsername] = useState('');
+  const [userId, setUserId] = useState('');
 
   // State variable to store user data
   const [userData, setUserData] = useState(null);
@@ -16,21 +16,18 @@ const Info = () => {
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     // Check if "Yes" is selected and a username is provided
-    if (isYesSelected && username.trim() !== '') {
       try {
-        const response = await fetch(`http://localhost:3000/hent/${username}`);
+        const response = await fetch(`http://localhost:3000/user/${userId}`);
         const data = await response.json();
         setUserData(data);
+        console.log(userData)
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
-    }
   };
 
-  return (
-    <form onSubmit={handleSubmit}>    
+  return ( 
       <Accordion>
         <Accordion.Item>
           <Accordion.Header>Hvorfor hente data</Accordion.Header>
@@ -54,24 +51,25 @@ const Info = () => {
                 legend="Ønsker du å hente data fra det offentlige?"
                 onChange={(value) => setIsYesSelected(value === 'Yes')}
               >
-                <label htmlFor="username">Brukernavn:</label>
-                <input
-                  type="text"
-                  id="username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
                 <Radio value="Yes">Ja</Radio>
                 <Radio value="No">Nei</Radio>
+                {isYesSelected && 
+                  <form onSubmit={handleSubmit}>
+                    <label htmlFor="userId">ID:</label>
+                    <input
+                      required
+                      type="number"
+                      id="userId"
+                      value={userId}
+                      onChange={(e) => setUserId(e.target.value)}
+                    />
+                  </form>
+                }
               </RadioGroup>
-              <Button type="submit" variant='primary' disabled={!isYesSelected || username.trim() === ''}>
-                Gå videre
-              </Button>
             </div>
           </Accordion.Content>
         </Accordion.Item>
       </Accordion>
-    </form>
   );
 };
 
