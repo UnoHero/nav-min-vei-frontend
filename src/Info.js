@@ -23,10 +23,11 @@ const Info = () => {
         const response = await fetch(`http://localhost:3000/user/${userId}`);
         const data = await response.json();
         setUserData(data);
+        console.log(data)
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
-    }
+}
   };
 
   // Function to handle selection of data versions
@@ -37,42 +38,42 @@ const Info = () => {
     }));
   };
 
-  return (
-    <Accordion>
-      <Accordion.Item>
-        <Accordion.Header>Hvorfor hente data</Accordion.Header>
-        <Accordion.Content>
-          ---- Forklaring her ---
-        </Accordion.Content>
-      </Accordion.Item>
-      <Accordion.Item>
-        <Accordion.Header>
-          Hvordan virker datasamlingen?
-        </Accordion.Header>
-        <Accordion.Content>
-          ---- Forklaring her ---
-        </Accordion.Content>
-      </Accordion.Item>
-      <Accordion.Item>
-        <Accordion.Header>Hvem hentes infoen fra?</Accordion.Header>
-        <Accordion.Content>
-          <div className="radio-box">
-            <RadioGroup
-              legend="Ønsker du å hente data fra det offentlige?"
-              onChange={(value) => setIsYesSelected(value === 'Yes')}
-            >
-              <Radio value="Yes">Ja</Radio>
-              <Radio value="No">Nei</Radio>
-              {isYesSelected && (
+  return ( 
+      <Accordion>
+        <Accordion.Item>
+          <Accordion.Header>Hvorfor hente data</Accordion.Header>
+          <Accordion.Content>
+            ---- Forklaring her ---
+          </Accordion.Content>
+        </Accordion.Item>
+        <Accordion.Item>
+          <Accordion.Header>
+            Hvordan virker datasamlingen?
+          </Accordion.Header>
+          <Accordion.Content>
+            ---- Forklaring her ---
+          </Accordion.Content>
+        </Accordion.Item>
+        <Accordion.Item>
+          <Accordion.Header>Hvem hentes infoen fra?</Accordion.Header>
+          <Accordion.Content>
+            <div className="radio-box">
+              <RadioGroup
+                legend="Ønsker du å hente data fra det offentlige?"
+                onChange={(value) => setIsYesSelected(value === 'Yes')}
+              >
+                <Radio value="Yes">Ja</Radio>
+                <Radio value="No">Nei</Radio>
+                {isYesSelected && (
                 <div>
-                  <label htmlFor="userId">ID:</label>
-                  <input
-                    required
-                    type="number"
-                    id="userId"
-                    value={userId}
-                    onChange={(e) => setUserId(e.target.value)}
-                  />
+                    <label htmlFor="userId">ID:</label>
+                    <input
+                      required
+                      type="number"
+                      id="userId"
+                      value={userId}
+                      onChange={(e) => setUserId(e.target.value)}
+/>
                   <Button
                     type="button"
                     variant="primary"
@@ -83,11 +84,11 @@ const Info = () => {
                   </Button>
                 </div>
               )}
-            </RadioGroup>
-          </div>
-        </Accordion.Content>
-      </Accordion.Item>
-      {userData && (
+              </RadioGroup>
+            </div>
+          </Accordion.Content>
+        </Accordion.Item>
+{userData && (
         <>
           <Accordion.Item>
             <Accordion.Header>Datavalg</Accordion.Header>
@@ -210,7 +211,7 @@ const Info = () => {
           </Accordion.Item>
         </>
       )}
-    </Accordion>
+      </Accordion>
   );
 };
 
