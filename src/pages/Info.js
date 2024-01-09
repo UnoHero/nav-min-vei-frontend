@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Accordion, Button, Radio, RadioGroup } from "@navikt/ds-react";
-import './App.css';
 import "@navikt/ds-css";
 
 const Info = () => {

@@ -1,7 +1,5 @@
 import React from 'react';
 import { ArrowUpIcon } from '@navikt/aksel-icons';
-import './App.css';
-
 
 class ScrollToTop extends React.Component {
   scrollToTop = () => {
