@@ -1,17 +1,14 @@
-
-
-
 import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
 import logo from './Pictures/logo.png';
 import logo2 from './Pictures/logo_stor.png';
-import login from './Enter.svg';
-import search from './MagnifyingGlass.svg';
-import menu from './MenuHamburger.svg';
+import login from './Pictures/Enter.svg';
+import search from './Pictures/MagnifyingGlass.svg';
+import menu from './Pictures/MenuHamburger.svg';
 
-import Footer from './footer.js';
+import Footer from './components/footer.js';
 import { Accordion } from "@navikt/ds-react";
 import './App.css';
-import Info from './Info.js';
+import Info from './pages/Info.js';
 import { ReadMore } from "@navikt/ds-react";
 import { Button } from "@navikt/ds-react";
 
