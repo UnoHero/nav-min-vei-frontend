@@ -17,17 +17,23 @@ const Info = () => {
   // State variable to track the selected version for each field
   const [selectedVersions, setSelectedVersions] = useState({});
 
+  // Error message state
+  const [errMsg, setErrMsg] = useState (null);
+
   // Function to handle form submission and fetching data
   const handleDataFetch = async () => {
     if (isYesSelected && userId.trim() !== '') {
       try {
         const response = await fetch(`http://localhost:3000/user/${userId}`);
         const data = await response.json();
+        if (!response.ok) {
+          setErrMsg(data.error);
+        }
         setUserData(data);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
-}
+    }
   };
 
   // Function to handle selection of data versions
@@ -72,6 +78,7 @@ const Info = () => {
                 <Radio value="No">Nei</Radio>
                 {isYesSelected && (
                 <div>
+                    {errMsg && <h3>{errMsg}</h3>}
                     <label htmlFor="userId">ID:</label>
                     <input
                       required
