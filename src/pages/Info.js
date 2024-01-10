@@ -1,4 +1,4 @@
-  // Secker er best siden han kom til 100 først - sitat Senator 2021
+  // Secker er best siden han kom til 100 først - sitat Senator 2021@
 
 import React, { useState } from 'react';
 import { Accordion, Button, Radio, RadioGroup } from "@navikt/ds-react";
