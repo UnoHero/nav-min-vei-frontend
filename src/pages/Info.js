@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Accordion, Button, Radio, RadioGroup } from "@navikt/ds-react";
-import Head from '../components/header';
+import '../Info.css';
+import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import "@navikt/ds-css";
 
@@ -30,6 +31,7 @@ const Info = () => {
           setErrMsg(data.error);
         }
         setUserData(data);
+        console.log(data)
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
@@ -48,7 +50,7 @@ const Info = () => {
     <div>
 
       <div>
-        <Head />
+        <Navbar />
       </div>
       
       <Accordion>
@@ -234,8 +236,6 @@ const Info = () => {
         <Footer />
       </div>
       </div>
-
-
   );
 
 

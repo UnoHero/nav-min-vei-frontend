@@ -1,11 +1,10 @@
 import React from 'react';
 import logo from '../Pictures/logo.png';
-import logo2 from '../Pictures/logo_stor.png';
 import login from '../Pictures/Enter.svg';
 import search from '../Pictures/MagnifyingGlass.svg';
 import menu from '../Pictures/MenuHamburger.svg';
 
-class Head extends React.Component {
+class Navbar extends React.Component {
   render() {
     return (
       <header className="App-header">
@@ -46,4 +45,4 @@ class Head extends React.Component {
   }
 }
 
-export default Head;
+export default Navbar;
