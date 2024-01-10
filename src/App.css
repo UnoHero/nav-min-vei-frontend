@@ -547,3 +547,8 @@ margin-bottom: 20px; /* Legger til 20px margin under hver dropdown */
     align-items: center; /* Sentrerer elementene vertikalt */
     height: 100%; /* Juster eller fjern denne basert på dine behov */
 }
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+}
