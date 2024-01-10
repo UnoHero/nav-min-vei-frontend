@@ -1,5 +1,5 @@
-import logo2 from '../Pictures/logo_stor.png';
-import Head from '../components/header.js';
+import Navbar from '../components/navbar.js';
+import Section from '../components/section.js';
 import Footer from '../components/footer.js';
 import { ReadMore } from "@navikt/ds-react";
 import { Button } from "@navikt/ds-react";
@@ -8,13 +8,9 @@ import { Link } from 'react-router-dom';
 
 const Home = () => (
     <div className="App">
-      <Head />
+      <Navbar />
   
-      <section className="firstsection">
-        <center>
-          <img src={logo2} alt="MinVei Logo" className="logo" width="25%" height="10%" />
-        </center>
-      </section>
+      <Section />
       <div className='align'>
   
               <div className='Over-dropdown-text'>
