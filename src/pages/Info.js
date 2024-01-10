@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Accordion, Button, Radio, RadioGroup } from "@navikt/ds-react";
+import Head from '../components/header';
+import Footer from '../components/footer';
 import "@navikt/ds-css";
 
 const Info = () => {
@@ -37,6 +39,12 @@ const Info = () => {
   };
 
   return ( 
+    <div>
+
+      <div>
+        <Head />
+      </div>
+      
       <Accordion>
         <Accordion.Item>
           <Accordion.Header>Hvorfor hente data</Accordion.Header>
@@ -214,7 +222,16 @@ const Info = () => {
         </>
       )}
       </Accordion>
+
+      <div>
+        <Footer />
+      </div>
+      </div>
+
+
   );
+
+
 };
 
 export default Info;
