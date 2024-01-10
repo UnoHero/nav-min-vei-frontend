@@ -41,6 +41,7 @@ class Footer extends React.Component {
             <p className='p-footer'><a className='farge-på-tekst' href="https://www.nav.no/#">Del skjerm med veileder</a></p>
 
           </div>
+          
         </div>
       </footer>
     );
