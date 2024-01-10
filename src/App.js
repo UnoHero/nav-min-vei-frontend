@@ -70,7 +70,9 @@ const Home = () => (
     </div>
 
     <div className="flex flex-wrap gap-2">
-      <Button variant="primary">Start veilederen</Button>
+      <Link to='/info'>
+        <Button variant="primary">Start veilederen</Button>
+      </Link>
       <Button variant="secondary">Få help med veilederen</Button>
     </div>
     </div>
