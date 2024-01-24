@@ -1,9 +1,54 @@
 import React, { useState } from 'react';
-import { Accordion, Button, Radio, RadioGroup } from "@navikt/ds-react";
-import '../Info.css';
+import { useSpring, animated } from 'react-spring';
+import styled from 'styled-components';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import "@navikt/ds-css";
+import { Accordion } from "@navikt/ds-react";
+import logo2 from '../Pictures/logo_stor.png';
+import { config } from 'react-spring';
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
+const WhiteBox = styled(animated.div)`
+  width: 66.666%;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StartVeilederButton = styled(animated.button)`
+  background-color: #007b8e;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  opacity: ${(props) => props.opacity};
+  transition: opacity 300ms;
+`;
+
+const CheckBoxContainer = styled.div`
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const CheckBox = styled.input`
+  margin-right: 10px;
+`;
+
+const Label = styled.label`
+  color: #007b8e;
+`;
 
 const Info = () => {
   // State variable to store the user ID
@@ -18,8 +63,21 @@ const Info = () => {
   // State variable to track the selected version for each field
   const [selectedVersions, setSelectedVersions] = useState({});
 
-  // Error message state
-  const [errMsg, setErrMsg] = useState (null);
+  const [height, setHeight] = useState('auto'); // Sett en initialverdi etter behov
+
+  const [showCheckboxes, setShowCheckboxes] = useState(false);
+
+  const [buttonProps, setButtonProps] = useSpring(() => ({
+    opacity: 0,
+    config: config.gentle,
+  }));
+
+  const startVeileder = () => {
+    setShowCheckboxes(true);
+    setButtonProps({ opacity: 1 });
+    // Sett height eller andre relevante states om nødvendig
+    // Legg til andre handlinger som er nødvendige for å starte veilederprosessen
+  };
 
   // Function to handle form submission and fetching data
   const handleDataFetch = async () => {
@@ -27,15 +85,12 @@ const Info = () => {
       try {
         const response = await fetch(`http://localhost:3000/user/${userId}`);
         const data = await response.json();
-        if (!response.ok) {
-          setErrMsg(data.error);
-        }
         setUserData(data);
         console.log(data)
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
-    }
+}
   };
 
   // Function to handle selection of data versions
@@ -46,199 +101,56 @@ const Info = () => {
     }));
   };
 
-  return ( 
+  return (
     <div>
-
       <div>
         <Navbar />
       </div>
-      
-      <Accordion>
-        <Accordion.Item>
-          <Accordion.Header>Hvorfor hente data</Accordion.Header>
-          <Accordion.Content>
-            ---- Forklaring her ---
-          </Accordion.Content>
-        </Accordion.Item>
-        <Accordion.Item>
-          <Accordion.Header>
-            Hvordan virker datasamlingen?
-          </Accordion.Header>
-          <Accordion.Content>
-            ---- Forklaring her ---
-          </Accordion.Content>
-        </Accordion.Item>
-        <Accordion.Item>
-          <Accordion.Header>Hvem hentes infoen fra?</Accordion.Header>
-          <Accordion.Content>
-            <div className="radio-box">
-              <RadioGroup
-                legend="Ønsker du å hente data fra det offentlige?"
-                onChange={(value) => setIsYesSelected(value === 'Yes')}
-              >
-                <Radio value="Yes">Ja</Radio>
-                <Radio value="No">Nei</Radio>
-                {isYesSelected && (
-                <div>
-                    {errMsg && <h3>{errMsg}</h3>}
-                    <label htmlFor="userId">ID:</label>
-                    <input
-                      required
-                      type="number"
-                      id="userId"
-                      value={userId}
-                      onChange={(e) =>{
-                        if(/^\d*$/.test(e.target.value)){
-                          setUserId(e.target.value)}
-                        }
-                      }  
-                    />
-                  <Button
-                    type="button"
-                    variant="primary"
-                    onClick={handleDataFetch}
-                    disabled={!isYesSelected || userId.trim() === ''}
-                  >
-                    Gå videre
-                  </Button>
-                </div>
-              )}
-              </RadioGroup>
-            </div>
-          </Accordion.Content>
-        </Accordion.Item>
-{userData && (
-        <>
-          <Accordion.Item>
-            <Accordion.Header>Datavalg</Accordion.Header>
-            <Accordion.Content>
-              <ul>
-                <li>
-                  First Name:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('firstName', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.firstName?.skatt}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.firstName?.folkReg}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.firstName?.aaReg}</Radio>
-                  </RadioGroup>
-                </li>
-                <li>
-                  Middle Name:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('middleName', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.middleName?.skatt}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.middleName?.folkReg}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.middleName?.aaReg}</Radio>
-                  </RadioGroup>
-                </li>
-                <li>
-                  Last Name:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('lastName', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.lastName?.skatt}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.lastName?.folkReg}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.lastName?.aaReg}</Radio>
-                  </RadioGroup>
-                </li>
-                <li>
-                  Country:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('country', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.country?.skatt}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.country?.folkReg}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.country?.aaReg}</Radio>
-                  </RadioGroup>
-                </li>
-                <li>
-                  City:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('city', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.city?.skatt}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.city?.folkReg}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.city?.aaReg}</Radio>
-                  </RadioGroup>
-                </li>
-                <li>
-                  Postal Code:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('postalCode', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.postalCode?.skatt}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.postalCode?.folkReg}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.postalCode?.aaReg}</Radio>
-                  </RadioGroup>
-                </li>
-                <li>
-                  Address:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('address', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.address?.skatt}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.address?.folkReg}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.address?.aaReg}</Radio>
-                  </RadioGroup>
-                </li>
-                <li>
-                  Relations:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('relations', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.relations?.skatt}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.relations?.folkReg}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.relations?.aaReg}</Radio>
-                  </RadioGroup>
-                </li>
-                <li>
-                  Gross Income:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('grossIncome', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.grossIncome}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.grossIncome}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.grossIncome}</Radio>
-                  </RadioGroup>
-                </li>
-                <li>
-                  Insurance:
-                  <RadioGroup
-                    onChange={(value) => handleVersionSelection('insurance', value)}
-                  >
-                    <Radio value="skatt">Skatt: {userData?.insurance}</Radio>
-                    <Radio value="folkReg">Folkeregister: {userData?.insurance}</Radio>
-                    <Radio value="aaReg">AA-register: {userData?.insurance}</Radio>
-                  </RadioGroup>
-                </li>
-              </ul>
-            </Accordion.Content>
-          </Accordion.Item>
-          <Accordion.Item>
-            <Accordion.Header>Valgte data</Accordion.Header>
-            <Accordion.Content>
-              <ul>
-                {Object.keys(selectedVersions).map((field) => (
-                  <li key={field}>
-                    {field}: {userData?.[field]?.[selectedVersions[field]]}
-                  </li>
-                ))}
-              </ul>
-            </Accordion.Content>
-          </Accordion.Item>
-        </>
-      )}
-      </Accordion>
+
+      <Container>
+        <WhiteBox style={{ height }}>
+          <h1>Ditt innhold her</h1>
+          {!showCheckboxes && (
+            <StartVeilederButton onClick={startVeileder} opacity={buttonProps.opacity}>
+              Start veiledar
+            </StartVeilederButton>
+          )}
+          {showCheckboxes && (
+            <Accordion>
+              <Accordion.Item>
+                <Accordion.Header>Til deg som er mellom 62 og 67 år</Accordion.Header>
+                <Accordion.Content>
+                  Hvis du er mellom 62 og 67 år når du søker, må du som hovedregel ha
+                  hatt en pensjonsgivende inntekt som tilsvarer x G, året før du fikk
+                  nedsatt arbeidsevnen. NAV kan gjøre <a href="#Unntak">unntak</a>.
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>
+                  Til deg som har yrkesskade eller yrkessykdom
+                </Accordion.Header>
+                <Accordion.Content>
+                  Med yrkesskade mener vi at du har fått en skade som følge av en
+                  arbeidsulykke. Vi kan godkjenne en sykdom som yrkessykdom hvis den
+                  kommer av skadelig påvirkning fra arbeidsmiljøet.
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>Til deg som er helt frisk</Accordion.Header>
+                <Accordion.Content>
+                  Da er det lite som trengs å gjøres.
+                </Accordion.Content>
+              </Accordion.Item>
+            </Accordion>
+          )}
+        </WhiteBox>
+      </Container>
 
       <div>
         <Footer />
       </div>
       </div>
   );
-
-
 };
 
 export default Info;
