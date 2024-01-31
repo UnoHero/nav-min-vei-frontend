@@ -1,157 +1,83 @@
-  // Secker er best siden han kom til 100 først - sitat Senator 2021@
-
 import React, { useState } from 'react';
-import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
+import { useSpring, animated } from 'react-spring';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import "@navikt/ds-css";
-import { Accordion } from "@navikt/ds-react";
-import logo2 from '../Pictures/logo_stor.png';
-import { config } from 'react-spring';
+import { Heading, Stepper } from "@navikt/ds-react";
 
-const Container = styled.div`
+const MainContent = styled.div`
+  background-color: #b3e5fc; // Lyseblå bakgrunn
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+`;
+
+const Layout = styled.div`
+  display: flex;
+  align-items: flex-start;
+`;
+
+const StepperContainer = styled.div`
+  margin-right: 20px; // Avstand mellom stepper og bokser
+`;
+
+const BoxContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px; // Avstand mellom boksene
+`;
+
+const AnimatedBox = styled(animated.div)`
+  width: 200px; // Basis bredde for bokser
+  background-color: #ffffff; // Hvit bakgrunn for bokser
+  border: 1px solid #ccc;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
 `;
 
-const WhiteBox = styled(animated.div)`
-  width: 66.666%;
-  background-color: white;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+// Komponent for hver boks ved siden av Stepper trinnene
+const StepBox = ({ isActive }) => {
+  const animationProps = useSpring({
+    height: isActive ? 100 : 0, // Utvid høyden hvis aktiv
+    opacity: isActive ? 1 : 0,
+  });
 
-const StartVeilederButton = styled(animated.button)`
-  background-color: #007b8e;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  opacity: ${(props) => props.opacity};
-  transition: opacity 300ms;
-`;
-
-const CheckBoxContainer = styled.div`
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const CheckBox = styled.input`
-  margin-right: 10px;
-`;
-
-const Label = styled.label`
-  color: #007b8e;
-`;
+  return <AnimatedBox style={animationProps}>{isActive && `Aktivt innhold`}</AnimatedBox>;
+};
 
 const Info = () => {
-  // State variable to store the user ID
-  const [userId, setUserId] = useState('');
-
-  // State variable to store user data
-  const [userData, setUserData] = useState(null);
-
-  // State variable to track if "Yes" is selected in the radio group
-  const [isYesSelected, setIsYesSelected] = useState(false);
-
-  // State variable to track the selected version for each field
-  const [selectedVersions, setSelectedVersions] = useState({});
-
-  const [height, setHeight] = useState('auto'); // Sett en initialverdi etter behov
-
-  const [showCheckboxes, setShowCheckboxes] = useState(false);
-
-  const [buttonProps, setButtonProps] = useSpring(() => ({
-    opacity: 0,
-    config: config.gentle,
-  }));
-
-  const startVeileder = () => {
-    setShowCheckboxes(true);
-    setButtonProps({ opacity: 1 });
-    // Sett height eller andre relevante states om nødvendig
-    // Legg til andre handlinger som er nødvendige for å starte veilederprosessen
-  };
-
-  // Function to handle form submission and fetching data
-  const handleDataFetch = async () => {
-    if (isYesSelected && userId.trim() !== '') {
-      try {
-        const response = await fetch(`http://localhost:3000/user/${userId}`);
-        const data = await response.json();
-        setUserData(data);
-        console.log(data)
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-}
-  };
-
-  // Function to handle selection of data versions
-  const handleVersionSelection = (field, value) => {
-    setSelectedVersions((prevVersions) => ({
-      ...prevVersions,
-      [field]: value,
-    }));
-  };
+  const [activeStep, setActiveStep] = useState(null);
+  const steps = 5;
 
   return (
-    <div>
-      <div>
-        <Navbar />
-      </div>
+    <>
+      <Navbar />
+      <MainContent>
+        <Layout>
+          <StepperContainer>
+            <Stepper
+              orientation="vertical"
+              activeStep={activeStep}
+              onStepChange={setActiveStep}
+            >
+              {[...Array(steps).keys()].map(step => (
+                <Stepper.Step key={step}>Trinn {step + 1}</Stepper.Step>
+              ))}
+            </Stepper>
+          </StepperContainer>
 
-      <Container>
-        <WhiteBox style={{ height }}>
-          <h1>Ditt innhold her</h1>
-          {!showCheckboxes && (
-            <StartVeilederButton onClick={startVeileder} opacity={buttonProps.opacity}>
-              Start veiledar
-            </StartVeilederButton>
-          )}
-          {showCheckboxes && (
-            <Accordion>
-              <Accordion.Item>
-                <Accordion.Header>Til deg som er mellom 62 og 67 år</Accordion.Header>
-                <Accordion.Content>
-                  Hvis du er mellom 62 og 67 år når du søker, må du som hovedregel ha
-                  hatt en pensjonsgivende inntekt som tilsvarer x G, året før du fikk
-                  nedsatt arbeidsevnen. NAV kan gjøre <a href="#Unntak">unntak</a>.
-                </Accordion.Content>
-              </Accordion.Item>
-              <Accordion.Item>
-                <Accordion.Header>
-                  Til deg som har yrkesskade eller yrkessykdom
-                </Accordion.Header>
-                <Accordion.Content>
-                  Med yrkesskade mener vi at du har fått en skade som følge av en
-                  arbeidsulykke. Vi kan godkjenne en sykdom som yrkessykdom hvis den
-                  kommer av skadelig påvirkning fra arbeidsmiljøet.
-                </Accordion.Content>
-              </Accordion.Item>
-              <Accordion.Item>
-                <Accordion.Header>Til deg som er helt frisk</Accordion.Header>
-                <Accordion.Content>
-                  Da er det lite som trengs å gjøres.
-                </Accordion.Content>
-              </Accordion.Item>
-            </Accordion>
-          )}
-        </WhiteBox>
-      </Container>
-
-      <div>
-        <Footer />
-      </div>
-      </div>
+          <BoxContainer>
+            {[...Array(steps).keys()].map(step => (
+              <StepBox key={step} isActive={step === activeStep} />
+            ))}
+          </BoxContainer>
+        </Layout>
+      </MainContent>
+      <Footer />
+    </>
   );
 };
 
