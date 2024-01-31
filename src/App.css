@@ -278,9 +278,6 @@ p {
 }
 
 @media (min-width: 1025px) {
-  .firstsection {
-    height: 25em; 
-  }
 
   .logo {
     width: 35%; 
@@ -293,9 +290,6 @@ p {
 }
 
 @media (min-width: 1440px) {
-  .firstsection {
-    height: 30em; 
-  }
 
   .logo {
     width: 25%; 
