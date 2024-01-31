@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useSpring, animated } from 'react-spring';
+import { useSpring } from 'react-spring';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import "@navikt/ds-css";
-
-import { Heading, Stepper } from "@navikt/ds-react";
+import { Stepper } from "@navikt/ds-react";
 import Section from '../components/section';
-
-import Main from '../components/Info_main';
-import { config } from 'react-spring';
+import Main from '../components/Info_main'; // Ensure this is imported only once
 
 const MainContent = styled.div`
-  background-color: #b3e5fc; // Lyseblå bakgrunn
+  background-color: rgb(211, 230, 237); // Light blue background
   padding: 20px;
   display: flex;
   justify-content: center;
@@ -24,33 +21,25 @@ const Layout = styled.div`
 `;
 
 const StepperContainer = styled.div`
-  margin-right: 20px; // Avstand mellom stepper og bokser
+  margin-right: 20px; // Space between stepper and boxes
 `;
 
 const BoxContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px; // Avstand mellom boksene
+  gap: 10px; // Space between boxes
 `;
 
-const AnimatedBox = styled(animated.div)`
-  width: 200px; // Basis bredde for bokser
-  background-color: #ffffff; // Hvit bakgrunn for bokser
-  border: 1px solid #ccc;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-// Komponent for hver boks ved siden av Stepper trinnene
+// Component for each box next to Stepper steps
 const StepBox = ({ isActive }) => {
   const animationProps = useSpring({
-    height: isActive ? 100 : 0, // Utvid høyden hvis aktiv
+    height: isActive ? 'auto' : 0, // Expand height if active
     opacity: isActive ? 1 : 0,
+    from: { height: 0, opacity: 0 },
   });
 
-  return <AnimatedBox style={animationProps}>{isActive && `Aktivt innhold`}</AnimatedBox>;
+  // Conditionally render the Main component if isActive is true
+  return isActive ? <Main style={animationProps} /> : null;
 };
 
 const Info = () => {
@@ -60,7 +49,7 @@ const Info = () => {
   return (
     <>
       <Navbar />
-       <Section />
+      <Section />
       <MainContent>
         <Layout>
           <StepperContainer>
@@ -70,7 +59,7 @@ const Info = () => {
               onStepChange={setActiveStep}
             >
               {[...Array(steps).keys()].map(step => (
-                <Stepper.Step key={step}>Trinn {step + 1}</Stepper.Step>
+                <Stepper.Step key={step}>Step {step + 1}</Stepper.Step>
               ))}
             </Stepper>
           </StepperContainer>
@@ -84,18 +73,6 @@ const Info = () => {
       </MainContent>
       <Footer />
     </>
-
-
-
-
-
-     
-     
-
-
-
-     
-
   );
 };
 
