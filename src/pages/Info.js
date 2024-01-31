@@ -7,6 +7,7 @@ import "@navikt/ds-css";
 import Section from '../components/section';
 import Main from '../components/Info_main'; // Ensure this is imported only once
 import { InformationIcon, CheckmarkIcon } from '@navikt/aksel-icons';
+import { Accordion, Button, Radio, RadioGroup } from "@navikt/ds-react";
  
 const Body = styled.div`
   background-color: rgb(211, 230, 237);
@@ -39,8 +40,8 @@ const TextBox = styled.div`
 `
 
 const Line = styled.div`
-  width: 0.3rem;
-  height: 95%;
+  width: 0.4rem;
+  height: 100%;
   background-color: #CCE1FF;
   position: relative;
   left: 15px;
@@ -53,7 +54,7 @@ const List = styled.ul`
   
 const Item = styled.li`
   display: grid;
-  grid-template-columns: 50px 600px;
+  grid-template-columns: 5rem 50rem;
   margin: 20px 0px 20px 0px;
 `;
 
@@ -61,8 +62,21 @@ const StepTitle = styled.div`
   font-size: 1.75rem;
 `;
 
-const StepOfSteps = styled.div`
+const StepHeader = styled.div`
   font-size: 1rem;
+`;
+
+const StepText = styled.div`
+ font-size: 1rem;
+ margin: 2rem 0rem;
+`
+
+const RadioBox = styled.div`
+  padding: 3rem 2rem;
+  margin: 2rem 0rem;
+  background-color: #CCE1FF;
+  border-radius: 0.5rem;
+
 `;
 
 // Component for each box next to Stepper steps
@@ -91,8 +105,66 @@ const Info = () => {
         <Item>
           <div><Circle><InformationIcon title="a11y-title" fontSize="1.5rem" /></Circle><Line></Line></div>
           <TextBox>
-            <StepOfSteps>Samling av din informasjon via</StepOfSteps>
+            <StepHeader>Samling av din informasjon via</StepHeader>
             <StepTitle>Datahenting</StepTitle>
+
+            <StepHeader>Hente data det offentlige har om deg</StepHeader>
+            <StepText>
+              Dersom du ønsker har du mulighet til å hente data fra 
+              ulike offentlige etater slik at utfyllingen av veilederen 
+              blir enklere for deg.
+            </StepText>
+            
+            <Accordion>
+              <Accordion.Item>
+                <Accordion.Header>Hvorfor hente data</Accordion.Header>
+                <Accordion.Content>
+                Å hente data gjør at veilederen kan autofylle svar for deg, 
+                noe som betyr at du slipper å logge deg inn forskjellige steder 
+                for å finne informasjon du må fylle ut i veilederen. 
+                  <br/><br/>
+                Du kan også fint fylle ut informasjon selv, dersom du ikke ønsker å hente informasjon automatisk. 
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>
+                  Hvordan virker datasamlingen?
+                </Accordion.Header>
+                <Accordion.Content>
+                  Datahenting fungerer ved at MinVeileder henter data som ulike 
+                  offentlige organisasjoner har på deg her i veilederen.
+                  <br/><br/>
+                  Informajsonen vil ikke bli delt på tvers av disse organisasjonene, og det er kun du som ser de samlet her.
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>Hvem hentes infoen fra?</Accordion.Header>
+                <Accordion.Content>
+                MinVei henter informasjon fra følgende: 
+                <ul>
+                  <li>Folkeregisteret</li>
+                  <li>Skatteetaten</li>
+                  <li>NAV</li>
+                  <li>Lånekassen</li>
+                  <li>Brønnøysundregisteret</li>
+                  <li>Din tilhørende kommune</li>
+                  <li>Vegvesenet</li>
+                  <li>Helsenorge</li>
+                  <li>Samordna opptak</li>
+                  <li>Politiet</li>
+                  <li>Altinn</li>
+                  <li>Pasientsky</li>
+                </ul>
+                </Accordion.Content>
+              </Accordion.Item>
+            </Accordion>
+            
+            <RadioBox>
+              <RadioGroup legend="Ønsker du å hente data fra det offentlige?">
+                <Radio value="Yes">Ja</Radio>
+                <Radio value="No">Nei</Radio>
+              </RadioGroup>
+            </RadioBox>
             
           </TextBox>
         </Item>
@@ -100,7 +172,7 @@ const Info = () => {
         <Item>
         <div><Circle>1</Circle><Line></Line></div>
           <TextBox>
-            <StepOfSteps>Steg 1 av 3</StepOfSteps>
+            <StepHeader>Steg 1 av 3</StepHeader>
             <StepTitle>Om meg</StepTitle>
           </TextBox>
         </Item>
@@ -108,7 +180,7 @@ const Info = () => {
         <Item>
           <div><Circle>2</Circle><Line></Line></div>
           <TextBox>
-            <StepOfSteps>Steg 2 av 3</StepOfSteps>
+            <StepHeader>Steg 2 av 3</StepHeader>
             <StepTitle>Velg livssituasjon</StepTitle>
           </TextBox>
         </Item>
@@ -116,7 +188,7 @@ const Info = () => {
         <Item>
           <div><Circle>3</Circle><Line></Line></div>
           <TextBox>
-            <StepOfSteps>Steg 3 av 3</StepOfSteps>
+            <StepHeader>Steg 3 av 3</StepHeader>
             <StepTitle>Spørsmål til min livssituasjon</StepTitle>
           </TextBox>
         </Item>
