@@ -8,6 +8,9 @@ import { Stepper } from "@navikt/ds-react";
 import Section from '../components/section';
 import Main from '../components/Info_main'; // Ensure this is imported only once
  
+const Body = styled.div`
+  background-color: rgb(211, 230, 237);
+`;
 const MainContent = styled.div`
   background-color: rgb(211, 230, 237); // Light blue background
   padding: 20px;
@@ -48,6 +51,7 @@ const Info = () => {
  
   return (
     <>
+    <Body>
       <Navbar />
       <Section />
       <MainContent>
@@ -72,6 +76,7 @@ const Info = () => {
         </Layout>
       </MainContent>
       <Footer />
+    </Body>
     </>
   );
 };
