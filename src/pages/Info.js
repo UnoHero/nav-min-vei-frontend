@@ -4,7 +4,12 @@ import { useSpring, animated } from 'react-spring';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import "@navikt/ds-css";
+
 import { Heading, Stepper } from "@navikt/ds-react";
+import Section from '../components/section';
+
+import Main from '../components/Info_main';
+import { config } from 'react-spring';
 
 const MainContent = styled.div`
   background-color: #b3e5fc; // Lyseblå bakgrunn
@@ -55,6 +60,7 @@ const Info = () => {
   return (
     <>
       <Navbar />
+       <Section />
       <MainContent>
         <Layout>
           <StepperContainer>
@@ -78,6 +84,18 @@ const Info = () => {
       </MainContent>
       <Footer />
     </>
+
+
+
+
+
+     
+     
+
+
+
+     
+
   );
 };
 
