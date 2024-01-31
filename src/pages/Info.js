@@ -32,6 +32,35 @@ const BoxContainer = styled.div`
   flex-direction: column;
   gap: 10px; // Space between boxes
 `;
+
+const Circle = styled.div`
+  border: 2px solid white;
+  background-color: white;
+  border-radius: 50%;
+  color: #0067C5;
+  
+  margin: 0px 3px 0px 3px;
+  text-align: center;
+  display: block;
+  height: 30px;
+  width: 30px;
+`;
+
+const TextBox = styled.div`
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+`
+  
+const List = styled.ul`
+  list-style: none;
+`;
+  
+const Item = styled.li`
+  display: grid;
+  grid-template-columns: 50px 400px;
+  margin: 20px 0px 20px 0px;
+`;
  
 // Component for each box next to Stepper steps
 const StepBox = ({ isActive }) => {
@@ -55,25 +84,27 @@ const Info = () => {
       <Navbar />
       <Section />
       <MainContent>
-        <Layout>
-          <StepperContainer>
-            <Stepper
-              orientation="vertical"
-              activeStep={activeStep}
-              onStepChange={setActiveStep}
-            >
-              {[...Array(steps).keys()].map(step => (
-                <Stepper.Step key={step}>Step {step + 1}</Stepper.Step>
-              ))}
-            </Stepper>
-          </StepperContainer>
- 
-          <BoxContainer>
-            {[...Array(steps).keys()].map(step => (
-              <StepBox key={step} isActive={step === activeStep} />
-            ))}
-          </BoxContainer>
-        </Layout>
+
+      <List>
+        <Item>
+          <Circle>I</Circle>
+          <TextBox>Info tekst box werwerwer wefwefew  werwerwer wefwefew werwerwer wefwefew werwerwer wefwefew werwerwer wefwefewrferfrefwerwerwer werwerwer wefwefew werwerwer wefwefew werwerwer wefwefew werwerwer wefwefew </TextBox>
+        </Item>
+        <Item>
+          <Circle>1</Circle>
+          <TextBox>Steg 1 tekst box</TextBox>
+        </Item>
+        <Item>
+          <Circle>2</Circle>
+          <TextBox>Steg 2 tekst box</TextBox></Item>
+        <Item>
+          <Circle>3</Circle>
+          <TextBox>Steg 3 tekst box</TextBox></Item>
+        <Item>
+          <Circle>!</Circle>
+          <TextBox>Ferdig tekst box</TextBox></Item>
+      </List>
+
       </MainContent>
       <Footer />
     </Body>
