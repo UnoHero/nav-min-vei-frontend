@@ -645,3 +645,25 @@
   display: flex;
   justify-content: space-between;
 }
+
+.App {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.p-livssituasjon {
+
+  padding-bottom: 10%;
+  font-size: 15px;
+  font-size: 15px;
+  margin-left: 2px;
+  
+}
+
+
+
+.info {
+  color: #888;
+  font-size: 0.9em;
+}
+

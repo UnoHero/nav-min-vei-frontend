@@ -97,6 +97,7 @@ const NextStepButton = styled.button`
   color: white;
   cursor: pointer;
 `
+
 const GreenButton = styled.button`
   padding: 10px 20px;
   font-family: 'Arial', sans-serif;
@@ -271,12 +272,17 @@ const Info = () => {
             }}>
             <StepHeader>Steg 2 av 3</StepHeader>
             <StepTitle><HospitalFillIcon title="a11y-title" color={activeStep >= 2 ? "Pink" : "gray"} fontSize="1.5rem" /> Velg livssituasjon</StepTitle>
-            {activeStep === 2 && 
-              <>
-                <StepHeader>Test steg 2</StepHeader>
-                <NextStepButton onClick={(e) => nextStepButton(e, 3, stepThreeRef)}>Neste Steg</NextStepButton>
-              </>
-            }
+            <StepHeader>Velg livshendelser som reflekterer din livssituasjon</StepHeader>
+            <StepText>Her velger du de livshendelsene som relaterer til deg eller som du eventuelt ønsker å utforske</StepText>
+            <StepText>Markerte kategorier i gult er kun foreslåtte livshendelser, du kan selv velge de livshendelsene som passer deg.</StepText>
+
+            <RadioBox>
+                <RadioGroup legend="Få barn">
+                <StepText>Venter eller har nylig fått barn</StepText>
+                <StepText>Bor ikke sammen med barnet mitt</StepText>
+                <StepText>Er helt eller delvis alene med barn</StepText>
+                </RadioGroup>
+              </RadioBox>
           </TextBox>
         </Item>
 
