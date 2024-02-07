@@ -7,6 +7,9 @@ import "@navikt/ds-css";
 import Section from '../components/section';
 import { InformationIcon, CheckmarkIcon } from '@navikt/aksel-icons';
 import { Accordion, Button, Radio, RadioGroup } from "@navikt/ds-react";
+import { Heading, VStack } from "@navikt/ds-react";
+
+
  
 const Body = styled.div`
   background-color: rgb(211, 230, 237);
@@ -36,6 +39,7 @@ const TextBox = styled.div`
   background-color: white;
   border-radius: 5px;
   padding: 1rem 8rem;
+  cursor: ${props => props.cursor};
   cursor: ${props => props.cursor};
 `
 
@@ -88,6 +92,8 @@ fontSize: 20%;
 
 // Component for each box next to Stepper steps
 
+// Component for each box next to Stepper steps
+
 const NextStepButton = styled.button`
   border-radius: 4px;
   border: 0px;
@@ -97,6 +103,43 @@ const NextStepButton = styled.button`
   cursor: pointer;
 `
 
+const GreenButton = styled.button`
+  padding: 10px 20px;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  color: white;
+  border: none;
+  background-color: #4CAF50;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  margin: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none; // If you want the buttons as links, this removes underline
+
+  &:hover {
+    background-color: #45a049;
+  }
+
+  svg {
+    fill: white;
+  }
+`;
+
+const iconStyle = {
+  color: 'white',
+  fontSize: '18px',
+};
+
+const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 15px; /* This adds space between the buttons if they wrap onto a new line */
+  margin-top: 20px; /* Optional: adds some space above the button container */
+`;
  
 const Info = () => {
   const [activeStep, setActiveStep] = useState(null);
@@ -225,11 +268,40 @@ const Info = () => {
           <div><Circle>3</Circle><Line></Line></div>
           <TextBox  onClick={() => setActiveStep("3")}>
             <StepHeader>Steg 3 av 3</StepHeader>
+            
             <StepTitle>Spørsmål til min livssituasjon</StepTitle>
-            {activeStep === "3" && 
+
+            {activeStep === "3" &&
               <>
-                <StepHeader>Test steg 3</StepHeader>
-                <NextStepButton onClick={() => setActiveStep("done")}>Neste Steg</NextStepButton>
+                  <StepText>
+                  Under ser du livshendelsene du har valgt, og tilhørende spørsmål du må svare på for at vi skal kunne beregne hva du kan ha krav på.
+              </StepText>
+              <GreenButton onClick={() => setActiveStep("1")}>
+            <CheckmarkIcon title="a11y-title" fontSize="1.5rem" />
+            Få barn
+          </GreenButton>
+          <GreenButton onClick={() => setActiveStep("2")}>
+            <CheckmarkIcon title="a11y-title" fontSize="1.5rem" />
+            Dødsfall og arv
+          </GreenButton>
+          <div>
+          <br/><br/>
+
+        <Heading level="4" size="medium"> Pleie og omsorg
+        </Heading>
+        <br/><br/>
+                <RadioGroup legend="Ønsker du å hente data det offentlige har om deg for å autofylle svar i veilederen?">
+                  <Radio value="Yes">Ja</Radio>
+                  <Radio value="No">Nei</Radio>
+                </RadioGroup>
+                <br/><br/>
+                <ButtonContainer>
+
+        <Button variant="secondary" >Forige steg</Button>
+       <Button variant="primary">Neste steg</Button>
+       </ButtonContainer>
+
+      </div>
               </>
             }
           </TextBox>
@@ -239,8 +311,11 @@ const Info = () => {
           <Circle><CheckmarkIcon title="a11y-title" fontSize="1.5rem" /></Circle>
           <TextBox  onClick={() => setActiveStep("done")}>
             <StepTitle>Mine resultater</StepTitle>
-            {activeStep === "done" && 
+            {activeStep === "done" &&
               <>
+               <Accordion.Content>
+                    Datahenting fungerer ved at MinVeileder henter data som ulike 
+                  </Accordion.Content>
                 <StepHeader>Test steg done</StepHeader>
               </>
             }
@@ -252,6 +327,7 @@ const Info = () => {
       <Footer />
     </Body>
     </>
+    
   );
 };
  
