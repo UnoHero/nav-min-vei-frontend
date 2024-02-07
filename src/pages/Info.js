@@ -97,6 +97,7 @@ const NextStepButton = styled.button`
   color: white;
   cursor: pointer;
 `
+
 const GreenButton = styled.button`
   padding: 10px 20px;
   font-family: 'Arial', sans-serif;
@@ -122,12 +123,7 @@ const GreenButton = styled.button`
     fill: white;
   }
 `;
- 
-const iconStyle = {
-  color: 'white',
-  fontSize: '18px',
-};
- 
+
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
@@ -136,16 +132,33 @@ const ButtonContainer = styled.div`
 `;
  
 const Info = () => {
-  const [activeStep, setActiveStep] = useState(null);
+
+  const [activeStep, setActiveStep] = useState(0);
   const [showAdditionalOptions, setShowAdditionalOptions] = useState(false);
   const [showMoreOptions, setShowMoreOptions] = useState(false); // For the second set of additional options
 
   // Refs for smooth scrolling to steps
+
+ 
+
+  const nextStepButton = (e, step, ref) => {
+    e.stopPropagation()
+    setActiveStep(step)
+    setTimeout(() => {
+      window.scrollTo({
+        top:ref.current.offsetTop - 20,
+        behavior: "smooth"
+      })
+    }, 0);
+  } 
+
+
   const stepOneRef = useRef(null);
   const stepTwoRef = useRef(null);
   const stepThreeRef = useRef(null);
+  const stepFourRef = useRef(null)
 
-  const nextStepButton = (e, step) => {
+  const nextPopQuestion = (e, step) => {
     e.stopPropagation();
     setActiveStep(step);
     setShowAdditionalOptions(false); // Reset when navigating away
@@ -176,15 +189,12 @@ const Info = () => {
 
           <TextBox cursor={activeStep === 0 ?  "default" : "pointer"} onClick={() => setActiveStep(0)}>
             <StepHeader>Samling av din informasjon via</StepHeader>
-            <StepTitle>Datahenting</StepTitle>
-
             <StepTitle><b>MineData</b></StepTitle>
             <br></br>
-            <br></br>
-            <Txt><b>Datahenting fra offentlige tjenester</b></Txt>
 
             {activeStep === 0 && 
             <>
+              <Txt><b>Datahenting fra offentlige tjenester</b></Txt>
               <StepHeader>Hente data det offentlige har om deg</StepHeader>
               <StepText>
                 Dersom du ønsker har du mulighet til å hente data fra 
@@ -242,7 +252,7 @@ const Info = () => {
                   <Radio value="No">Nei, jeg ønsker å fylle ut selv</Radio>
                 </RadioGroup>
               </RadioBox>
-              <NextStepButton onClick={(e) => nextStepButton(e, 1)}>Gå Videre</NextStepButton>
+              <NextStepButton onClick={(e) => nextStepButton(e, 1, stepOneRef)}>Gå Videre</NextStepButton>
 
               </>
             }
@@ -269,7 +279,7 @@ const Info = () => {
               <>
                 <StepHeader>Test steg 1</StepHeader>
                 <p>EEEE</p>
-                <NextStepButton onClick={(e) => nextStepButton(e, 2)}>Neste Steg</NextStepButton>
+                <NextStepButton onClick={(e) => nextStepButton(e, 2, stepTwoRef)}>Neste Steg</NextStepButton>
               </>
             }
           </TextBox>
@@ -286,12 +296,23 @@ const Info = () => {
                 })
               }, 0);
             }}>
+
             <StepHeader>Steg 2 av 3</StepHeader>
-            <StepTitle><HospitalFillIcon title="a11y-title" color={activeStep >= 2 ? "Pink" : "gray"} fontSize="1.5rem" /> Velg livssituasjon</StepTitle>
-            {activeStep === 22 && 
+            <StepTitle><HospitalFillIcon className="as" title="a11y-title" color={activeStep >= 2 ? "Pink" : "gray"} fontSize="1.5rem" /> Velg livssituasjon</StepTitle>
+            {activeStep === 2 && 
               <>
-                <StepHeader>Test steg 2</StepHeader>
-                <NextStepButton onClick={() => setActiveStep(3)}>Neste Steg</NextStepButton>
+                <StepHeader>Velg livshendelser som reflekterer din livssituasjon</StepHeader>
+                <StepText>Her velger du de livshendelsene som relaterer til deg eller som du eventuelt ønsker å utforske</StepText>
+                <StepText>Markerte kategorier i gult er kun foreslåtte livshendelser, du kan selv velge de livshendelsene som passer deg.</StepText>
+
+                <RadioBox>
+                  <RadioGroup legend="Få barn">
+                  <StepText>Venter eller har nylig fått barn</StepText>
+                  <StepText>Bor ikke sammen med barnet mitt</StepText>
+                  <StepText>Er helt eller delvis alene med barn</StepText>
+                  </RadioGroup>
+                </RadioBox>
+                <NextStepButton onClick={(e) => nextStepButton(e, 3, stepThreeRef)}>Neste Steg</NextStepButton>
               </>
             }
           </TextBox>
@@ -332,6 +353,50 @@ const Info = () => {
   </RadioGroup>
 )}
 
+          <div><Circle color={activeStep >= 3 ? true : false}>3</Circle><Line></Line></div>
+          <TextBox ref={stepThreeRef} onClick={() => {
+              setActiveStep(3)
+              setTimeout(() => {
+                window.scrollTo({
+                  top:stepThreeRef.current.offsetTop - 20,
+                  behavior: "smooth"
+                })
+              }, 0);
+            }}>
+            <StepHeader>Steg 3 av 3</StepHeader>
+            <StepTitle><Chat2FillIcon title="a11y-title" color={activeStep >= 3 ? "green" : "gray"} fontSize="1.5rem" /> Spørsmål til min livssituasjon</StepTitle>
+            {activeStep === 3 && 
+              <>
+                <StepHeader>Test steg 3</StepHeader>
+                  <StepText>
+                  Under ser du livshendelsene du har valgt, og tilhørende spørsmål du må svare på for at vi skal kunne beregne hva du kan ha krav på.
+              </StepText>
+              <GreenButton onClick={() => setActiveStep(1)}>
+            <CheckmarkIcon title="a11y-title" fontSize="1.5rem" />
+            Få barn
+          </GreenButton>
+          <GreenButton onClick={() => setActiveStep(2)}>
+            <CheckmarkIcon title="a11y-title" fontSize="1.5rem" />
+            Dødsfall og arv
+          </GreenButton>
+          <div>
+          <br/><br/>
+
+        <Heading level="4" size="medium"> Pleie og omsorg
+        </Heading>
+        <br/><br/>
+                <RadioGroup legend="Ønsker du å hente data det offentlige har om deg for å autofylle svar i veilederen?">
+                  <Radio value="Yes">Ja</Radio>
+                  <Radio value="No">Nei</Radio>
+                </RadioGroup>
+                <br/><br/>
+                <ButtonContainer>
+
+        <Button variant="secondary" onClick={(e) => nextPopQuestion(e, 2, stepTwoRef)}>Forige steg</Button>
+       <Button variant="primary" onClick={(e) => nextPopQuestion(e, 4, stepFourRef)}>Neste steg</Button>
+       </ButtonContainer>
+
+
                     {showMoreOptions && (
                       <>
  <RadioGroup
@@ -355,7 +420,7 @@ const Info = () => {
         
         <Item>
           <Circle><CheckmarkIcon title="a11y-title" fontSize="1.5rem" /></Circle>
-          <TextBox  onClick={() => setActiveStep(4)}>
+          <TextBox ref={stepFourRef}  onClick={(e) => nextStepButton(e, 4, stepFourRef)}>
             <StepTitle>Mine resultater</StepTitle>
             {activeStep === 4 && 
               <>
