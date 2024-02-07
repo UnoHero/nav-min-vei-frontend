@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useSpring } from 'react-spring';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+import '../font-style.css';
 import "@navikt/ds-css";
 import Section from '../components/section';
-import Main from '../components/Info_main'; // Ensure this is imported only once
 import { InformationIcon, CheckmarkIcon } from '@navikt/aksel-icons';
 import { Accordion, Button, Radio, RadioGroup } from "@navikt/ds-react";
  
@@ -81,6 +80,8 @@ const RadioBox = styled.div`
 
 `;
 
+// Component for each box next to Stepper steps
+
 const NextStepButton = styled.button`
   border-radius: 4px;
   border: 0px;
@@ -88,6 +89,7 @@ const NextStepButton = styled.button`
   background-color: #0067C5;
   color: white;
 `
+
  
 const Info = () => {
   const [activeStep, setActiveStep] = useState(null);
