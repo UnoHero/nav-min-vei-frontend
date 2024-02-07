@@ -272,7 +272,7 @@ const Info = () => {
             }}>
 
             <StepHeader>Steg 2 av 3</StepHeader>
-            <StepTitle><HospitalFillIcon title="a11y-title" color={activeStep >= 2 ? "Pink" : "gray"} fontSize="1.5rem" /> Velg livssituasjon</StepTitle>
+            <StepTitle><HospitalFillIcon className="as" title="a11y-title" color={activeStep >= 2 ? "Pink" : "gray"} fontSize="1.5rem" /> Velg livssituasjon</StepTitle>
             {activeStep === 2 && 
               <>
                 <StepHeader>Velg livshendelser som reflekterer din livssituasjon</StepHeader>
@@ -286,6 +286,7 @@ const Info = () => {
                   <StepText>Er helt eller delvis alene med barn</StepText>
                   </RadioGroup>
                 </RadioBox>
+                <NextStepButton onClick={(e) => nextStepButton(e, 3, stepThreeRef)}>Neste Steg</NextStepButton>
               </>
             }
           </TextBox>
