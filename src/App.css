@@ -534,7 +534,13 @@
     color: white;
   }
   
-  
+  .stepIcon{
+    position: relative;
+    right: 30px;
+    bottom: 30px;
+    padding: 0px 0px -30px 0px;
+    display: inline;
+  }
   
   
   .footer {
