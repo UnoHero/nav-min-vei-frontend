@@ -190,6 +190,10 @@ const Info = () => {
           <TextBox>
             <StepHeader>Steg 3 av 3</StepHeader>
             <StepTitle>Spørsmål til min livssituasjon</StepTitle>
+            <Accordion.Content>
+                Å hente data gjør at veilederen kan autofylle svar for deg, 
+           
+                </Accordion.Content>
           </TextBox>
         </Item>
         
