@@ -69,7 +69,7 @@ const StepHeader = styled.div`
 const StepText = styled.div`
  font-size: 1rem;
  margin: 2rem 0rem;
- `
+`;
  //color: ${props => props.isError ? "red" : "green"};
 
 const RadioBox = styled.div`
@@ -79,6 +79,12 @@ const RadioBox = styled.div`
   border-radius: 0.5rem;
 
 `;
+const Txt = styled.div`
+fontSize: 20%;
+`
+;
+
+
 
 // Component for each box next to Stepper steps
 
@@ -108,9 +114,15 @@ const Info = () => {
       <List>
         <Item>
           <div><Circle><InformationIcon title="a11y-title" fontSize="1.5rem" /></Circle><Line></Line></div>
+
           <TextBox cursor={activeStep === "info" ?  "default" : "pointer"} onClick={() => setActiveStep("info")}>
             <StepHeader>Samling av din informasjon via</StepHeader>
             <StepTitle>Datahenting</StepTitle>
+
+            <StepTitle><b>MineData</b></StepTitle>
+            <br></br>
+            <br></br>
+            <Txt><b>Datahenting fra offentlige tjenester</b></Txt>
 
             {activeStep === "info" && 
             <>
@@ -174,8 +186,10 @@ const Info = () => {
               <NextStepButton onClick={() => setActiveStep("1")}>Gå Videre</NextStepButton>
               </>
             }
-            
+
           </TextBox>
+
+
         </Item>
 
         <Item>
