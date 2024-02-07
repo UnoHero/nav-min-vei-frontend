@@ -1,0 +1,548 @@
+/* App.css */
+
+.App {
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .App-header {
+    background-color: white; /* White background as specified */
+    display: flex;
+    justify-content: start;
+    padding: 10px 30px;
+    align-items: center;
+    border-bottom: 1px solid #e5e5e5;
+    font-weight: bold;
+    height: 80px;
+  }
+  
+  
+  
+  .App-logo {
+    height: 35px;
+    margin-right: 20px;
+  }
+  
+  .App-navigation {
+    display: flex;
+    list-style-type: none;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    margin-right: auto;
+  
+  }
+  
+  .nav-link {
+    color: #4a4a4a;
+    text-decoration: none;
+    padding: 5px 0;
+    position: relative;
+  }
+  
+  .nav-link:hover,
+  .nav-link:focus {
+    color: #005bac;
+  }
+  
+  .nav-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: transparent;
+    transition: width .3s, background-color .3s;
+    margin-top: 5px;
+  }
+  
+  .nav-link:hover::after,
+  .nav-link:focus::after {
+    width: 100%;
+    background: #005bac;
+  }
+  
+  
+  /* The container that contains all buttons and logos in the nav bar*/
+  .App-header-actions {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+  
+  .button,
+  .login-button,
+  .search-button,
+  .menu-button {
+    /* ... existing styles ... */
+    display: flex;
+    align-items: center;
+    margin: 0 10px; /* Adjust the default margin */
+  }
+  
+  .button img,
+  .login-button img,
+  .search-button img,
+  .menu-button img {
+    margin-right: 8px;
+  }
+  
+  /* Media query for screens up to 768px */
+  @media (max-width: 768px) {
+    .button,
+    .login-button,
+    .search-button,
+    .menu-button {
+      margin: 0 5px; /* Adjust the margin for smaller screens */
+    }
+  }
+  
+  /* Media query for screens up to 480px */
+  @media (max-width: 480px) {
+    .button,
+    .login-button,
+    .search-button,
+    .menu-button {
+      margin: 0 3px; /* Further adjust the margin for smaller screens */
+    }
+  }
+  
+  
+  
+  
+  /* Base styles for buttons */
+  .button, .login-button, .search-button, .menu-button {
+    box-sizing: border-box; /* Inkluderer padding og border i totalstørrelsen */
+    border: 2px solid transparent; /* Transparent border i normal tilstand */
+    cursor: pointer;
+    font-size: 18px;
+    padding: 6px 14px; /* Justert padding */
+    margin-right: 10px; /* Juster etter behov for å redusere mellomrom */
+    transition: background-color .3s, color .3s, border-color .3s, padding .3s; /* Transition for flere egenskaper */
+    background: none;
+    color: #3386E0;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .button:hover,
+  .button:focus,
+  .login-button:hover,
+  .login-button:focus,
+  .search-button:hover,
+  .search-button:focus,
+  .menu-button:hover,
+  .menu-button:focus {
+    background-color: #cae0ff; /* Endrer bakgrunnsfarge på hover */
+    border-color: #3386E0; /* Synlig grensefarge på hover */
+    padding: 8px 16px; /* Tilbakestill padding til original størrelse */
+    border-radius: 5px;
+  }
+  
+  .login-button, .search-button, .menu-button {
+    background: none;
+    color: #3386E0;
+    border-radius: 5px;
+  }
+  
+  .login-button img, .search-button img, .menu-button img {
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+  
+  /* Justeringer kan være nødvendig for disse også, avhengig av din spesifikke layout */
+  .login-button:focus, .search-button:focus, .menu-button:focus {
+    color: white;
+    background: #0073e6;
+    
+  }
+  
+  
+  /* ALT OVER ER NAV MENY */
+  /* ALT OVER ER NAV MENY */
+  
+  
+  
+  
+  
+  
+  .Over-dropdown-text {
+    margin-bottom: 2%;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .firstsection { /* Blue first section on the page */
+    height: 20em; 
+    background-color: rgb(211, 230, 237);
+  
+  }
+  
+  
+  
+  
+  
+  .logo {
+    text-align: center;
+  
+   }
+  
+  button {
+    text-align: center;
+    color: blue;
+    outline: none;
+    text-align: center;
+  }
+  
+  .section-name {
+    text-align: center;
+    color: blue;
+  }
+  
+  p{
+   max-width: 30%;
+   text-align: left;
+  }
+  
+  
+  
+  .firstsection {
+    height: 20em; 
+    background-color: rgb(211, 230, 237);
+  }
+  
+  .logo {
+    width: 25%;
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
+  } 
+  
+  
+  button {
+    color: rgb(40, 40, 201);
+    outline: none;
+    text-align: center;
+    margin-left: 20%;
+  }
+  
+  .section-name {
+    text-align: center;
+    color: blue;
+  }
+  
+  p {
+    max-width: 90%; 
+    text-align: left;
+    margin: 0 auto; 
+    font-size: 1em; 
+  }
+  
+  
+  @media (max-width: 768px) {
+    .firstsection {
+      height: 15em; 
+    }
+  
+    .logo {
+      width: 50%; 
+    }
+  
+    p {
+      max-width: 95%; 
+      font-size: 0.9em; 
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .firstsection {
+      height: 10em;
+    }
+  
+    .logo {
+      width: 70%; 
+    }
+  
+    p {
+      max-width: 100%;
+      font-size: 0.8em; 
+    }
+  }
+  
+  @media (min-width: 1025px) {
+  
+    .logo {
+      width: 35%; 
+    }
+  
+    p {
+      max-width: 50%; 
+      font-size: 1.2em; 
+    }
+  }
+  
+  @media (min-width: 1440px) {
+  
+    .logo {
+      width: 25%; 
+    }
+  
+    p {
+      max-width: 40%;
+      font-size: 1.4em; 
+  }
+  
+  
+  
+  }
+  
+  .p-tekst {
+    margin-top: 2%; 
+    margin-left: 5%;
+  }
+  
+  
+  /*Bottom text styles*/
+  .b-text {
+    margin-top: 2%;
+    margin-left: 29%;
+  }
+  
+  .start-veileder, .help-b {
+    padding: 15px 15px; /* Equal padding for square shape */
+    border-radius: 2px; /* Square corners */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    height: 10%; /* Equal height for both buttons */
+    font-size: medium; /* Larger text size */
+  }
+  
+  .start-veileder {
+    margin-left: 0%;
+    margin-top: 2%;
+    color: white;
+    background-color: #095bb2;
+    border: none;
+  }
+  
+  .start-veileder:hover {
+    background-color: #0056b3;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .help-b {
+    margin-left: 1%;
+    width: 20%;
+    background-color: white;
+  
+    border: 2px solid #0056b3;
+  }
+  
+  .help-b:hover {
+    border-color: #0056b3;
+    color: #0056b3;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  
+  .panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    padding-left: 20px;
+  }
+  
+  .panel.open {
+    max-height: 500px; /* Juster denne verdien basert på ditt innhold */
+  }
+  
+  
+  .radio-box{
+    background-color: #00bfff42;
+    text-align: center;
+  }
+  
+  
+  /*Css for footer til hovedsiden og informasjonssiden */
+  
+  .scrollUp {
+    margin-top: 2%;
+    margin-left: 35%;
+    margin-bottom: 5%;
+  }
+  
+  
+  .flex {
+  text-align: center;
+  }
+  
+  
+  .centerdown {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+  
+  @media (max-width: 600px) {
+    .centerdown {
+      max-width: 100%;
+      padding: 0 10px; /* Legger til litt padding på sidene for mobilvisning */
+    }
+  }
+  
+  
+  
+  .flex  {
+  padding: 30px;
+  
+  }
+  
+  .h1-column-1 {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 14px;
+    text-align: center;
+    color: #4cadcd;
+    margin-top: 5%;
+  }
+  
+  .h1-column-2-3 {
+    margin-top: 20%;
+    font-size: 14px;
+  }
+  
+  .column-3 {
+    margin-top: 4%;
+  }
+  
+  .p-footer-column-1 {
+    text-align: center;
+    font-size: 16px;
+    color: white;
+  } 
+  
+  .p-footer {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 5%;
+    color: white;
+  }
+  
+  
+  
+  
+  .footer {
+    margin-top: 7%;
+    background-color: #00243a;
+    color: white;
+    font-size: 18px;
+  }
+  
+  .farge-på-tekst {
+    color: white;
+  }
+  
+  
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .footer-column {
+    flex: 1;
+    max-width: 300px;
+  
+  }
+  
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: 500px 400px 343px;
+    gap: 0px; /* Adjust the gap as needed */
+  }
+  
+  .column-1 {
+    padding: 0px; /* Add padding as needed */
+    text-align: left; /* Align text to the left */
+    justify-content: left;
+    margin-top: 3%;
+  }
+  
+  .column-2, .column-3 {
+    padding: 0px; /* Add padding as needed */
+  
+  }
+  
+  
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .scrollUpButton {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    font: inherit;
+    text-align: inherit;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  
+  
+  .flex {
+  text-align: center;
+  }
+  
+  /* Dropdown css*/
+  .dropdown {
+  align-items: left;
+  text-align: left;
+  justify-content: left;
+  max-width: 43%;
+  margin-bottom: 20px; /* Legger til 20px margin under hver dropdown */
+  
+  }
+  
+  
+  
+  .align {
+    align-items: left; /* Sentrerer elementene vertikalt */
+    justify-content: left; /* Sentrerer elementene horisontalt */
+    gap: 20px; 
+    }
+  
+    .flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px; /* Juster som nødvendig for mellomrom mellom knappene */
+      justify-content: center; /* Sentrerer elementene horisontalt */
+      align-items: center; /* Sentrerer elementene vertikalt */
+      height: 100%; /* Juster eller fjern denne basert på dine behov */
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+  }
