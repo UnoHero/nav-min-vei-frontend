@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import '../font-style.css';
 import "@navikt/ds-css";
 import Section from '../components/section';
-import { InformationIcon, CheckmarkIcon } from '@navikt/aksel-icons';
+import { InformationIcon, CheckmarkIcon, Chat2FillIcon, PersonFillIcon, HospitalFillIcon } from '@navikt/aksel-icons';
 import { Accordion, Button, Radio, RadioGroup } from "@navikt/ds-react";
-import { Heading, VStack } from "@navikt/ds-react";
-
-
  
 const Body = styled.div`
   background-color: rgb(211, 230, 237);
@@ -23,10 +20,10 @@ const MainContent = styled.div`
 
 const Circle = styled.div`
   position: relative;
-  border: 2px solid white;
-  background-color: white;
+  border: 2px solid ${props => props.color ? "#0067C5" : "white"};
+  background-color: ${props => props.color ? "#0067C5" : "white"};
   border-radius: 50%;
-  color: #0067C5;
+  color: ${props => props.color ? "white" : "black"};
   z-index: 1;
   margin: 0px 3px 0px 3px;
   text-align: center;
@@ -39,7 +36,6 @@ const TextBox = styled.div`
   background-color: white;
   border-radius: 5px;
   padding: 1rem 8rem;
-  cursor: ${props => props.cursor};
   cursor: ${props => props.cursor};
 `
 
@@ -92,8 +88,6 @@ fontSize: 20%;
 
 // Component for each box next to Stepper steps
 
-// Component for each box next to Stepper steps
-
 const NextStepButton = styled.button`
   border-radius: 4px;
   border: 0px;
@@ -103,43 +97,6 @@ const NextStepButton = styled.button`
   cursor: pointer;
 `
 
-const GreenButton = styled.button`
-  padding: 10px 20px;
-  font-family: 'Arial', sans-serif;
-  font-size: 16px;
-  color: white;
-  border: none;
-  background-color: #4CAF50;
-  border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  cursor: pointer;
-  margin: 5px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  text-decoration: none; // If you want the buttons as links, this removes underline
-
-  &:hover {
-    background-color: #45a049;
-  }
-
-  svg {
-    fill: white;
-  }
-`;
-
-const iconStyle = {
-  color: 'white',
-  fontSize: '18px',
-};
-
-const ButtonContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 15px; /* This adds space between the buttons if they wrap onto a new line */
-  margin-top: 20px; /* Optional: adds some space above the button container */
-`;
  
 const Info = () => {
   const [activeStep, setActiveStep] = useState(null);
@@ -149,6 +106,9 @@ const Info = () => {
     setActiveStep(step)
   } 
 
+  const stepOneRef = useRef(null);
+  const stepTwoRef = useRef(null);
+  const stepThreeRef = useRef(null);
 
   return (
     <>
@@ -161,7 +121,7 @@ const Info = () => {
         <Item>
           <div><Circle><InformationIcon title="a11y-title" fontSize="1.5rem" /></Circle><Line></Line></div>
 
-          <TextBox cursor={activeStep === "info" ?  "default" : "pointer"} onClick={() => setActiveStep(0)}>
+          <TextBox cursor={activeStep === 0 ?  "default" : "pointer"} onClick={() => setActiveStep(0)}>
             <StepHeader>Samling av din informasjon via</StepHeader>
             <StepTitle>Datahenting</StepTitle>
 
@@ -230,6 +190,7 @@ const Info = () => {
                 </RadioGroup>
               </RadioBox>
               <NextStepButton onClick={(e) => nextStepButton(e, 1)}>Gå Videre</NextStepButton>
+
               </>
             }
 
@@ -239,10 +200,18 @@ const Info = () => {
         </Item>
 
         <Item>
-        <div><Circle>1</Circle><Line></Line></div>
-          <TextBox onClick={() => setActiveStep(1)}>
+        <div><Circle color={activeStep >= 1 ? true : false}>1</Circle><Line></Line></div>
+          <TextBox ref={stepOneRef} onClick={() => {
+              setActiveStep(1)
+              setTimeout(() => {
+                window.scrollTo({
+                  top:stepOneRef.current.offsetTop - 20,
+                  behavior: "smooth"
+                })
+              }, 0);
+            }}>
             <StepHeader>Steg 1 av 3</StepHeader>
-            <StepTitle>Om meg</StepTitle>
+            <StepTitle><PersonFillIcon title="a11y-title" color={activeStep >= 1 ? "blue" : "gray"} fontSize="1.5rem" /> Om meg</StepTitle>
             {activeStep === 1 && 
               <>
                 <StepHeader>Test steg 1</StepHeader>
@@ -254,28 +223,44 @@ const Info = () => {
         </Item>
 
         <Item>
-          <div><Circle>2</Circle><Line></Line></div>
-          <TextBox onClick={() => setActiveStep(2)}>
+          <div><Circle color={activeStep >= 2 ? true : false}>2</Circle><Line></Line></div>
+          <TextBox ref={stepTwoRef} onClick={() => {
+              setActiveStep(2)
+              setTimeout(() => {
+                window.scrollTo({
+                  top:stepTwoRef.current.offsetTop - 20,
+                  behavior: "smooth"
+                })
+              }, 0);
+            }}>
             <StepHeader>Steg 2 av 3</StepHeader>
-            <StepTitle>Velg livssituasjon</StepTitle>
-            {activeStep === 2 && 
+            <StepTitle><HospitalFillIcon title="a11y-title" color={activeStep >= 2 ? "Pink" : "gray"} fontSize="1.5rem" /> Velg livssituasjon</StepTitle>
+            {activeStep === 22 && 
               <>
                 <StepHeader>Test steg 2</StepHeader>
-                <NextStepButton onClick={(e) => nextStepButton(e, 3)}>Neste Steg</NextStepButton>
+                <NextStepButton onClick={() => setActiveStep(3)}>Neste Steg</NextStepButton>
               </>
             }
           </TextBox>
         </Item>
 
         <Item>
-          <div><Circle>3</Circle><Line></Line></div>
-          <TextBox  onClick={() => setActiveStep(3)}>
+          <div><Circle color={activeStep >= 3 ? true : false}>3</Circle><Line></Line></div>
+          <TextBox ref={stepThreeRef} onClick={() => {
+              setActiveStep(3)
+              setTimeout(() => {
+                window.scrollTo({
+                  top:stepThreeRef.current.offsetTop - 20,
+                  behavior: "smooth"
+                })
+              }, 0);
+            }}>
             <StepHeader>Steg 3 av 3</StepHeader>
-            
-            <StepTitle>Spørsmål til min livssituasjon</StepTitle>
-
-            {activeStep === 3 &&
+            <StepTitle><Chat2FillIcon title="a11y-title" color={activeStep >= 3 ? "green" : "gray"} fontSize="1.5rem" /> Spørsmål til min livssituasjon</StepTitle>
+            {activeStep === 3 && 
               <>
+                <StepHeader>Test steg 3</StepHeader>
+                <NextStepButton onClick={() => setActiveStep(4)}>Neste Steg</NextStepButton>
                   <StepText>
                   Under ser du livshendelsene du har valgt, og tilhørende spørsmål du må svare på for at vi skal kunne beregne hva du kan ha krav på.
               </StepText>
@@ -314,11 +299,8 @@ const Info = () => {
           <Circle><CheckmarkIcon title="a11y-title" fontSize="1.5rem" /></Circle>
           <TextBox  onClick={() => setActiveStep(4)}>
             <StepTitle>Mine resultater</StepTitle>
-            {activeStep === 4 &&
+            {activeStep === 4 && 
               <>
-               <Accordion.Content>
-                    Datahenting fungerer ved at MinVeileder henter data som ulike 
-                  </Accordion.Content>
                 <StepHeader>Test steg done</StepHeader>
               </>
             }
@@ -330,7 +312,6 @@ const Info = () => {
       <Footer />
     </Body>
     </>
-    
   );
 };
  
