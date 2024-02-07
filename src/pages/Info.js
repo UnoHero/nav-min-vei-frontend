@@ -88,12 +88,16 @@ const NextStepButton = styled.button`
   padding: 12px 20px;
   background-color: #0067C5;
   color: white;
+  cursor: pointer;
 `
 
  
 const Info = () => {
   const [activeStep, setActiveStep] = useState(null);
- 
+
+  const buttonClick = (step) => {
+    setActiveStep(step)
+  } 
   return (
     <>
     <Body>
@@ -167,7 +171,7 @@ const Info = () => {
                   <Radio value="No">Nei, jeg ønsker å fylle ut selv</Radio>
                 </RadioGroup>
               </RadioBox>
-              <NextStepButton>Gå Videre</NextStepButton>
+              <NextStepButton onClick={() => setActiveStep("1")}>Gå Videre</NextStepButton>
               </>
             }
             
@@ -176,32 +180,56 @@ const Info = () => {
 
         <Item>
         <div><Circle>1</Circle><Line></Line></div>
-          <TextBox>
+          <TextBox onClick={() => setActiveStep("1")}>
             <StepHeader>Steg 1 av 3</StepHeader>
             <StepTitle>Om meg</StepTitle>
+            {activeStep === "1" && 
+              <>
+                <StepHeader>Test steg 1</StepHeader>
+                <p>EEEE</p>
+                <NextStepButton onClick={() => setActiveStep("2")}>Neste Steg</NextStepButton>
+              </>
+            }
           </TextBox>
         </Item>
 
         <Item>
           <div><Circle>2</Circle><Line></Line></div>
-          <TextBox>
+          <TextBox onClick={() => setActiveStep("2")}>
             <StepHeader>Steg 2 av 3</StepHeader>
             <StepTitle>Velg livssituasjon</StepTitle>
+            {activeStep === "2" && 
+              <>
+                <StepHeader>Test steg 2</StepHeader>
+                <NextStepButton onClick={() => setActiveStep("3")}>Neste Steg</NextStepButton>
+              </>
+            }
           </TextBox>
         </Item>
 
         <Item>
           <div><Circle>3</Circle><Line></Line></div>
-          <TextBox>
+          <TextBox  onClick={() => setActiveStep("3")}>
             <StepHeader>Steg 3 av 3</StepHeader>
             <StepTitle>Spørsmål til min livssituasjon</StepTitle>
+            {activeStep === "3" && 
+              <>
+                <StepHeader>Test steg 3</StepHeader>
+                <NextStepButton onClick={() => setActiveStep("done")}>Neste Steg</NextStepButton>
+              </>
+            }
           </TextBox>
         </Item>
         
         <Item>
           <Circle><CheckmarkIcon title="a11y-title" fontSize="1.5rem" /></Circle>
-          <TextBox>
+          <TextBox  onClick={() => setActiveStep("done")}>
             <StepTitle>Mine resultater</StepTitle>
+            {activeStep === "done" && 
+              <>
+                <StepHeader>Test steg done</StepHeader>
+              </>
+            }
           </TextBox>
         </Item>
       </List>
