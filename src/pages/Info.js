@@ -73,7 +73,7 @@ const StepHeader = styled.div`
 const StepText = styled.div`
  font-size: 1rem;
  margin: 2rem 0rem;
- `
+`;
  //color: ${props => props.isError ? "red" : "green"};
 
 const RadioBox = styled.div`
@@ -83,6 +83,14 @@ const RadioBox = styled.div`
   border-radius: 0.5rem;
 
 `;
+const Txt = styled.div`
+fontSize: 20%;
+`
+;
+
+
+
+// Component for each box next to Stepper steps
 
 // Component for each box next to Stepper steps
 
@@ -94,6 +102,7 @@ const NextStepButton = styled.button`
   color: white;
   cursor: pointer;
 `
+
 const GreenButton = styled.button`
   padding: 10px 20px;
   font-family: 'Arial', sans-serif;
@@ -131,7 +140,6 @@ const ButtonContainer = styled.div`
   gap: 15px; /* This adds space between the buttons if they wrap onto a new line */
   margin-top: 20px; /* Optional: adds some space above the button container */
 `;
-
  
 const Info = () => {
   const [activeStep, setActiveStep] = useState(null);
@@ -149,9 +157,15 @@ const Info = () => {
       <List>
         <Item>
           <div><Circle><InformationIcon title="a11y-title" fontSize="1.5rem" /></Circle><Line></Line></div>
+
           <TextBox cursor={activeStep === "info" ?  "default" : "pointer"} onClick={() => setActiveStep("info")}>
             <StepHeader>Samling av din informasjon via</StepHeader>
             <StepTitle>Datahenting</StepTitle>
+
+            <StepTitle><b>MineData</b></StepTitle>
+            <br></br>
+            <br></br>
+            <Txt><b>Datahenting fra offentlige tjenester</b></Txt>
 
             {activeStep === "info" && 
             <>
@@ -215,8 +229,10 @@ const Info = () => {
               <NextStepButton onClick={() => setActiveStep("1")}>Gå Videre</NextStepButton>
               </>
             }
-            
+
           </TextBox>
+
+
         </Item>
 
         <Item>
@@ -254,6 +270,7 @@ const Info = () => {
             <StepHeader>Steg 3 av 3</StepHeader>
             
             <StepTitle>Spørsmål til min livssituasjon</StepTitle>
+
             {activeStep === "3" &&
               <>
                   <StepText>

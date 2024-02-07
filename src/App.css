@@ -1,8 +1,97 @@
 /* App.css */
 
 .App {
-    text-align: center;
-    font-family: Arial, sans-serif;
+  text-align: center;
+  font-family: 'Source Sans 3', sans-serif;
+}
+
+.App-header {
+  background-color: white; /* White background as specified */
+  display: flex;
+  justify-content: start;
+  padding: 10px 30px;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+  font-weight: bold;
+  height: 80px;
+}
+
+.App-logo {
+  height: 35px;
+  margin-right: 20px;
+}
+
+.App-navigation {
+  display: flex;
+  list-style-type: none;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  margin-right: auto;
+
+}
+
+.nav-link {
+  color: #4a4a4a;
+  text-decoration: none;
+  padding: 5px 0;
+  position: relative;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: #005bac;
+}
+
+.nav-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: transparent;
+  transition: width .3s, background-color .3s;
+  margin-top: 5px;
+}
+
+.nav-link:hover::after,
+.nav-link:focus::after {
+  width: 100%;
+  background: #005bac;
+}
+
+
+/* The container that contains all buttons and logos in the nav bar*/
+.App-header-actions {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.button,
+.login-button,
+.search-button,
+.menu-button {
+  /* ... existing styles ... */
+  display: flex;
+  align-items: center;
+  margin: 0 10px; /* Adjust the default margin */
+}
+
+.button img,
+.login-button img,
+.search-button img,
+.menu-button img {
+  margin-right: 8px;
+}
+
+/* Media query for screens up to 768px */
+@media (max-width: 768px) {
+  .button,
+  .login-button,
+  .search-button,
+  .menu-button {
+    margin: 0 5px; /* Adjust the margin for smaller screens */
   }
   
   .App-header {
@@ -544,5 +633,14 @@
   
   .footer-container {
     display: flex;
-    justify-content: space-between;
-  }
+    flex-wrap: wrap;
+    gap: 10px; /* Juster som nødvendig for mellomrom mellom knappene */
+    justify-content: center; /* Sentrerer elementene horisontalt */
+    align-items: center; /* Sentrerer elementene vertikalt */
+    height: 100%; /* Juster eller fjern denne basert på dine behov */
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+}
