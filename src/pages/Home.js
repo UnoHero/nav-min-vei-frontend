@@ -3,6 +3,8 @@ import Section from '../components/section.js';
 import Dropdown from '../components/dropdown.js';
 import HomeButtons from '../components/homepage_buttons.js';
 import Footer from '../components/footer.js';
+import '../font-style.css';
+<link rel="icon" href="../public/ronaldo.png" />
 
 
 
