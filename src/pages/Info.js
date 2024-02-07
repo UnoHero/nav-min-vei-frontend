@@ -101,7 +101,8 @@ const NextStepButton = styled.button`
 const Info = () => {
   const [activeStep, setActiveStep] = useState(null);
 
-  const buttonClick = (step) => {
+  const nextStepButton = (e, step) => {
+    e.stopPropagation()
     setActiveStep(step)
   } 
 
@@ -188,7 +189,8 @@ const Info = () => {
                   <Radio value="No">Nei, jeg ønsker å fylle ut selv</Radio>
                 </RadioGroup>
               </RadioBox>
-              <NextStepButton onClick={() => setActiveStep(1)}>Gå Videre</NextStepButton>
+              <NextStepButton onClick={(e) => nextStepButton(e, 1)}>Gå Videre</NextStepButton>
+
               </>
             }
 
@@ -214,7 +216,7 @@ const Info = () => {
               <>
                 <StepHeader>Test steg 1</StepHeader>
                 <p>EEEE</p>
-                <NextStepButton onClick={() => setActiveStep(2)}>Neste Steg</NextStepButton>
+                <NextStepButton onClick={(e) => nextStepButton(e, 2)}>Neste Steg</NextStepButton>
               </>
             }
           </TextBox>
@@ -262,11 +264,11 @@ const Info = () => {
                   <StepText>
                   Under ser du livshendelsene du har valgt, og tilhørende spørsmål du må svare på for at vi skal kunne beregne hva du kan ha krav på.
               </StepText>
-              <GreenButton onClick={() => setActiveStep("1")}>
+              <GreenButton onClick={() => setActiveStep(1)}>
             <CheckmarkIcon title="a11y-title" fontSize="1.5rem" />
             Få barn
           </GreenButton>
-          <GreenButton onClick={() => setActiveStep("2")}>
+          <GreenButton onClick={() => setActiveStep(2)}>
             <CheckmarkIcon title="a11y-title" fontSize="1.5rem" />
             Dødsfall og arv
           </GreenButton>
@@ -283,8 +285,8 @@ const Info = () => {
                 <br/><br/>
                 <ButtonContainer>
 
-        <Button variant="secondary" >Forige steg</Button>
-       <Button variant="primary">Neste steg</Button>
+        <Button variant="secondary" onClick={(e) => nextStepButton(e, 2)}>Forige steg</Button>
+       <Button variant="primary" onClick={(e) => nextStepButton(e, 4)}>Neste steg</Button>
        </ButtonContainer>
 
       </div>
