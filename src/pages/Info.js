@@ -88,6 +88,14 @@ const NextStepButton = styled.button`
   background-color: #0067C5;
   color: white;
 `
+
+const RadioBox2 = styled.div`
+  padding: 3rem 2rem;
+  margin: 2rem 0rem;
+  background-color: #CCE1FF;
+  border-radius: 0.5rem;
+  font-size: 200px;
+`;
  
 const Info = () => {
   const [activeStep, setActiveStep] = useState(null);
@@ -185,6 +193,18 @@ const Info = () => {
           <TextBox>
             <StepHeader>Steg 2 av 3</StepHeader>
             <StepTitle>Velg livssituasjon</StepTitle>
+            <StepHeader>Velg livshendelser som reflekterer din livssituasjon</StepHeader>
+            <StepText>Her velger du de livshendelsene som relaterer til deg eller som du eventuelt ønsker å utforske</StepText>
+            <StepText>Markerte kategorier i gult er kun foreslåtte livshendelser, du kan selv velge de livshendelsene som passer deg.</StepText>
+
+            <RadioBox2>
+                <RadioGroup legend="Få barn">
+                <StepText>Venter eller har nylig fått barn</StepText>
+                <StepText>Bor ikke sammen med barnet mitt</StepText>
+                <StepText>Er helt eller delvis alene med barn</StepText>
+                </RadioGroup>
+              </RadioBox2>
+
           </TextBox>
         </Item>
 
