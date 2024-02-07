@@ -7,6 +7,7 @@ import "@navikt/ds-css";
 import Section from '../components/section';
 import { InformationIcon, CheckmarkIcon, Chat2FillIcon, PersonFillIcon, HospitalFillIcon } from '@navikt/aksel-icons';
 import { Accordion, Button, Radio, RadioGroup } from "@navikt/ds-react";
+import { Heading, VStack } from "@navikt/ds-react";
  
 const Body = styled.div`
   background-color: rgb(211, 230, 237);
@@ -96,7 +97,43 @@ const NextStepButton = styled.button`
   color: white;
   cursor: pointer;
 `
-
+const GreenButton = styled.button`
+  padding: 10px 20px;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  color: white;
+  border: none;
+  background-color: #4CAF50;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  margin: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none; // If you want the buttons as links, this removes underline
+ 
+  &:hover {
+    background-color: #45a049;
+  }
+ 
+  svg {
+    fill: white;
+  }
+`;
+ 
+const iconStyle = {
+  color: 'white',
+  fontSize: '18px',
+};
+ 
+const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 15px; /* This adds space between the buttons if they wrap onto a new line */
+  margin-top: 20px; /* Optional: adds some space above the button container */
+`;
  
 const Info = () => {
   const [activeStep, setActiveStep] = useState(null);
