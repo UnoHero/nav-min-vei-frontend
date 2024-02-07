@@ -40,6 +40,7 @@ const TextBox = styled.div`
   border-radius: 5px;
   padding: 1rem 8rem;
   cursor: ${props => props.cursor};
+  cursor: ${props => props.cursor};
 `
 
 const Line = styled.div`
@@ -148,6 +149,7 @@ const Info = () => {
       <List>
         <Item>
           <div><Circle><InformationIcon title="a11y-title" fontSize="1.5rem" /></Circle><Line></Line></div>
+          <TextBox cursor={activeStep === "info" ?  "default" : "pointer"} onClick={() => setActiveStep("info")}>
           <TextBox cursor={activeStep === "info" ?  "default" : "pointer"} onClick={() => setActiveStep("info")}>
             <StepHeader>Samling av din informasjon via</StepHeader>
             <StepTitle>Datahenting</StepTitle>
