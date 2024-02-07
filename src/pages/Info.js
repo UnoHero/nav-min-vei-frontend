@@ -271,7 +271,7 @@ const Info = () => {
               }, 0);
             }}>
             <StepHeader>Steg 2 av 3</StepHeader>
-            <StepTitle>Velg livssituasjon</StepTitle>
+            <StepTitle><HospitalFillIcon title="a11y-title" color={activeStep >= 2 ? "Pink" : "gray"} fontSize="1.5rem" /> Velg livssituasjon</StepTitle>
             <StepHeader>Velg livshendelser som reflekterer din livssituasjon</StepHeader>
             <StepText>Her velger du de livshendelsene som relaterer til deg eller som du eventuelt ønsker å utforske</StepText>
             <StepText>Markerte kategorier i gult er kun foreslåtte livshendelser, du kan selv velge de livshendelsene som passer deg.</StepText>
