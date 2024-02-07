@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useSpring } from 'react-spring';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+import '../font-style.css';
 import "@navikt/ds-css";
 import Section from '../components/section';
-import Main from '../components/Info_main'; // Ensure this is imported only once
 import { InformationIcon, CheckmarkIcon } from '@navikt/aksel-icons';
 import { Accordion, Button, Radio, RadioGroup } from "@navikt/ds-react";
  
@@ -80,16 +79,7 @@ const RadioBox = styled.div`
 `;
 
 // Component for each box next to Stepper steps
-const StepBox = ({ isActive }) => {
-  const animationProps = useSpring({
-    height: isActive ? 'auto' : 0, // Expand height if active
-    opacity: isActive ? 1 : 0,
-    from: { height: 0, opacity: 0 },
-  });
- 
-  // Conditionally render the Main component if isActive is true
-  return isActive ? <Main style={animationProps} /> : null;
-};
+
  
 const Info = () => {
   const [activeStep, setActiveStep] = useState(null);
