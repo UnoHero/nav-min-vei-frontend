@@ -137,15 +137,31 @@ const ButtonContainer = styled.div`
  
 const Info = () => {
   const [activeStep, setActiveStep] = useState(null);
+  const [showAdditionalOptions, setShowAdditionalOptions] = useState(false);
+  const [showMoreOptions, setShowMoreOptions] = useState(false); // For the second set of additional options
 
-  const nextStepButton = (e, step) => {
-    e.stopPropagation()
-    setActiveStep(step)
-  } 
-
+  // Refs for smooth scrolling to steps
   const stepOneRef = useRef(null);
   const stepTwoRef = useRef(null);
   const stepThreeRef = useRef(null);
+
+  const nextStepButton = (e, step) => {
+    e.stopPropagation();
+    setActiveStep(step);
+    setShowAdditionalOptions(false); // Reset when navigating away
+    setShowMoreOptions(false); // Reset when navigating away
+  };
+
+  const handleRadioChange = (value) => {
+    setShowAdditionalOptions(true); // Show the first set of additional options
+    setShowMoreOptions(false); // Hide the second set until further interaction
+  };
+
+  const handleAdditionalOptionsChange = (value) => {
+    setShowMoreOptions(true); // Show the second set of additional options based on some condition
+  };
+
+
 
   return (
     <>
@@ -282,55 +298,60 @@ const Info = () => {
         </Item>
 
         <Item>
-          <div><Circle color={activeStep >= 3 ? true : false}>3</Circle><Line></Line></div>
-          <TextBox ref={stepThreeRef} onClick={() => {
-              setActiveStep(3)
-              setTimeout(() => {
-                window.scrollTo({
-                  top:stepThreeRef.current.offsetTop - 20,
-                  behavior: "smooth"
-                })
-              }, 0);
-            }}>
-            <StepHeader>Steg 3 av 3</StepHeader>
-            <StepTitle><Chat2FillIcon title="a11y-title" color={activeStep >= 3 ? "green" : "gray"} fontSize="1.5rem" /> Spørsmål til min livssituasjon</StepTitle>
-            {activeStep === 3 && 
-              <>
-                <StepHeader>Test steg 3</StepHeader>
-                <NextStepButton onClick={() => setActiveStep(4)}>Neste Steg</NextStepButton>
-                  <StepText>
-                  Under ser du livshendelsene du har valgt, og tilhørende spørsmål du må svare på for at vi skal kunne beregne hva du kan ha krav på.
-              </StepText>
-              <GreenButton onClick={() => setActiveStep(1)}>
-            <CheckmarkIcon title="a11y-title" fontSize="1.5rem" />
-            Få barn
-          </GreenButton>
-          <GreenButton onClick={() => setActiveStep(2)}>
-            <CheckmarkIcon title="a11y-title" fontSize="1.5rem" />
-            Dødsfall og arv
-          </GreenButton>
-          <div>
-          <br/><br/>
+              <div><Circle color={activeStep >= 3}>3</Circle><Line></Line></div>
+              <TextBox ref={stepThreeRef} onClick={() => {
+                  setActiveStep(3);
+                  setTimeout(() => {
+                    window.scrollTo({
+                      top: stepThreeRef.current.offsetTop - 20,
+                      behavior: "smooth"
+                    });
+                  }, 0);
+                }}>
+                <StepHeader>Steg 3 av 3</StepHeader>
+                <StepTitle><Chat2FillIcon title="a11y-title" color={activeStep >= 3 ? "green" : "gray"} fontSize="1.5rem" /> Spørsmål til min livssituasjon</StepTitle>
+                {activeStep === 3 && (
+                  <>
+                <RadioGroup
+  legend="Ønsker du å hente data det offentlige har om deg for å autofylle svar i veilederen?"
+  onChange={handleRadioChange} // Assuming the library passes the value directly
+>
+  <Radio value="Yes">Ja</Radio>
+  <Radio value="No">Nei</Radio>
+</RadioGroup>
 
-        <Heading level="4" size="medium"> Pleie og omsorg
-        </Heading>
-        <br/><br/>
-                <RadioGroup legend="Ønsker du å hente data det offentlige har om deg for å autofylle svar i veilederen?">
-                  <Radio value="Yes">Ja</Radio>
-                  <Radio value="No">Nei</Radio>
-                </RadioGroup>
-                <br/><br/>
-                <ButtonContainer>
+{showAdditionalOptions && (
+  <RadioGroup
+    legend="Hvem er den du pleier for?"
+    onChange={handleAdditionalOptionsChange} // Assuming the library passes the value directly
+  >
+    <Radio value="child">Barn</Radio>
+    <Radio value="spouse">Ektefelle</Radio>
+    <Radio value="partner">Samboer</Radio>
+    <Radio value="other">Annet</Radio>
+  </RadioGroup>
+)}
 
-        <Button variant="secondary" onClick={(e) => nextStepButton(e, 2)}>Forige steg</Button>
-       <Button variant="primary" onClick={(e) => nextStepButton(e, 4)}>Neste steg</Button>
-       </ButtonContainer>
+                    {showMoreOptions && (
+                      <>
+ <RadioGroup
+  legend="Er ronaldo egentlig bedre en messi?"
+  onChange={handleRadioChange} // Assuming the library passes the value directly
+>
+  <Radio value="Yes">Ja</Radio>
+  <Radio value="No">Nei</Radio>
+</RadioGroup>
+                      </>
+                    )}
 
-      </div>
-              </>
-            }
-          </TextBox>
-        </Item>
+                    <ButtonContainer>
+                      <Button variant="secondary" onClick={(e) => nextStepButton(e, 2)}>Forrige steg</Button>
+                      <Button variant="primary" onClick={(e) => nextStepButton(e, 4)}>Neste steg</Button>
+                    </ButtonContainer>
+                  </>
+                )}
+              </TextBox>
+            </Item>
         
         <Item>
           <Circle><CheckmarkIcon title="a11y-title" fontSize="1.5rem" /></Circle>
