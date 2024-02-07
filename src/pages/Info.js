@@ -122,12 +122,7 @@ const GreenButton = styled.button`
     fill: white;
   }
 `;
- 
-const iconStyle = {
-  color: 'white',
-  fontSize: '18px',
-};
- 
+
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
@@ -136,16 +131,23 @@ const ButtonContainer = styled.div`
 `;
  
 const Info = () => {
-  const [activeStep, setActiveStep] = useState(null);
+  const [activeStep, setActiveStep] = useState(0);
 
-  const nextStepButton = (e, step) => {
+  const nextStepButton = (e, step, ref) => {
     e.stopPropagation()
     setActiveStep(step)
+    setTimeout(() => {
+      window.scrollTo({
+        top:ref.current.offsetTop - 20,
+        behavior: "smooth"
+      })
+    }, 0);
   } 
 
   const stepOneRef = useRef(null);
   const stepTwoRef = useRef(null);
   const stepThreeRef = useRef(null);
+  const stepFourRef = useRef(null)
 
   return (
     <>
@@ -160,15 +162,12 @@ const Info = () => {
 
           <TextBox cursor={activeStep === 0 ?  "default" : "pointer"} onClick={() => setActiveStep(0)}>
             <StepHeader>Samling av din informasjon via</StepHeader>
-            <StepTitle>Datahenting</StepTitle>
-
             <StepTitle><b>MineData</b></StepTitle>
             <br></br>
-            <br></br>
-            <Txt><b>Datahenting fra offentlige tjenester</b></Txt>
 
             {activeStep === 0 && 
             <>
+              <Txt><b>Datahenting fra offentlige tjenester</b></Txt>
               <StepHeader>Hente data det offentlige har om deg</StepHeader>
               <StepText>
                 Dersom du ønsker har du mulighet til å hente data fra 
@@ -226,7 +225,7 @@ const Info = () => {
                   <Radio value="No">Nei, jeg ønsker å fylle ut selv</Radio>
                 </RadioGroup>
               </RadioBox>
-              <NextStepButton onClick={(e) => nextStepButton(e, 1)}>Gå Videre</NextStepButton>
+              <NextStepButton onClick={(e) => nextStepButton(e, 1, stepOneRef)}>Gå Videre</NextStepButton>
 
               </>
             }
@@ -253,7 +252,7 @@ const Info = () => {
               <>
                 <StepHeader>Test steg 1</StepHeader>
                 <p>EEEE</p>
-                <NextStepButton onClick={(e) => nextStepButton(e, 2)}>Neste Steg</NextStepButton>
+                <NextStepButton onClick={(e) => nextStepButton(e, 2, stepTwoRef)}>Neste Steg</NextStepButton>
               </>
             }
           </TextBox>
@@ -272,10 +271,10 @@ const Info = () => {
             }}>
             <StepHeader>Steg 2 av 3</StepHeader>
             <StepTitle><HospitalFillIcon title="a11y-title" color={activeStep >= 2 ? "Pink" : "gray"} fontSize="1.5rem" /> Velg livssituasjon</StepTitle>
-            {activeStep === 22 && 
+            {activeStep === 2 && 
               <>
                 <StepHeader>Test steg 2</StepHeader>
-                <NextStepButton onClick={() => setActiveStep(3)}>Neste Steg</NextStepButton>
+                <NextStepButton onClick={(e) => nextStepButton(e, 3, stepThreeRef)}>Neste Steg</NextStepButton>
               </>
             }
           </TextBox>
@@ -297,7 +296,6 @@ const Info = () => {
             {activeStep === 3 && 
               <>
                 <StepHeader>Test steg 3</StepHeader>
-                <NextStepButton onClick={() => setActiveStep(4)}>Neste Steg</NextStepButton>
                   <StepText>
                   Under ser du livshendelsene du har valgt, og tilhørende spørsmål du må svare på for at vi skal kunne beregne hva du kan ha krav på.
               </StepText>
@@ -322,8 +320,8 @@ const Info = () => {
                 <br/><br/>
                 <ButtonContainer>
 
-        <Button variant="secondary" onClick={(e) => nextStepButton(e, 2)}>Forige steg</Button>
-       <Button variant="primary" onClick={(e) => nextStepButton(e, 4)}>Neste steg</Button>
+        <Button variant="secondary" onClick={(e) => nextStepButton(e, 2, stepTwoRef)}>Forige steg</Button>
+       <Button variant="primary" onClick={(e) => nextStepButton(e, 4, stepFourRef)}>Neste steg</Button>
        </ButtonContainer>
 
       </div>
@@ -334,7 +332,7 @@ const Info = () => {
         
         <Item>
           <Circle><CheckmarkIcon title="a11y-title" fontSize="1.5rem" /></Circle>
-          <TextBox  onClick={() => setActiveStep(4)}>
+          <TextBox ref={stepFourRef}  onClick={(e) => nextStepButton(e, 4, stepFourRef)}>
             <StepTitle>Mine resultater</StepTitle>
             {activeStep === 4 && 
               <>
