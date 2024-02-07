@@ -69,7 +69,7 @@ const StepHeader = styled.div`
 const StepText = styled.div`
  font-size: 1rem;
  margin: 2rem 0rem;
-`
+`;
 
 const RadioBox = styled.div`
   padding: 3rem 2rem;
@@ -78,6 +78,12 @@ const RadioBox = styled.div`
   border-radius: 0.5rem;
 
 `;
+const Txt = styled.div`
+fontSize: 20%;
+`
+;
+
+
 
 // Component for each box next to Stepper steps
 const StepBox = ({ isActive }) => {
@@ -105,14 +111,20 @@ const Info = () => {
         <Item>
           <div><Circle><InformationIcon title="a11y-title" fontSize="1.5rem" /></Circle><Line></Line></div>
           <TextBox>
-            <StepHeader>Samling av din informasjon via</StepHeader>
-            <StepTitle>Datahenting</StepTitle>
+            <StepHeader>Om datahenting via</StepHeader>
+            <StepTitle><b>MineData</b></StepTitle>
+            <br></br>
+            <br></br>
+            <Txt><b>Datahenting fra offentlige tjenester</b></Txt>
 
-            <StepHeader>Hente data det offentlige har om deg</StepHeader>
             <StepText>
               Dersom du ønsker har du mulighet til å hente data fra 
               ulike offentlige etater slik at utfyllingen av veilederen 
               blir enklere for deg.
+            </StepText>
+            
+            <StepText>
+              Gjennom MineData kan du hente informasjon fra:
             </StepText>
             
             <Accordion>
@@ -166,7 +178,10 @@ const Info = () => {
               </RadioGroup>
             </RadioBox>
             
+
           </TextBox>
+
+
         </Item>
 
         <Item>
@@ -174,6 +189,7 @@ const Info = () => {
           <TextBox>
             <StepHeader>Steg 1 av 3</StepHeader>
             <StepTitle>Om meg</StepTitle>
+            
           </TextBox>
         </Item>
 
