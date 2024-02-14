@@ -31,6 +31,11 @@ const Circle = styled.div`
   display: block;
   height: 30px;
   width: 30px;
+  transition: all 0.3s ease; // Legg til overgang for jevn animasjon
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1); // Forstørr effekten ved hover for å indikere klikkbarhet
+  }
 `;
 
 const TextBox = styled.div`
@@ -38,6 +43,10 @@ const TextBox = styled.div`
   border-radius: 5px;
   padding: 1rem 6rem 0.4rem 6rem;
   cursor: ${props => props.cursor};
+  transition: all 0.3s ease; // Legg til overgang for jevn animasjon
+  &:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); // Legg til skyggeeffekt ved hover for å indikere klikkbarhet
+  }
 `
 
 const Line = styled.div`
@@ -57,6 +66,11 @@ const Item = styled.li`
   display: grid;
   grid-template-columns: 5rem 50rem;
   margin: 20px 0px 20px 0px;
+  &:hover {
+    ${TextBox} {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); // Legg til skyggeeffekt ved hover for å indikere klikkbarhet
+    }
+  }
 `;
 
 const StepTitle = styled.div`
@@ -71,7 +85,6 @@ const StepText = styled.div`
  font-size: 1rem;
  margin: 2rem 0rem;
 `;
- //color: ${props => props.isError ? "red" : "green"};
 
 const RadioBox = styled.div`
   padding: 3rem 2rem;
@@ -130,6 +143,20 @@ const ButtonContainer = styled.div`
   gap: 15px; /* This adds space between the buttons if they wrap onto a new line */
   margin-top: 20px; /* Optional: adds some space above the button container */
 `;
+
+
+const DataBilder = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+  width: 400px;
+`;
+
+const Image = styled.img`
+  max-width: auto;
+  max-height: 40px;
+  margin: 10px; /* Adjust the spacing between images */
+`;
  
 const InputBox = styled.input`
   display: block;
@@ -184,62 +211,29 @@ const Info = () => {
 
           <TextBox cursor={activeStep === 0 ?  "default" : "pointer"} onClick={() => setActiveStep(0)}>
             <StepHeader>Samling av din informasjon via</StepHeader>
+
             <StepTitle><b>MineData</b></StepTitle>
-            <br></br>
+            <br></br><br></br>
 
             {activeStep === 0 && 
             <>
               <Txt><b>Datahenting fra offentlige tjenester</b></Txt>
-              <StepHeader>Hente data det offentlige har om deg</StepHeader>
               <StepText>
                 Dersom du ønsker har du mulighet til å hente data fra 
                 ulike offentlige etater slik at utfyllingen av veilederen 
                 blir enklere for deg.
               </StepText>
-              
-              <Accordion>
-                <Accordion.Item>
-                  <Accordion.Header>Hvorfor hente data</Accordion.Header>
-                  <Accordion.Content>
-                  Å hente data gjør at veilederen kan autofylle svar for deg, 
-                  noe som betyr at du slipper å logge deg inn forskjellige steder 
-                  for å finne informasjon du må fylle ut i veilederen. 
-                    <br/><br/>
-                  Du kan også fint fylle ut informasjon selv, dersom du ikke ønsker å hente informasjon automatisk. 
-                  </Accordion.Content>
-                </Accordion.Item>
-                <Accordion.Item>
-                  <Accordion.Header>
-                    Hvordan virker datasamlingen?
-                  </Accordion.Header>
-                  <Accordion.Content>
-                    Datahenting fungerer ved at MinVeileder henter data som ulike 
-                    offentlige organisasjoner har på deg her i veilederen.
-                    <br/><br/>
-                    Informajsonen vil ikke bli delt på tvers av disse organisasjonene, og det er kun du som ser de samlet her.
-                  </Accordion.Content>
-                </Accordion.Item>
-                <Accordion.Item>
-                  <Accordion.Header>Hvem hentes infoen fra?</Accordion.Header>
-                  <Accordion.Content>
-                  MinVei henter informasjon fra følgende: 
-                  <ul>
-                    <li>Folkeregisteret</li>
-                    <li>Skatteetaten</li>
-                    <li>NAV</li>
-                    <li>Lånekassen</li>
-                    <li>Brønnøysundregisteret</li>
-                    <li>Din tilhørende kommune</li>
-                    <li>Vegvesenet</li>
-                    <li>Helsenorge</li>
-                    <li>Samordna opptak</li>
-                    <li>Politiet</li>
-                    <li>Altinn</li>
-                    <li>Pasientsky</li>
-                  </ul>
-                  </Accordion.Content>
-                </Accordion.Item>
-              </Accordion>
+              <StepText>
+                Gjennom mine data kan du hente informasjon fra:
+              </StepText>
+              <DataBilder>
+    <Image src="https://media.snl.no/media/192713/standard_lanekassen.png" alt="Image 1" />
+    <Image src="https://www.steinkjerleksikonet.no/img/vis_gen.php?tbl=bilde&fil=innhold&id=4430" alt="Image 2" />
+    <Image src="https://yt3.googleusercontent.com/-Mlm9tVyseq0e2ZxW-liNWEKg_BTggFhKfrsqU8cXk4wbjE4OzHvy7L5cHUIMznp-3x2Hw_mVw=s900-c-k-c0x00ffffff-no-rj" alt="Image 3" />
+    <Image src="https://v.imgi.no/373/0/6-1f672a9a-0d1a-4a84-9632-90ee3200cfe1-TOPLOGO.jpg" alt="Image 4" />
+    <Image src="https://kommunikasjon.ntb.no/data/images/00306/95f3a80b-ceb5-4afb-9e0a-d1611744ba4d-w_960_h_960.jpg" alt="Image 5" />
+    <Image src="https://media.snl.no/media/55949/standard_innovasjon-norge.png" alt="Image 6" />
+  </DataBilder>
               
               <RadioBox>
                 <RadioGroup legend="Ønsker du å hente data det offentlige har om deg for å autofylle svar i veilederen?">
@@ -398,4 +392,3 @@ const Info = () => {
 };
  
 export default Info;
- 
