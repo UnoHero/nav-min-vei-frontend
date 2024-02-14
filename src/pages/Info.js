@@ -22,9 +22,13 @@ import StepTwo from '../components/StepTwo';
 import StepThree from "../components/StepThree";
 import StepFinal from "../components/StepFinal";
  
+
+// Styles thrue js
+
 const Body = styled.div`
   background-color: rgb(211, 230, 237);
 `;
+
 const MainContent = styled.div`
   background-color: rgb(211, 230, 237); // Light blue background
   padding: 20px;
@@ -52,6 +56,7 @@ const Circle = styled.div`
   }
 `;
 
+// "TextBox" is the container of the different questins/parts. The "cursor" properti is code that changes the cursor if you can click the question/part
 const TextBox = styled.div`
   background-color: white;
   border-radius: 5px;
@@ -61,7 +66,8 @@ const TextBox = styled.div`
   &:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); // Legg til skyggeeffekt ved hover for å indikere klikkbarhet
   }
-`
+`;
+
 // The line on the left side of the screen between the numbers
 const Line = styled.div`
   width: 0.4rem;
@@ -70,7 +76,7 @@ const Line = styled.div`
   position: relative;
   left: 15px;
   z-index: 0;
-`
+`;
   
 const List = styled.ul`
   list-style: none;
@@ -83,7 +89,7 @@ const Item = styled.li`
   margin: 20px 0px 20px 0px;
   &:hover {
     ${TextBox} {
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); // Legg til skyggeeffekt ved hover for å indikere klikkbarhet
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
     }
   }
 `;
@@ -120,7 +126,7 @@ const Info = () => {
     }, 0);
   }
 
-  // Fetching the user data depending on the social security value "id" 
+  // Fetching the user data depending on the social security value "id"  
   const getPersonData = async () => {
     const response = await fetch(`http://localhost:3000/user/${id}`)
     const data = await response.json()
@@ -135,8 +141,8 @@ const Info = () => {
       <Navbar />
 
       {/* The Logo part */}
-
       <Section />
+
       <MainContent>
 
       <List>
@@ -152,9 +158,7 @@ const Info = () => {
             id={id}
             nextStepButton={nextStepButton}
             stepTwoRef={stepTwoRef}
-          
           ></StepZero>
-          
         </Item>
 
         {/* The secon part of the site the part/question. "Om meg" */}
@@ -186,9 +190,9 @@ const Info = () => {
             nextStepButton={nextStepButton}
           ></StepTwo>
         </Item>
-
         {/* The fourth part of the part/questions. "MineData" */}
         <Item>
+          {/* Changes the color of the circle 3 on the side wen it is beeing worked on or done with */}
           <div><Circle color={activeStep >= 3 ? true : false}>3</Circle><Line></Line></div>
           <StepThree
             stepTwoRef={stepTwoRef}
