@@ -131,6 +131,19 @@ const ButtonContainer = styled.div`
   margin-top: 20px; /* Optional: adds some space above the button container */
 `;
  
+const InputBox = styled.input`
+  display: block;
+  width: 290px;
+  height: 48px;
+  margin: 10px 0px;
+  border-radius: 4px;
+  border: 1px solid black;
+`
+
+const InputLabel = styled.label`
+  font-size: 1rem;
+`
+
 const Info = () => {
   const [activeStep, setActiveStep] = useState(0);
 
@@ -150,6 +163,14 @@ const Info = () => {
   const stepThreeRef = useRef(null);
   const stepFourRef = useRef(null)
 
+  const [id, setId] = useState(null);
+
+  const getPersonData = async () => {
+    const response = await fetch(`http://localhost:3000/user/${id}`)
+    const data = await response.json()
+    console.log(data)
+  }
+  
   return (
     <>
     <Body>
@@ -252,9 +273,20 @@ const Info = () => {
             <PersonFillIcon className="stepIcon" title="a11y-title" color={activeStep >= 1 ? "blue" : "gray"} fontSize="1.5rem" />
             {activeStep === 1 && 
               <>
-                <StepHeader>Test steg 1</StepHeader>
-                <p>EEEE</p>
-                <NextStepButton onClick={(e) => nextStepButton(e, 2, stepTwoRef)}>Neste Steg</NextStepButton>
+                <Txt><b>Hei Starte Nybedrift</b></Txt>
+                <StepText>
+                  Her finner du informasjon om 
+                  deg som veilederen har hentet 
+                  fra offentlige tjenester. Er svarene feil? 
+                  Da er det bare å endre i svarboksene.  
+                </StepText>
+                <InputLabel>Fødselsnummer:</InputLabel>
+                <InputBox onChange={(e) => setId(e.target.value)}></InputBox>
+                
+                <NextStepButton onClick={(e) => {
+                  nextStepButton(e, 2, stepTwoRef)
+                  getPersonData(id)
+                }}>Neste Steg</NextStepButton>
               </>
             }
           </TextBox>
