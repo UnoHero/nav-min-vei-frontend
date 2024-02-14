@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import '../font-style.css';
+import { HddDownIcon } from '@navikt/aksel-icons';
+import { PrinterSmallIcon } from '@navikt/aksel-icons';
 import "@navikt/ds-css";
 import Section from '../components/section';
 import { InformationIcon, CheckmarkIcon, Chat2FillIcon, PersonFillIcon, HospitalFillIcon } from '@navikt/aksel-icons';
@@ -374,11 +376,26 @@ const Info = () => {
         <Item>
           <Circle><CheckmarkIcon title="a11y-title" fontSize="1.5rem" /></Circle>
           <TextBox ref={stepFourRef}  onClick={(e) => nextStepButton(e, 4, stepFourRef)}>
-            <StepTitle>Mine resultater</StepTitle>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+  <StepTitle>Mine resultater</StepTitle>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+    <div style={{ textAlign: 'center' }}>
+      <HddDownIcon title="a11y-title" fontSize="2.5rem" />
+      <div>Lagre</div>
+    </div>
+    <div style={{ textAlign: 'center' }}>
+      <PrinterSmallIcon title="a11y-title" fontSize="2.5rem" />
+      <div>Skriv ut</div>
+    </div>
+  </div>
+</div>
             {activeStep === 4 && 
               <>
-                <StepHeader>Test steg done</StepHeader>
+                              <br/><br/>
+                <StepText>Resultatene nedenfor er basert på informasjonen fra ulike databaser via MineData, samt svar du har oppgitt i veilederen. </StepText>
+
               </>
+              
             }
           </TextBox>
         </Item>
