@@ -1,6 +1,10 @@
 import styled from 'styled-components';
+// Fancy nav Icons from nav aksel
 import { PersonFillIcon } from '@navikt/aksel-icons';
 
+// Styles thrue js
+
+// The Imput filed were you write your socialSecurity number
 const InputBox = styled.input`
     display: block;
     width: 290px;
@@ -10,6 +14,7 @@ const InputBox = styled.input`
     border: 1px solid black;
 `
 
+// The header above the imput filed
 const InputLabel = styled.label`
     font-size: 1rem;
 `
@@ -63,6 +68,7 @@ const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, setActiveS
     return(
         <>
         <TextBox ref={stepOneRef} onClick={() => {
+            {/* Moves the user to next part */}
               setActiveStep(1)
               setTimeout(() => {
                 window.scrollTo({
@@ -85,7 +91,7 @@ const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, setActiveS
                 </StepText>
                 <InputLabel>Fødselsnummer:</InputLabel>
                 <InputBox onChange={(e) => setId(e.target.value)}></InputBox>
-                
+                {/* Moves the user to the next part */}
                 <NextStepButton onClick={(e) => {
                   nextStepButton(e, 2, stepTwoRef)
                   getPersonData(id)

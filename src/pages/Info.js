@@ -1,11 +1,21 @@
+// Info The site were we get information, the user can answer questions and more
+
+// Imports
 import React, { useRef, useState } from 'react';
+// Styled wil let you make styles(css) in a react component.
 import styled from 'styled-components';
-import Navbar from '../components/navbar';
-import Footer from '../components/footer';
+// CSS
 import '../font-style.css';
 import "@navikt/ds-css";
+
+// "Navbar" the navigation part on top of the site, with a logo, some buttons, hamburger menu, sertch and loginn
+import Navbar from '../components/navbar';
+// "Section" is the top part of the site with the big logo MinVeileder
 import Section from '../components/section';
+// "Footer" is the dark box at the bottom with some information
+import Footer from '../components/footer';
 import { InformationIcon, CheckmarkIcon } from '@navikt/aksel-icons';
+// Steps
 import StepZero from "../components/StepZero";
 import StepOne from '../components/StepOne';
 import StepTwo from '../components/StepTwo';
@@ -22,6 +32,7 @@ const MainContent = styled.div`
   justify-content: center;
 `;
 
+// The circles on the left side that tracks were you are on the questions. The "border", background-color and color changes the color of the pinters dependig on were you are on the site.
 const Circle = styled.div`
   position: relative;
   border: 2px solid ${props => props.color ? "#0067C5" : "white"};
@@ -51,7 +62,7 @@ const TextBox = styled.div`
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); // Legg til skyggeeffekt ved hover for å indikere klikkbarhet
   }
 `
-
+// The line on the left side of the screen between the numbers
 const Line = styled.div`
   width: 0.4rem;
   height: 100%;
@@ -64,7 +75,8 @@ const Line = styled.div`
 const List = styled.ul`
   list-style: none;
 `;
-  
+
+// "TextBox": Legg til skyggeeffekt ved hover for å indikere klikkbarhet
 const Item = styled.li`
   display: grid;
   grid-template-columns: 5rem 50rem;
@@ -79,8 +91,24 @@ const Item = styled.li`
 // Component for each box next to Stepper steps
 
 const Info = () => {
+
+  // useStates ->
+  
+  // "activeStep" remembers witch question you are on and were you are going
   const [activeStep, setActiveStep] = useState(0);
 
+  // "id" becomes the social security number that is writen in the text filed
+  const [id, setId] = useState(null);
+
+
+  // useRef ->
+  // Were to move the user to the next part/question
+  const stepOneRef = useRef(null);
+  const stepTwoRef = useRef(null);
+  const stepThreeRef = useRef(null);
+  const stepFourRef = useRef(null);
+
+  // Moves the user to the next part/question
   const nextStepButton = (e, step, ref) => {
     e.stopPropagation()
     setActiveStep(step)
@@ -90,23 +118,31 @@ const Info = () => {
         behavior: "smooth"
       })
     }, 0);
-  } 
+  }
 
-  const stepOneRef = useRef(null);
-  const stepTwoRef = useRef(null);
-  const stepThreeRef = useRef(null);
-  const stepFourRef = useRef(null)
-  const [id, setId] = useState(null);
-
+  // Fetching the user data depending on the social security value "id" 
+  const getPersonData = async () => {
+    const response = await fetch(`http://localhost:3000/user/${id}`)
+    const data = await response.json()
+    console.log(data)
+  }
+  
+  // The "HTML" part
   return (
     <>
     <Body>
+      {/* Navigation bar */}
       <Navbar />
+
+      {/* The Logo part */}
+
       <Section />
       <MainContent>
 
       <List>
+        {/* The first part of the part/questions. "MineData" */}
         <Item>
+          {/* Changes the color of the circle 1 on the side wen it is beeing worked on or done with */}
           <div><Circle><InformationIcon title="a11y-title" fontSize="1.5rem" /></Circle><Line></Line></div>
           <StepZero
             stepOneRef={stepOneRef}
@@ -121,7 +157,9 @@ const Info = () => {
           
         </Item>
 
+        {/* The secon part of the site the part/question. "Om meg" */}
         <Item>
+          {/* Changes the color of the circle 1 on the side wen it is beeing worked on or done with */}
         <div><Circle color={activeStep >= 1 ? true : false}>1</Circle><Line></Line></div>
           <StepOne 
             stepOneRef={stepOneRef}
@@ -134,7 +172,9 @@ const Info = () => {
           ></StepOne>
         </Item>
 
+        {/* The thrid part of the part/questions. "MineData" */}
         <Item>
+          {/* Changes the color of the circle 2 on the side wen it is beeing worked on or done with */}
           <div><Circle color={activeStep >= 2 ? true : false}>2</Circle><Line></Line></div>
           <StepTwo
             stepTwoRef={stepTwoRef}
@@ -147,6 +187,7 @@ const Info = () => {
           ></StepTwo>
         </Item>
 
+        {/* The fourth part of the part/questions. "MineData" */}
         <Item>
           <div><Circle color={activeStep >= 3 ? true : false}>3</Circle><Line></Line></div>
           <StepThree
@@ -159,7 +200,9 @@ const Info = () => {
           ></StepThree>
         </Item>
         
+        {/* The fifth part of the part/questions. "MineData" */}
         <Item>
+          {/* Changes the color of the circle 4 on the side wen it is beeing worked on or done with */}
           <Circle><CheckmarkIcon title="a11y-title" fontSize="1.5rem" /></Circle>
           <StepFinal
             stepFourRef={stepFourRef}

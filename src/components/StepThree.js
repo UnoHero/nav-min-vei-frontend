@@ -1,10 +1,13 @@
 import styled from 'styled-components';
+// Fancy nav Icons from nav aksel
 import { Radio, RadioGroup } from "@navikt/ds-react";
 import { CheckmarkIcon, Chat2FillIcon } from '@navikt/aksel-icons';
 import { Heading } from "@navikt/ds-react";
 
 const StepThree = ({stepTwoRef, stepThreeRef, stepFourRef, nextStepButton, activeStep, setActiveStep }) => {
 
+    // Styles thrue js
+// "TextBox" is the container of the different questins/parts. The "cursor" properti is code that changes the cursor if you can click the question/part
 const TextBox = styled.div`
   background-color: white;
   border-radius: 5px;
@@ -16,19 +19,24 @@ const TextBox = styled.div`
   }
 `;
 
+
+// The Big text on the top of parts/questions
 const StepTitle = styled.div`
-  font-size: 1.75rem;
+font-size: 1.75rem;
 `;
 
+// The smaler text over the big text of the different parts/questions
 const StepHeader = styled.div`
-  font-size: 1rem;
+font-size: 1rem;
 `;
 
+// Information text avout the part/questions
 const StepText = styled.div`
  font-size: 1rem;
  margin: 2rem 0rem;
 `;
 
+// Component for each box next to Stepper steps
 const NextStepButton = styled.button`
   border-radius: 4px;
   border: 0px;
@@ -38,6 +46,7 @@ const NextStepButton = styled.button`
   cursor: pointer;
 `;
 
+// The green buttons on the "Spørsmål til min livssituasjon" part. The buttons change color wen hover.
 const GreenButton = styled.button`
   padding: 10px 20px;
   font-family: 'Arial', sans-serif;
@@ -68,6 +77,7 @@ const GreenButton = styled.button`
     return(
         <>
         <TextBox ref={stepThreeRef} onClick={() => {
+            {/* Moves the user to next part */}
               setActiveStep(3)
               setTimeout(() => {
                 window.scrollTo({
@@ -78,6 +88,7 @@ const GreenButton = styled.button`
             }}>
             <StepHeader>Steg 3 av 3</StepHeader>
             <StepTitle>Spørsmål til min livssituasjon</StepTitle>
+            {/* The icon beside the part header. Icon of 2 chat bubles */}
             <Chat2FillIcon className="stepIcon" title="a11y-title" color={activeStep >= 3 ? "green" : "gray"} fontSize="1.5rem" />
             {activeStep === 3 && 
               <>
@@ -104,7 +115,7 @@ const GreenButton = styled.button`
                   <Radio value="No">Nei</Radio>
                 </RadioGroup>
                 <br/><br/>
-
+        {/* Moves the user to the next part */}
         <NextStepButton onClick={(e) => nextStepButton(e, 2, stepTwoRef)}>Forige steg</NextStepButton>
         <NextStepButton onClick={(e) => nextStepButton(e, 4, stepFourRef)}>Gå Videre</NextStepButton>
 

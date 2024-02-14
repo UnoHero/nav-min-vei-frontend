@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+// Fancy nav Icons from nav aksel
 import { Radio, RadioGroup } from "@navikt/ds-react";
 
+// Styles thrue js
 const TextBox = styled.div`
   background-color: white;
   border-radius: 5px;
@@ -52,6 +54,7 @@ const DataBilder = styled.div`
   width: 400px;
 `;
 
+// Pictures of the different agencies
 const Image = styled.img`
   max-width: auto;
   max-height: 40px;
@@ -63,7 +66,7 @@ const StepZero = ({ stepOneRef, nextStepButton, activeStep, setActiveStep}) => {
 
     return(
         <>
-        
+        {/* Moves the user to next part */}
         <TextBox cursor={activeStep === 0 ?  "default" : "pointer"} onClick={() => setActiveStep(0)}>
             <StepHeader>Samling av din informasjon via</StepHeader>
 
@@ -81,6 +84,7 @@ const StepZero = ({ stepOneRef, nextStepButton, activeStep, setActiveStep}) => {
             <StepText>
             Gjennom mine data kan du hente informasjon fra:
             </StepText>
+            {/* The logos of the different agencies */}    
             <DataBilder>
                 <Image src="https://media.snl.no/media/192713/standard_lanekassen.png" alt="Image 1" />
                 <Image src="https://www.steinkjerleksikonet.no/img/vis_gen.php?tbl=bilde&fil=innhold&id=4430" alt="Image 2" />
@@ -96,6 +100,7 @@ const StepZero = ({ stepOneRef, nextStepButton, activeStep, setActiveStep}) => {
                 <Radio value="No">Nei, jeg ønsker å fylle ut selv</Radio>
             </RadioGroup>
             </RadioBox>
+            {/* Moves the user to the next part */}
             <NextStepButton onClick={(e) => nextStepButton(e, 1, stepOneRef)}>Gå Videre</NextStepButton>
 
             </>

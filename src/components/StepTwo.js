@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { HospitalFillIcon } from '@navikt/aksel-icons';
 import { RadioGroup } from "@navikt/ds-react";
 
+// Styles thrue js
 const TextBox = styled.div`
   background-color: white;
   border-radius: 5px;
@@ -53,11 +54,13 @@ const StepTwo = ({stepThreeRef, stepTwoRef, nextStepButton, activeStep, setActiv
         
         
         <TextBox ref={stepTwoRef} onClick={() => {
+            {/* Moves the user to next part */}
               setActiveStep(2)
             }}>
 
             <StepHeader>Steg 2 av 3 </StepHeader>
             <StepTitle>Velg livssituasjon</StepTitle>
+            {/* The icon beside the part header. Icon of a hospital */}
             <HospitalFillIcon className="stepIcon" title="a11y-title" color={activeStep >= 2 ? "Pink" : "gray"} fontSize="1.5rem" />
             {activeStep === 2 && 
               <>
@@ -72,6 +75,7 @@ const StepTwo = ({stepThreeRef, stepTwoRef, nextStepButton, activeStep, setActiv
                   <StepText>Er helt eller delvis alene med barn</StepText>
                   </RadioGroup>
                 </RadioBox>
+                {/* Moves the user to the next part */}
                 <NextStepButton onClick={(e) => nextStepButton(e, 3, stepThreeRef)}>Neste Steg</NextStepButton>
               </>
             }
