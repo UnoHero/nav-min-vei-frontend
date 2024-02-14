@@ -1,19 +1,39 @@
+// Info The site were we get information, the user can answer questions and more
+
+
+// Imports
+
 import React, { useRef, useState } from 'react';
-import styled from 'styled-components';
-import Navbar from '../components/navbar';
-import Footer from '../components/footer';
+
+// Css
 import '../font-style.css';
-import { HddDownIcon } from '@navikt/aksel-icons';
-import { PrinterSmallIcon } from '@navikt/aksel-icons';
 import "@navikt/ds-css";
+
+// Styled wil let you make styles(css) in a react component.
+import styled from 'styled-components';
+
+// "Navbar" the navigation part on top of the site, with a logo, some buttons, hamburger menu, sertch and loginn
+import Navbar from '../components/navbar';
+
+// "Section" is the top part of the site with the big logo MinVeileder
 import Section from '../components/section';
-import { InformationIcon, CheckmarkIcon, Chat2FillIcon, PersonFillIcon, HospitalFillIcon } from '@navikt/aksel-icons';
+
+// "Footer" is the dark box at the bottom with some information
+import Footer from '../components/footer';
+
+// Fancy nav Icons from nav aksel
+import { InformationIcon, CheckmarkIcon, Chat2FillIcon, PersonFillIcon, HospitalFillIcon, PrinterSmallIcon } from '@navikt/aksel-icons';
 import { Accordion, Button, Radio, RadioGroup } from "@navikt/ds-react";
 import { Heading, VStack } from "@navikt/ds-react";
+import { HddDownIcon } from '@navikt/aksel-icons';
  
+
+// Styles thrue js
+
 const Body = styled.div`
   background-color: rgb(211, 230, 237);
 `;
+
 const MainContent = styled.div`
   background-color: rgb(211, 230, 237); // Light blue background
   padding: 20px;
@@ -21,6 +41,7 @@ const MainContent = styled.div`
   justify-content: center;
 `;
 
+// The circles on the left side that tracks were you are on the questions. The "border", background-color and color changes the color of the pinters dependig on were you are on the site.
 const Circle = styled.div`
   position: relative;
   border: 2px solid ${props => props.color ? "#0067C5" : "white"};
@@ -40,6 +61,7 @@ const Circle = styled.div`
   }
 `;
 
+// "TextBox" is the container of the different questins/parts. The "cursor" properti is code that changes the cursor if you can click the question/part
 const TextBox = styled.div`
   background-color: white;
   border-radius: 5px;
@@ -49,8 +71,9 @@ const TextBox = styled.div`
   &:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); // Legg til skyggeeffekt ved hover for å indikere klikkbarhet
   }
-`
+`;
 
+// The line on the left side of the screen between the numbers
 const Line = styled.div`
   width: 0.4rem;
   height: 100%;
@@ -58,31 +81,41 @@ const Line = styled.div`
   position: relative;
   left: 15px;
   z-index: 0;
-`
+`;
   
 const List = styled.ul`
   list-style: none;
 `;
   
+// "TextBox": Legg til skyggeeffekt ved hover for å indikere klikkbarhet
 const Item = styled.li`
   display: grid;
   grid-template-columns: 5rem 50rem;
   margin: 20px 0px 20px 0px;
   &:hover {
     ${TextBox} {
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); // Legg til skyggeeffekt ved hover for å indikere klikkbarhet
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
     }
   }
 `;
 
+
+// The Big text on the top of parts/questions
 const StepTitle = styled.div`
   font-size: 1.75rem;
 `;
 
+// The smaler text over the big text of the different parts/questions
 const StepHeader = styled.div`
   font-size: 1rem;
 `;
 
+// The smaler header that apers wen you oppen a part
+const Txt = styled.div`
+fontSize: 20%;
+`;
+
+// Information text avout the part/questions
 const StepText = styled.div`
  font-size: 1rem;
  margin: 2rem 0rem;
@@ -95,15 +128,9 @@ const RadioBox = styled.div`
   border-radius: 0.5rem;
 
 `;
-const Txt = styled.div`
-fontSize: 20%;
-`
-;
-
 
 
 // Component for each box next to Stepper steps
-
 const NextStepButton = styled.button`
   border-radius: 4px;
   border: 0px;
@@ -111,8 +138,9 @@ const NextStepButton = styled.button`
   background-color: #0067C5;
   color: white;
   cursor: pointer;
-`
+`;
 
+// The green buttons on the "Spørsmål til min livssituasjon" part. The buttons change color wen hover.
 const GreenButton = styled.button`
   padding: 10px 20px;
   font-family: 'Arial', sans-serif;
@@ -146,7 +174,6 @@ const ButtonContainer = styled.div`
   margin-top: 20px; /* Optional: adds some space above the button container */
 `;
 
-
 const DataBilder = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -154,12 +181,19 @@ const DataBilder = styled.div`
   width: 400px;
 `;
 
+// Pictures of the different agencies
 const Image = styled.img`
   max-width: auto;
   max-height: 40px;
   margin: 10px; /* Adjust the spacing between images */
 `;
  
+// The header above the imput filed
+const InputLabel = styled.label`
+  font-size: 1rem;
+`;
+
+// The Imput filed were you write your socialSecurity number
 const InputBox = styled.input`
   display: block;
   width: 290px;
@@ -167,15 +201,30 @@ const InputBox = styled.input`
   margin: 10px 0px;
   border-radius: 4px;
   border: 1px solid black;
-`
+`;
 
-const InputLabel = styled.label`
-  font-size: 1rem;
-`
 
+// The Page
 const Info = () => {
+
+
+  // useStates ->
+  
+  // "activeStep" remembers witch question you are on and were you are going
   const [activeStep, setActiveStep] = useState(0);
 
+  // "id" becomes the social security number that is writen in the text filed
+  const [id, setId] = useState(null);
+
+
+  // useRef ->
+  // Were to move the user to the next part/question
+  const stepOneRef = useRef(null);
+  const stepTwoRef = useRef(null);
+  const stepThreeRef = useRef(null);
+  const stepFourRef = useRef(null);
+
+  // Moves the user to the next part/question
   const nextStepButton = (e, step, ref) => {
     e.stopPropagation()
     setActiveStep(step)
@@ -185,32 +234,35 @@ const Info = () => {
         behavior: "smooth"
       })
     }, 0);
-  } 
+  }
 
-  const stepOneRef = useRef(null);
-  const stepTwoRef = useRef(null);
-  const stepThreeRef = useRef(null);
-  const stepFourRef = useRef(null)
-
-  const [id, setId] = useState(null);
-
+  // Fetching the user data depending on the social security value "id" 
   const getPersonData = async () => {
     const response = await fetch(`http://localhost:3000/user/${id}`)
     const data = await response.json()
     console.log(data)
   }
   
+  // The "HTML" part
   return (
     <>
     <Body>
+
+      {/* Navigation bar */}
       <Navbar />
+
+      {/* The Logo part */}
       <Section />
+
       <MainContent>
 
       <List>
+
+        {/* The first part of the part/questions. "MineData" */}
         <Item>
           <div><Circle><InformationIcon title="a11y-title" fontSize="1.5rem" /></Circle><Line></Line></div>
-
+          
+          {/* Changing the cursor to show that you can click */}
           <TextBox cursor={activeStep === 0 ?  "default" : "pointer"} onClick={() => setActiveStep(0)}>
             <StepHeader>Samling av din informasjon via</StepHeader>
 
@@ -229,6 +281,7 @@ const Info = () => {
                 Gjennom mine data kan du hente informasjon fra:
               </StepText>
               <DataBilder>
+    {/* The logos of the different agencies */}            
     <Image src="https://media.snl.no/media/192713/standard_lanekassen.png" alt="Image 1" />
     <Image src="https://www.steinkjerleksikonet.no/img/vis_gen.php?tbl=bilde&fil=innhold&id=4430" alt="Image 2" />
     <Image src="https://yt3.googleusercontent.com/-Mlm9tVyseq0e2ZxW-liNWEKg_BTggFhKfrsqU8cXk4wbjE4OzHvy7L5cHUIMznp-3x2Hw_mVw=s900-c-k-c0x00ffffff-no-rj" alt="Image 3" />
@@ -243,19 +296,20 @@ const Info = () => {
                   <Radio value="No">Nei, jeg ønsker å fylle ut selv</Radio>
                 </RadioGroup>
               </RadioBox>
+              {/* Moves the user to the next part */}
               <NextStepButton onClick={(e) => nextStepButton(e, 1, stepOneRef)}>Gå Videre</NextStepButton>
-
               </>
             }
 
           </TextBox>
-
-
         </Item>
 
+        {/* The secon part of the site the part/question. "Om meg" */}
         <Item>
-        <div><Circle color={activeStep >= 1 ? true : false}>1</Circle><Line></Line></div>
-          <TextBox ref={stepOneRef} onClick={() => {
+          {/* Changes the color of the circle 1 on the side wen it is beeing worked on or done with */}
+          <div><Circle color={activeStep >= 1 ? true : false}>1</Circle><Line></Line></div>
+            {/* Moves the user to next part */}
+            <TextBox ref={stepOneRef} onClick={() => {
               setActiveStep(1)
               setTimeout(() => {
                 window.scrollTo({
@@ -266,6 +320,7 @@ const Info = () => {
             }}>
             <StepHeader>Steg 1 av 3</StepHeader>
             <StepTitle>Om meg</StepTitle>
+            {/* The icon beside the part header. The person Icon */}
             <PersonFillIcon className="stepIcon" title="a11y-title" color={activeStep >= 1 ? "blue" : "gray"} fontSize="1.5rem" />
             {activeStep === 1 && 
               <>
@@ -288,8 +343,11 @@ const Info = () => {
           </TextBox>
         </Item>
 
+        {/* The thrid part of the part/questions. "MineData" */}
         <Item>
+          {/* Changes the color of the circle 2 on the side wen it is beeing worked on or done with */}
           <div><Circle color={activeStep >= 2 ? true : false}>2</Circle><Line></Line></div>
+          {/* Moves the user to next part */}
           <TextBox ref={stepTwoRef} onClick={() => {
               setActiveStep(2)
               setTimeout(() => {
@@ -302,6 +360,7 @@ const Info = () => {
 
             <StepHeader>Steg 2 av 3 </StepHeader>
             <StepTitle>Velg livssituasjon</StepTitle>
+            {/* The icon beside the part header. Icon of a hospital */}
             <HospitalFillIcon className="stepIcon" title="a11y-title" color={activeStep >= 2 ? "Pink" : "gray"} fontSize="1.5rem" />
             {activeStep === 2 && 
               <>
@@ -316,14 +375,18 @@ const Info = () => {
                   <StepText>Er helt eller delvis alene med barn</StepText>
                   </RadioGroup>
                 </RadioBox>
+                {/* Moves the user to the next part */}
                 <NextStepButton onClick={(e) => nextStepButton(e, 3, stepThreeRef)}>Neste Steg</NextStepButton>
               </>
             }
           </TextBox>
         </Item>
-
+        
+        {/* The fourth part of the part/questions. "MineData" */}
         <Item>
+          {/* Changes the color of the circle 3 on the side wen it is beeing worked on or done with */}
           <div><Circle color={activeStep >= 3 ? true : false}>3</Circle><Line></Line></div>
+          {/* Moves the user to next part */}
           <TextBox ref={stepThreeRef} onClick={() => {
               setActiveStep(3)
               setTimeout(() => {
@@ -335,67 +398,69 @@ const Info = () => {
             }}>
             <StepHeader>Steg 3 av 3</StepHeader>
             <StepTitle>Spørsmål til min livssituasjon</StepTitle>
+            {/* The icon beside the part header. Icon of 2 chat bubles */}
             <Chat2FillIcon className="stepIcon" title="a11y-title" color={activeStep >= 3 ? "green" : "gray"} fontSize="1.5rem" />
             {activeStep === 3 && 
               <>
                 <StepHeader>Test steg 3</StepHeader>
                   <StepText>
-                  Under ser du livshendelsene du har valgt, og tilhørende spørsmål du må svare på for at vi skal kunne beregne hva du kan ha krav på.
-              </StepText>
-              <GreenButton onClick={() => setActiveStep(1)}>
-            <CheckmarkIcon title="a11y-title" fontSize="1.5rem" />
-            Få barn
-          </GreenButton>
-          <GreenButton onClick={() => setActiveStep(2)}>
-            <CheckmarkIcon title="a11y-title" fontSize="1.5rem" />
-            Dødsfall og arv
-          </GreenButton>
-          <div>
-          <br/><br/>
+                    Under ser du livshendelsene du har valgt, og tilhørende spørsmål du må svare på for at vi skal kunne beregne hva du kan ha krav på.
+                  </StepText>
+                <GreenButton onClick={() => setActiveStep(1)}>
+                  <CheckmarkIcon title="a11y-title" fontSize="1.5rem" />
+                  Få barn
+                </GreenButton>
+                <GreenButton onClick={() => setActiveStep(2)}>
+                  <CheckmarkIcon title="a11y-title" fontSize="1.5rem" />
+                  Dødsfall og arv
+                </GreenButton>
+                <div>
+                  <br/><br/>
 
-        <Heading level="4" size="medium"> Pleie og omsorg
-        </Heading>
-        <br/><br/>
+                <Heading level="4" size="medium"> Pleie og omsorg
+                </Heading>
+                <br/><br/>
                 <RadioGroup legend="Ønsker du å hente data det offentlige har om deg for å autofylle svar i veilederen?">
                   <Radio value="Yes">Ja</Radio>
                   <Radio value="No">Nei</Radio>
                 </RadioGroup>
                 <br/><br/>
                 <ButtonContainer>
+                  {/* Moves the user to the previus part */}
+                  <Button variant="secondary" onClick={(e) => nextStepButton(e, 2, stepTwoRef)}>Forige steg</Button>
+                  {/* Moves the user to the next part */}
+                  <Button variant="primary" onClick={(e) => nextStepButton(e, 4, stepFourRef)}>Neste steg</Button>
+                </ButtonContainer>
 
-        <Button variant="secondary" onClick={(e) => nextStepButton(e, 2, stepTwoRef)}>Forige steg</Button>
-       <Button variant="primary" onClick={(e) => nextStepButton(e, 4, stepFourRef)}>Neste steg</Button>
-       </ButtonContainer>
-
-      </div>
+                </div>
               </>
             }
           </TextBox>
         </Item>
         
+        {/* The fifth part of the part/questions. "MineData" */}
         <Item>
+          {/* Changes the color of the circle 4 on the side wen it is beeing worked on or done with */}
           <Circle><CheckmarkIcon title="a11y-title" fontSize="1.5rem" /></Circle>
+          {/* Moves the user to next part */}
           <TextBox ref={stepFourRef}  onClick={(e) => nextStepButton(e, 4, stepFourRef)}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-  <StepTitle>Mine resultater</StepTitle>
-  <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-    <div style={{ textAlign: 'center' }}>
-      <HddDownIcon title="a11y-title" fontSize="2.5rem" />
-      <div>Lagre</div>
-    </div>
-    <div style={{ textAlign: 'center' }}>
-      <PrinterSmallIcon title="a11y-title" fontSize="2.5rem" />
-      <div>Skriv ut</div>
-    </div>
-  </div>
-</div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <StepTitle>Mine resultater</StepTitle>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                <div style={{ textAlign: 'center' }}>
+                  <HddDownIcon title="a11y-title" fontSize="2.5rem" />
+                  <div>Lagre</div>
+                </div>
+                <div style={{ textAlign: 'center' }}>
+                  <PrinterSmallIcon title="a11y-title" fontSize="2.5rem" />
+                  <div>Skriv ut</div>
+                </div>
+              </div>
+            </div>
             {activeStep === 4 && 
               <>
-                              <br/><br/>
-                <StepText>Resultatene nedenfor er basert på informasjonen fra ulike databaser via MineData, samt svar du har oppgitt i veilederen. </StepText>
-
+                <StepHeader>Test steg done</StepHeader>
               </>
-              
             }
           </TextBox>
         </Item>
