@@ -36,7 +36,7 @@ const Circle = styled.div`
 const TextBox = styled.div`
   background-color: white;
   border-radius: 5px;
-  padding: 1rem 8rem;
+  padding: 1rem 6rem 0.4rem 6rem;
   cursor: ${props => props.cursor};
 `
 
@@ -274,7 +274,8 @@ const Info = () => {
               }, 0);
             }}>
             <StepHeader>Steg 1 av 3</StepHeader>
-            <StepTitle><PersonFillIcon title="a11y-title" color={activeStep >= 1 ? "blue" : "gray"} fontSize="1.5rem" /> Om meg</StepTitle>
+            <StepTitle>Om meg</StepTitle>
+            <PersonFillIcon className="stepIcon" title="a11y-title" color={activeStep >= 1 ? "blue" : "gray"} fontSize="1.5rem" />
             {activeStep === 1 && 
               <>
                 <StepHeader>Test steg 1</StepHeader>
@@ -297,8 +298,9 @@ const Info = () => {
               }, 0);
             }}>
 
-            <StepHeader>Steg 2 av 3</StepHeader>
-            <StepTitle><HospitalFillIcon className="as" title="a11y-title" color={activeStep >= 2 ? "Pink" : "gray"} fontSize="1.5rem" /> Velg livssituasjon</StepTitle>
+            <StepHeader>Steg 2 av 3 </StepHeader>
+            <StepTitle>Velg livssituasjon</StepTitle>
+            <HospitalFillIcon className="stepIcon" title="a11y-title" color={activeStep >= 2 ? "Pink" : "gray"} fontSize="1.5rem" />
             {activeStep === 2 && 
               <>
                 <StepHeader>Velg livshendelser som reflekterer din livssituasjon</StepHeader>
@@ -364,7 +366,8 @@ const Info = () => {
               }, 0);
             }}>
             <StepHeader>Steg 3 av 3</StepHeader>
-            <StepTitle><Chat2FillIcon title="a11y-title" color={activeStep >= 3 ? "green" : "gray"} fontSize="1.5rem" /> Spørsmål til min livssituasjon</StepTitle>
+            <StepTitle>Spørsmål til min livssituasjon</StepTitle>
+            <Chat2FillIcon className="stepIcon" title="a11y-title" color={activeStep >= 3 ? "green" : "gray"} fontSize="1.5rem" />
             {activeStep === 3 && 
               <>
                 <StepHeader>Test steg 3</StepHeader>
