@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 // Fancy nav Icons from nav aksel
 import { Radio, RadioGroup } from "@navikt/ds-react";
+import { CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 
 // Styles thrue js
-import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, RadioBox, Txt, DataBilder, Image } from "../components/styledComponents"
+import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, RadioBox, Txt, DataBilder, Image, CheckMark } from "../components/styledComponents"
 
 const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, setActiveStep}) => {
     
@@ -13,8 +14,9 @@ const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, setActi
         <TextBox cursor={activeStep === 0 ?  "default" : "pointer"} ref={stepZeroRef} onClick={(e) => nextStepButton(e, 0, stepZeroRef)}>
             <StepHeader>Samling av din informasjon via</StepHeader>
 
-            <StepTitle><b>MineData</b></StepTitle>
-            <br></br><br></br>
+            <StepTitle>MineData</StepTitle>
+            {activeStep > 0 && <CheckMark><CheckmarkCircleFillIcon color='green' fontSize="2rem"></CheckmarkCircleFillIcon></CheckMark>}
+            <br></br>
 
             {activeStep === 0 && 
             <>
