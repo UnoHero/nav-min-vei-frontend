@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { HospitalFillIcon } from '@navikt/aksel-icons';
+import { HospitalFillIcon, InformationIcon } from '@navikt/aksel-icons';
 import { RadioGroup } from "@navikt/ds-react";
 
 // Styles thrue js
@@ -43,6 +43,41 @@ const RadioBox = styled.div`
   border-radius: 0.5rem;
 `;
 
+const Round = styled.div`
+  position: relative;
+  border: 2px solid #0067C5;
+  background-color: white;
+  border-radius: 50%;
+  color: #0067C5;
+  z-index: 1;
+  margin: 0px 3px 0px 3px;
+  text-align: center;
+  display: block;
+  height: 30px;
+  width: 30px;
+  transition: all 0.3s ease; // Legg til overgang for jevn animasjon
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1); // Forstørr effekten ved hover for å indikere klikkbarhet
+  }
+`;
+
+const Bold = styled.div`
+  font-weight: bold;
+  font-size: 1.5rem;
+`;
+
+const BlueBox = styled.div`
+  display: flex;
+  align-items: center;
+  border: solid 2px #0067c5;
+  padding: 20px;
+`;
+
+const Icon = styled.div`
+  margin-right: 10%;
+`;
+
 const StepTwo = ({stepThreeRef, stepTwoRef, nextStepButton, activeStep, setActiveStep}) => {
 
 
@@ -64,9 +99,17 @@ const StepTwo = ({stepThreeRef, stepTwoRef, nextStepButton, activeStep, setActiv
             <HospitalFillIcon className="stepIcon" title="a11y-title" color={activeStep >= 2 ? "Pink" : "gray"} fontSize="1.5rem" />
             {activeStep === 2 && 
               <>
-                <StepHeader>Velg livshendelser som reflekterer din livssituasjon</StepHeader>
-                <StepText>Her velger du de livshendelsene som relaterer til deg eller som du eventuelt ønsker å utforske</StepText>
-                <StepText>Markerte kategorier i gult er kun foreslåtte livshendelser, du kan selv velge de livshendelsene som passer deg.</StepText>
+                <Bold>Velg livshendelser som reflekterer din livssituasjon</Bold>
+                <StepText>
+                Her velger du de livshendelsene som relaterer til deg eller som
+                <br />
+                du eventuelt ønsker å utforske
+                </StepText>
+                
+                <BlueBox>
+                  <Icon><Round><InformationIcon /></Round> </Icon>
+                  <StepText></StepText>
+                </BlueBox>
 
                 <RadioBox>
                   <RadioGroup legend="Få barn">
