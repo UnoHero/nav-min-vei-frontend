@@ -80,7 +80,7 @@ const StepThree = ({stepTwoRef, stepThreeRef, stepFourRef, nextStepButton, activ
 
     return(
         <>
-        <TextBox ref={stepThreeRef} onClick={() => {
+        <TextBox cursor={activeStep === 3 ?  "default" : "pointer"} ref={stepThreeRef} onClick={() => {
             {/* Moves the user to next part */}
               setActiveStep(3)
               setTimeout(() => {

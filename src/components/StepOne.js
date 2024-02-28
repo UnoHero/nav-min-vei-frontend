@@ -16,7 +16,7 @@ const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, setActiveS
 
     return(
         <>
-        <TextBox ref={stepOneRef} onClick={(e) => nextStepButton(e, 1, stepOneRef)}>
+        <TextBox cursor={activeStep === 1 ?  "default" : "pointer"} ref={stepOneRef} onClick={(e) => nextStepButton(e, 1, stepOneRef)}>
             <StepHeader>Steg 1 av 3</StepHeader>
             <StepTitle>Om meg</StepTitle>
             <PersonFillIcon className="stepIcon" title="a11y-title" color={activeStep >= 1 ? "blue" : "gray"} fontSize="1.5rem" />

@@ -120,6 +120,7 @@ const Info = () => {
             id={id}
             nextStepButton={nextStepButton}
           ></StepTwo>
+          
         </Item>
         {/* The fourth part of the part/questions. "MineData" */}
         <Item>

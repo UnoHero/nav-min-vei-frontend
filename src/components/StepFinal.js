@@ -9,7 +9,7 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
     return(
         <>
         
-        <TextBox ref={stepFourRef}  onClick={(e) => nextStepButton(e, 4, stepFourRef)}>
+        <TextBox cursor={activeStep === 4 ?  "default" : "pointer"} ref={stepFourRef}  onClick={(e) => nextStepButton(e, 4, stepFourRef)}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <StepTitle>Mine resultater</StepTitle>
               <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>

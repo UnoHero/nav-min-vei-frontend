@@ -12,7 +12,7 @@ const StepTwo = ({stepThreeRef, stepTwoRef, nextStepButton, activeStep, setActiv
         <>
         
         
-        <TextBox ref={stepTwoRef} onClick={(e) => nextStepButton(e, 2, stepTwoRef)}>
+        <TextBox cursor={activeStep === 2 ?  "default" : "pointer"} ref={stepTwoRef} onClick={(e) => nextStepButton(e, 2, stepTwoRef)}>
 
             <StepHeader>Steg 2 av 3 </StepHeader>
             <StepTitle>Velg livssituasjon</StepTitle>
