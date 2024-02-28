@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 // Fancy nav Icons from nav aksel
 import { Radio, RadioGroup } from "@navikt/ds-react";
-import { CheckmarkIcon, Chat2FillIcon } from '@navikt/aksel-icons';
+import { CheckmarkIcon, Chat2FillIcon, CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 import { Heading } from "@navikt/ds-react";
+
 
 import DynamicQuestions from './DynamicQuestions';
 
@@ -75,6 +76,7 @@ const GreenButton = styled.button`
   }
 `;
 
+const StepThree = ({stepTwoRef, stepThreeRef, stepFourRef, nextStepButton, activeStep, setActiveStep }) => {
 
     return(
         <>
@@ -92,6 +94,7 @@ const GreenButton = styled.button`
             <StepTitle>Spørsmål til min livssituasjon</StepTitle>
             {/* The icon beside the part header. Icon of 2 chat bubles */}
             <Chat2FillIcon className="stepIcon" title="a11y-title" color={activeStep >= 3 ? "green" : "gray"} fontSize="1.5rem" />
+            {activeStep > 3 && <CheckMark><CheckmarkCircleFillIcon color='green' fontSize="2rem"></CheckmarkCircleFillIcon></CheckMark>}
             {activeStep === 3 && 
               <>
                 <StepHeader>Test steg 3</StepHeader>

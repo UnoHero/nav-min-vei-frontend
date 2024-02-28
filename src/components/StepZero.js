@@ -1,77 +1,22 @@
 import styled from 'styled-components';
 // Fancy nav Icons from nav aksel
 import { Radio, RadioGroup } from "@navikt/ds-react";
+import { CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 
 // Styles thrue js
-const TextBox = styled.div`
-  background-color: white;
-  border-radius: 5px;
-  padding: 1rem 6rem 0.4rem 6rem;
-  cursor: ${props => props.cursor};
-  transition: all 0.3s ease; // Legg til overgang for jevn animasjon
-  &:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); // Legg til skyggeeffekt ved hover for å indikere klikkbarhet
-  }
-`;
-
-const StepTitle = styled.div`
-  font-size: 1.75rem;
-`;
-
-const StepHeader = styled.div`
-  font-size: 1rem;
-`;
-
-const StepText = styled.div`
- font-size: 1rem;
- margin: 2rem 0rem;
-`;
-
-const NextStepButton = styled.button`
-  border-radius: 4px;
-  border: 0px;
-  padding: 12px 20px;
-  background-color: #0067C5;
-  color: white;
-  cursor: pointer;
-`;
-
-const RadioBox = styled.div`
-  padding: 3rem 2rem;
-  margin: 2rem 0rem;
-  background-color: #CCE1FF;
-  border-radius: 0.5rem;
-
-`;
-const Txt = styled.div`
-fontSize: 20%;
-`;
-
-const DataBilder = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  padding-bottom: 20px;
-  width: 400px;
-`;
-
-// Pictures of the different agencies
-const Image = styled.img`
-  max-width: auto;
-  max-height: 40px;
-  margin: 10px; /* Adjust the spacing between images */
-`;
+import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, RadioBox, Txt, DataBilder, Image, CheckMark } from "../components/styledComponents"
 
 const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, setActiveStep}) => {
     
-
     return(
         <>
         {/* Moves the user to next part */}
         <TextBox cursor={activeStep === 0 ?  "default" : "pointer"} ref={stepZeroRef} onClick={(e) => nextStepButton(e, 0, stepZeroRef)}>
             <StepHeader>Samling av din informasjon via</StepHeader>
 
-            <StepTitle><b>MineData</b></StepTitle>
-            <br></br><br></br>
+            <StepTitle>MineData</StepTitle>
+            {activeStep > 0 && <CheckMark><CheckmarkCircleFillIcon color='green' fontSize="2rem"></CheckmarkCircleFillIcon></CheckMark>}
+            <br></br>
 
             {activeStep === 0 && 
             <>
