@@ -6,7 +6,7 @@ import { RadioGroup } from "@navikt/ds-react";
 // Styles thrue js
 import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, RadioBox, Round, Bold, BlueBox, Icon, CheckMark } from "../components/styledComponents"
 
-const StepTwo = ({stepThreeRef, stepTwoRef, nextStepButton, activeStep, setActiveStep}) => {
+const StepTwo = ({stepThreeRef, stepTwoRef, nextStepButton, activeStep }) => {
 
     return(
         <>

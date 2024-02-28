@@ -8,15 +8,21 @@ import { CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 // Styles thrue js
 import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, RadioBox, Txt, DataBilder, Image, CheckMark } from "../components/styledComponents"
 
-const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, setActiveStep, id, setId}) => {
+const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
+ 
+  const [id, setId] = useState(null);
+
+  const  handleChange = (number) => {
+    setId(number)
+    console.log(id)
+  }
 
   const getPersonData = async () => {
     const response = await fetch(`http://localhost:3000/user/${id}`)
     const data = await response.json()
     console.log(data)
   }
- 
-    
+
     return(
         <>
         {/* Moves the user to next part */}
@@ -49,13 +55,13 @@ const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, setActi
             </DataBilder>
               
             <RadioBox>
-            <IdBox id={id} setId={setId} />
+            <IdBox setNumber={handleChange}/>
             </RadioBox>
 
             {/* Moves the user to the next part */}
             <NextStepButton onClick={(e) => {
               nextStepButton(e, 1, stepOneRef)
-              getPersonData(id)
+              getPersonData()
             }}>Gå Videre</NextStepButton>
 
             </>

@@ -5,7 +5,7 @@ import { PersonFillIcon, CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 // Styles thrue js
 import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, Txt, CheckMark } from "../components/styledComponents"
 
-const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, setActiveStep, id, setId,}) => {
+const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, }) => {
 
 // fixed code
 

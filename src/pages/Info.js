@@ -35,9 +35,6 @@ const Info = () => {
   // "activeStep" remembers witch question you are on and were you are going
   const [activeStep, setActiveStep] = useState(0);
 
-  // "id" becomes the social security number that is writen in the text filed
-  const [id, setId] = useState(null);
-
 
   // useRef ->
   // Were to move the user to the next part/question
@@ -57,13 +54,6 @@ const Info = () => {
         behavior: "smooth"
       })
     }, 0);
-  }
-
-  // Fetching the user data depending on the social security value "id"  
-  const getPersonData = async () => {
-    const response = await fetch(`http://localhost:3000/user/${id}`)
-    const data = await response.json()
-    console.log(data)
   }
   
   // The "HTML" part
@@ -101,8 +91,6 @@ const Info = () => {
             stepTwoRef={stepTwoRef}
             setActiveStep={setActiveStep} 
             activeStep={activeStep} 
-            setId={setId}
-            id={id}
             nextStepButton={nextStepButton}
           ></StepOne>
         </Item>
@@ -116,8 +104,6 @@ const Info = () => {
             stepThreeRef={stepThreeRef}
             setActiveStep={setActiveStep}
             activeStep={activeStep}
-            setId={setId}
-            id={id}
             nextStepButton={nextStepButton}
           ></StepTwo>
           
