@@ -6,6 +6,7 @@ import { Heading } from "@navikt/ds-react";
 
 // Styles thrue js
 import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, GreenButton, CheckMark } from "../components/styledComponents"
+import DynamicQuestions from './DynamicQuestions';
 
 const StepThree = ({stepTwoRef, stepThreeRef, stepFourRef, nextStepButton, activeStep, setActiveStep }) => {
 
@@ -46,10 +47,7 @@ const StepThree = ({stepTwoRef, stepThreeRef, stepFourRef, nextStepButton, activ
         <Heading level="4" size="medium"> Pleie og omsorg
         </Heading>
         <br/><br/>
-                <RadioGroup legend="Ønsker du å hente data det offentlige har om deg for å autofylle svar i veilederen?">
-                  <Radio value="Yes">Ja</Radio>
-                  <Radio value="No">Nei</Radio>
-                </RadioGroup>
+                <DynamicQuestions></DynamicQuestions>
                 <br/><br/>
         {/* Moves the user to the next part */}
         <NextStepButton onClick={(e) => nextStepButton(e, 2, stepTwoRef)}>Forige steg</NextStepButton>
