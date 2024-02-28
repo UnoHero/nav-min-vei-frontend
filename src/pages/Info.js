@@ -82,7 +82,7 @@ const Info = () => {
         {/* The first part of the part/questions. "MineData" */}
         <Item>
           {/* Changes the color of the circle 1 on the side wen it is beeing worked on or done with */}
-          <div><Circle><InformationIcon title="a11y-title" fontSize="1.5rem" /></Circle><Line></Line></div>
+          <div><Circle onClick={(e) => nextStepButton(e, 0, stepZeroRef)}><InformationIcon title="a11y-title" fontSize="1.5rem" /></Circle><Line></Line></div>
           <StepZero
             stepZeroRef={stepZeroRef}
             stepOneRef={stepOneRef}
@@ -95,7 +95,7 @@ const Info = () => {
         {/* The secon part of the site the part/question. "Om meg" */}
         <Item>
           {/* Changes the color of the circle 1 on the side wen it is beeing worked on or done with */}
-        <div><Circle color={activeStep >= 1 ? true : false}>1</Circle><Line></Line></div>
+        <div><Circle onClick={(e) => nextStepButton(e, 1, stepOneRef)} color={activeStep >= 1 ? true : false}>1</Circle><Line></Line></div>
           <StepOne 
             stepOneRef={stepOneRef}
             stepTwoRef={stepTwoRef}
@@ -110,7 +110,7 @@ const Info = () => {
         {/* The thrid part of the part/questions. "MineData" */}
         <Item>
           {/* Changes the color of the circle 2 on the side wen it is beeing worked on or done with */}
-          <div><Circle color={activeStep >= 2 ? true : false}>2</Circle><Line></Line></div>
+          <div><Circle onClick={(e) => nextStepButton(e, 2, stepZeroRef)} color={activeStep >= 2 ? true : false}>2</Circle><Line></Line></div>
           <StepTwo
             stepTwoRef={stepTwoRef}
             stepThreeRef={stepThreeRef}
@@ -124,7 +124,7 @@ const Info = () => {
         {/* The fourth part of the part/questions. "MineData" */}
         <Item>
           {/* Changes the color of the circle 3 on the side wen it is beeing worked on or done with */}
-          <div><Circle color={activeStep >= 3 ? true : false}>3</Circle><Line></Line></div>
+          <div><Circle onClick={(e) => nextStepButton(e, 3, stepZeroRef)} color={activeStep >= 3 ? true : false}>3</Circle><Line></Line></div>
           <StepThree
             stepTwoRef={stepTwoRef}
             stepThreeRef={stepThreeRef}
@@ -138,7 +138,7 @@ const Info = () => {
         {/* The fifth part of the part/questions. "MineData" */}
         <Item>
           {/* Changes the color of the circle 4 on the side wen it is beeing worked on or done with */}
-          <Circle><CheckmarkIcon title="a11y-title" fontSize="1.5rem" /></Circle>
+          <Circle onClick={(e) => nextStepButton(e, 4, stepZeroRef)}><CheckmarkIcon title="a11y-title" fontSize="1.5rem" /></Circle>
           <StepFinal
             stepFourRef={stepFourRef}
             setActiveStep={setActiveStep}
