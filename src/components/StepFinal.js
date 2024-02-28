@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { HddDownIcon, PrinterSmallIcon } from '@navikt/aksel-icons';
+import { DownloadIcon, PrinterSmallIcon } from '@navikt/aksel-icons';
 
 const TextBox = styled.div`
   background-color: white;
@@ -33,7 +33,7 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
               <StepTitle>Mine resultater</StepTitle>
               <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
                 <div style={{ textAlign: 'center' }}>
-                  <HddDownIcon title="a11y-title" fontSize="2.5rem" />
+                  <DownloadIcon title="a11y-title" fontSize="2.5rem" />
                   <div>Lagre</div>
                 </div>
                 <div style={{ textAlign: 'center' }}>
