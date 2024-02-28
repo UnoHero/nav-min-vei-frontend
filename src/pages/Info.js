@@ -51,7 +51,6 @@ const Info = () => {
   const nextStepButton = (e, step, ref) => {
     e.stopPropagation()
     setActiveStep(step)
-    console.log(ref.current)
     setTimeout(() => {
       window.scrollTo({
         top:ref.current.offsetTop - 20,
