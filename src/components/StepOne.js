@@ -7,7 +7,7 @@ import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, Txt, CheckMar
 
 const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, setActiveStep, id, setId,}) => {
 
-
+// fixed code
 
 
     return(
