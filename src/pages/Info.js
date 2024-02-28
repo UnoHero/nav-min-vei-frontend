@@ -23,76 +23,8 @@ import StepThree from "../components/StepThree";
 import StepFinal from "../components/StepFinal";
  
 
-// Styles thrue js
-
-const Body = styled.div`
-  background-color: rgb(211, 230, 237);
-`;
-
-const MainContent = styled.div`
-  background-color: rgb(211, 230, 237); // Light blue background
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-`;
-
-// The circles on the left side that tracks were you are on the questions. The "border", background-color and color changes the color of the pinters dependig on were you are on the site.
-const Circle = styled.div`
-  position: relative;
-  border: 2px solid ${props => props.color ? "#0067C5" : "white"};
-  background-color: ${props => props.color ? "#0067C5" : "white"};
-  border-radius: 50%;
-  color: ${props => props.color ? "white" : "black"};
-  z-index: 1;
-  margin: 0px 3px 0px 3px;
-  text-align: center;
-  display: block;
-  height: 30px;
-  width: 30px;
-  transition: all 0.3s ease; // Legg til overgang for jevn animasjon
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.1); // Forstørr effekten ved hover for å indikere klikkbarhet
-  }
-`;
-
-// "TextBox" is the container of the different questins/parts. The "cursor" properti is code that changes the cursor if you can click the question/part
-const TextBox = styled.div`
-  background-color: white;
-  border-radius: 5px;
-  padding: 1rem 6rem 0.4rem 6rem;
-  cursor: ${props => props.cursor};
-  transition: all 0.3s ease; // Legg til overgang for jevn animasjon
-  &:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); // Legg til skyggeeffekt ved hover for å indikere klikkbarhet
-  }
-`;
-
-// The line on the left side of the screen between the numbers
-const Line = styled.div`
-  width: 0.4rem;
-  height: 100%;
-  background-color: #CCE1FF;
-  position: relative;
-  left: 15px;
-  z-index: 0;
-`;
-  
-const List = styled.ul`
-  list-style: none;
-`;
-
-// "TextBox": Legg til skyggeeffekt ved hover for å indikere klikkbarhet
-const Item = styled.li`
-  display: grid;
-  grid-template-columns: 5rem 50rem;
-  margin: 20px 0px 20px 0px;
-  &:hover {
-    ${TextBox} {
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-    }
-  }
-`;
+// Styles through js
+import { Body, MainContent, Circle, TextBox, Line, List, Item } from "../components/styledComponents"
 
 // Component for each box next to Stepper steps
 

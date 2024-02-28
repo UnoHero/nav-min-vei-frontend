@@ -1,29 +1,10 @@
 import styled from 'styled-components';
 import { DownloadIcon, PrinterSmallIcon } from '@navikt/aksel-icons';
 
-const TextBox = styled.div`
-  background-color: white;
-  border-radius: 5px;
-  padding: 1rem 6rem 0.4rem 6rem;
-  cursor: ${props => props.cursor};
-  transition: all 0.3s ease; // Legg til overgang for jevn animasjon
-  &:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); // Legg til skyggeeffekt ved hover for å indikere klikkbarhet
-  }
-`;
-
-const StepTitle = styled.div`
-  font-size: 1.75rem;
-`;
-
-const StepText = styled.div`
- font-size: 1rem;
- margin: 2rem 0rem;
-`;
+// Styles thrue js
+import { TextBox, StepTitle, StepText, } from "../components/styledComponents"
 
 const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
-
-
 
     return(
         <>

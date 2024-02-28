@@ -3,58 +3,7 @@ import styled from 'styled-components';
 import { PersonFillIcon } from '@navikt/aksel-icons';
 
 // Styles thrue js
-
-// The Imput filed were you write your socialSecurity number
-const InputBox = styled.input`
-    display: block;
-    width: 290px;
-    height: 48px;
-    margin: 10px 0px;
-    border-radius: 4px;
-    border: 1px solid black;
-`
-
-// The header above the imput filed
-const InputLabel = styled.label`
-    font-size: 1rem;
-`
-
-const TextBox = styled.div`
-  background-color: white;
-  border-radius: 5px;
-  padding: 1rem 6rem 0.4rem 6rem;
-  cursor: ${props => props.cursor};
-  transition: all 0.3s ease; // Legg til overgang for jevn animasjon
-  &:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); // Legg til skyggeeffekt ved hover for å indikere klikkbarhet
-  }
-`;
-
-const StepTitle = styled.div`
-  font-size: 1.75rem;
-`;
-
-const StepHeader = styled.div`
-  font-size: 1rem;
-`;
-
-const StepText = styled.div`
- font-size: 1rem;
- margin: 2rem 0rem;
-`;
-
-const Txt = styled.div`
-fontSize: 20%;
-`;
-
-const NextStepButton = styled.button`
-  border-radius: 4px;
-  border: 0px;
-  padding: 12px 20px;
-  background-color: #0067C5;
-  color: white;
-  cursor: pointer;
-`;
+import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, Txt, InputBox, InputLabel } from "../components/styledComponents"
 
 const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, setActiveStep, id, setId,}) => {
 
