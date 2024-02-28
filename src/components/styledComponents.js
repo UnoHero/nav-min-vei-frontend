@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Body = styled.div`
-  background-color: rgb(211, 230, 237);
+  background-color: #e6f0ff;
 `;
 
 export const MainContent = styled.div`
@@ -48,7 +48,7 @@ export const TextBox = styled.div`
 export const Line = styled.div`
   width: 0.4rem;
   height: 100%;
-  background-color: #CCE1FF;
+  background-color: #b3d0f9;
   position: relative;
   left: 15px;
   z-index: 0;
