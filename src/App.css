@@ -672,3 +672,14 @@
   font-size: 0.9em;
 }
 
+
+
+/* Media query for screens up to 768px */
+@media (max-width: 768px) {
+  .App-navigation .nav-link.privat,
+  .App-navigation .nav-link.arbeidsgiver,
+  .App-navigation .nav-link.samarbeidspartner,
+  .search-button {
+    display: none;
+  }
+}
