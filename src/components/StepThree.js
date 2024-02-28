@@ -4,6 +4,8 @@ import { Radio, RadioGroup } from "@navikt/ds-react";
 import { CheckmarkIcon, Chat2FillIcon } from '@navikt/aksel-icons';
 import { Heading } from "@navikt/ds-react";
 
+import DynamicQuestions from './DynamicQuestions';
+
 const StepThree = ({stepTwoRef, stepThreeRef, stepFourRef, nextStepButton, activeStep, setActiveStep }) => {
 
     // Styles thrue js
@@ -110,10 +112,8 @@ const GreenButton = styled.button`
         <Heading level="4" size="medium"> Pleie og omsorg
         </Heading>
         <br/><br/>
-                <RadioGroup legend="Ønsker du å hente data det offentlige har om deg for å autofylle svar i veilederen?">
-                  <Radio value="Yes">Ja</Radio>
-                  <Radio value="No">Nei</Radio>
-                </RadioGroup>
+              <DynamicQuestions></DynamicQuestions>
+
                 <br/><br/>
         {/* Moves the user to the next part */}
         <NextStepButton onClick={(e) => nextStepButton(e, 2, stepTwoRef)}>Forige steg</NextStepButton>
