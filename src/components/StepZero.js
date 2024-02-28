@@ -61,13 +61,13 @@ const Image = styled.img`
   margin: 10px; /* Adjust the spacing between images */
 `;
 
-const StepZero = ({ stepOneRef, nextStepButton, activeStep, setActiveStep}) => {
+const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, setActiveStep}) => {
     
 
     return(
         <>
         {/* Moves the user to next part */}
-        <TextBox cursor={activeStep === 0 ?  "default" : "pointer"} onClick={() => setActiveStep(0)}>
+        <TextBox cursor={activeStep === 0 ?  "default" : "pointer"} ref={stepZeroRef} onClick={(e) => nextStepButton(e, 0, stepZeroRef)}>
             <StepHeader>Samling av din informasjon via</StepHeader>
 
             <StepTitle><b>MineData</b></StepTitle>
@@ -95,7 +95,7 @@ const StepZero = ({ stepOneRef, nextStepButton, activeStep, setActiveStep}) => {
             </DataBilder>
               
             <RadioBox>
-            <RadioGroup legend="Ønsker du å hente data det offentlige har om deg for å autofylle svar i veilederen?">
+            <RadioGroup onClick={(e) => e.stopPropagation()} legend="Ønsker du å hente data det offentlige har om deg for å autofylle svar i veilederen?">
                 <Radio value="Yes">Ja, jeg ønsker å hente data fra offentlige tjenester</Radio>
                 <Radio value="No">Nei, jeg ønsker å fylle ut selv</Radio>
             </RadioGroup>

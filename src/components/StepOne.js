@@ -67,16 +67,7 @@ const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, setActiveS
 
     return(
         <>
-        <TextBox ref={stepOneRef} onClick={() => {
-            {/* Moves the user to next part */}
-              setActiveStep(1)
-              setTimeout(() => {
-                window.scrollTo({
-                  top:stepOneRef.offsetTop - 20,
-                  behavior: "smooth"
-                })
-              }, 0);
-            }}>
+        <TextBox ref={stepOneRef} onClick={(e) => nextStepButton(e, 1, stepOneRef)}>
             <StepHeader>Steg 1 av 3</StepHeader>
             <StepTitle>Om meg</StepTitle>
             <PersonFillIcon className="stepIcon" title="a11y-title" color={activeStep >= 1 ? "blue" : "gray"} fontSize="1.5rem" />

@@ -109,6 +109,7 @@ const Info = () => {
 
   // useRef ->
   // Were to move the user to the next part/question
+  const stepZeroRef = useRef(null);
   const stepOneRef = useRef(null);
   const stepTwoRef = useRef(null);
   const stepThreeRef = useRef(null);
@@ -118,6 +119,7 @@ const Info = () => {
   const nextStepButton = (e, step, ref) => {
     e.stopPropagation()
     setActiveStep(step)
+    console.log(ref.current)
     setTimeout(() => {
       window.scrollTo({
         top:ref.current.offsetTop - 20,
@@ -151,13 +153,11 @@ const Info = () => {
           {/* Changes the color of the circle 1 on the side wen it is beeing worked on or done with */}
           <div><Circle><InformationIcon title="a11y-title" fontSize="1.5rem" /></Circle><Line></Line></div>
           <StepZero
+            stepZeroRef={stepZeroRef}
             stepOneRef={stepOneRef}
             setActiveStep={setActiveStep} 
             activeStep={activeStep} 
-            setId={setId}
-            id={id}
             nextStepButton={nextStepButton}
-            stepTwoRef={stepTwoRef}
           ></StepZero>
         </Item>
 

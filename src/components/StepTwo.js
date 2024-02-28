@@ -88,10 +88,7 @@ const StepTwo = ({stepThreeRef, stepTwoRef, nextStepButton, activeStep, setActiv
         <>
         
         
-        <TextBox ref={stepTwoRef} onClick={() => {
-            {/* Moves the user to next part */}
-              setActiveStep(2)
-            }}>
+        <TextBox ref={stepTwoRef} onClick={(e) => nextStepButton(e, 2, stepTwoRef)}>
 
             <StepHeader>Steg 2 av 3 </StepHeader>
             <StepTitle>Velg livssituasjon</StepTitle>
