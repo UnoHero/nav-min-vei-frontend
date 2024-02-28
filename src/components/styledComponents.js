@@ -72,6 +72,7 @@ export const Item = styled.li`
 
 export const StepTitle = styled.div`
   font-size: 1.75rem;
+  font-weight: bold;
 `;
 
 export const StepHeader = styled.div`

@@ -14,7 +14,7 @@ const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, setActi
         <TextBox cursor={activeStep === 0 ?  "default" : "pointer"} ref={stepZeroRef} onClick={(e) => nextStepButton(e, 0, stepZeroRef)}>
             <StepHeader>Samling av din informasjon via</StepHeader>
 
-            <StepTitle><b>MineData</b></StepTitle>
+            <StepTitle>MineData</StepTitle>
             {activeStep > 0 && <CheckMark><CheckmarkCircleFillIcon color='green' fontSize="2rem"></CheckmarkCircleFillIcon></CheckMark>}
             <br></br>
 
