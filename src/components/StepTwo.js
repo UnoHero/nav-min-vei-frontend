@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import { HospitalFillIcon, InformationIcon } from '@navikt/aksel-icons';
+import { HospitalFillIcon, InformationIcon, CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 import { RadioGroup } from "@navikt/ds-react";
 
+
 // Styles thrue js
-import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, RadioBox, Round, Bold, BlueBox, Icon } from "../components/styledComponents"
+import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, RadioBox, Round, Bold, BlueBox, Icon, CheckMark } from "../components/styledComponents"
 
 const StepTwo = ({stepThreeRef, stepTwoRef, nextStepButton, activeStep, setActiveStep}) => {
 
@@ -17,6 +18,7 @@ const StepTwo = ({stepThreeRef, stepTwoRef, nextStepButton, activeStep, setActiv
             <StepTitle>Velg livssituasjon</StepTitle>
             {/* The icon beside the part header. Icon of a hospital */}
             <HospitalFillIcon className="stepIcon" title="a11y-title" color={activeStep >= 2 ? "Pink" : "gray"} fontSize="1.5rem" />
+            {activeStep > 2 && <CheckMark><CheckmarkCircleFillIcon color='green' fontSize="2rem"></CheckmarkCircleFillIcon></CheckMark>}
             {activeStep === 2 && 
               <>
                 <Bold>Velg livshendelser som reflekterer din livssituasjon</Bold>

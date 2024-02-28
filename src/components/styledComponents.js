@@ -33,6 +33,7 @@ export const Circle = styled.div`
 
 // "TextBox" is the container of the different questins/parts. The "cursor" properti is code that changes the cursor if you can click the question/part
 export const TextBox = styled.div`
+  position: relative;
   background-color: white;
   border-radius: 5px;
   padding: 1rem 6rem 0.4rem 6rem;
@@ -193,3 +194,10 @@ export const GreenButton = styled.button`
     fill: white;
   }
 `;
+
+export const CheckMark = styled.div`
+  display: inline;
+  position: absolute;
+  top: 35%;
+  right: 10%;
+`
