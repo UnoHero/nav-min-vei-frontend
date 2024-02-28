@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 // Fancy nav Icons from nav aksel
-import { PersonFillIcon } from '@navikt/aksel-icons';
+import { PersonFillIcon, CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 
 // Styles thrue js
-import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, Txt, InputBox, InputLabel } from "../components/styledComponents"
+import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, Txt, CheckMark } from "../components/styledComponents"
 
 const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, setActiveStep, id, setId,}) => {
 
@@ -16,6 +16,7 @@ const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, setActiveS
             <StepHeader>Steg 1 av 3</StepHeader>
             <StepTitle>Om meg</StepTitle>
             <PersonFillIcon className="stepIcon" title="a11y-title" color={activeStep >= 1 ? "blue" : "gray"} fontSize="1.5rem" />
+            {activeStep > 1 && <CheckMark><CheckmarkCircleFillIcon color='green' fontSize="2rem"></CheckmarkCircleFillIcon></CheckMark>}
             {activeStep === 1 && 
               <>
                 <Txt><b>Hei Starte Nybedrift</b></Txt>
