@@ -683,3 +683,69 @@
     display: none;
   }
 }
+
+@media (max-width: 480px) {
+  .App-header {
+    padding: 5px 15px;
+  }
+
+  .App-logo {
+    height: 25px; /* Juster størrelsen på logoen for små skjermer */
+  }
+
+  .nav-link {
+    font-size: 14px; /* Mindre tekststørrelse på navigasjonslenker */
+    display: none;
+
+  }
+
+  /* Juster størrelsen på knapper og andre interaktive elementer */
+  .button, .login-button, .menu-button {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+}
+
+/* Grunnleggende responsiv styling */
+body, .App {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* Eksempel på en responsiv container */
+.container {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box; /* Inkluderer padding i elementets totale bredde */
+}
+
+/* Responsiv tekst og elementer */
+.text, .button {
+  padding: 10px;
+  margin: 10px 0;
+  width: auto;
+}
+
+/* Tilpasninger for små skjermer */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .text {
+    font-size: 4vw;
+  }
+
+  .button {
+    padding: 5px;
+    font-size: 3.5vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .some-class {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
