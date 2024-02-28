@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { useState } from 'react';
+import IdBox from './IdBox';
 // Fancy nav Icons from nav aksel
 import { Radio, RadioGroup } from "@navikt/ds-react";
 import { CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
@@ -6,7 +8,14 @@ import { CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 // Styles thrue js
 import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, RadioBox, Txt, DataBilder, Image, CheckMark } from "../components/styledComponents"
 
-const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, setActiveStep}) => {
+const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, setActiveStep, id, setId}) => {
+
+  const getPersonData = async () => {
+    const response = await fetch(`http://localhost:3000/user/${id}`)
+    const data = await response.json()
+    console.log(data)
+  }
+ 
     
     return(
         <>
@@ -40,13 +49,14 @@ const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, setActi
             </DataBilder>
               
             <RadioBox>
-            <RadioGroup onClick={(e) => e.stopPropagation()} legend="Ønsker du å hente data det offentlige har om deg for å autofylle svar i veilederen?">
-                <Radio value="Yes">Ja, jeg ønsker å hente data fra offentlige tjenester</Radio>
-                <Radio value="No">Nei, jeg ønsker å fylle ut selv</Radio>
-            </RadioGroup>
+            <IdBox id={id} setId={setId} />
             </RadioBox>
+
             {/* Moves the user to the next part */}
-            <NextStepButton onClick={(e) => nextStepButton(e, 1, stepOneRef)}>Gå Videre</NextStepButton>
+            <NextStepButton onClick={(e) => {
+              nextStepButton(e, 1, stepOneRef)
+              getPersonData(id)
+            }}>Gå Videre</NextStepButton>
 
             </>
             }

@@ -3,15 +3,11 @@ import styled from 'styled-components';
 import { PersonFillIcon, CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 
 // Styles thrue js
-import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, Txt, InputBox, InputLabel, CheckMark } from "../components/styledComponents"
+import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, Txt, CheckMark } from "../components/styledComponents"
 
 const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, setActiveStep, id, setId,}) => {
 
-    const getPersonData = async () => {
-        const response = await fetch(`http://localhost:3000/user/${id}`)
-        const data = await response.json()
-        console.log(data)
-      }
+// fixed code
 
 
     return(
@@ -30,12 +26,9 @@ const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, setActiveS
                   fra offentlige tjenester. Er svarene feil? 
                   Da er det bare å endre i svarboksene.  
                 </StepText>
-                <InputLabel>Fødselsnummer:</InputLabel>
-                <InputBox onChange={(e) => setId(e.target.value)}></InputBox>
                 {/* Moves the user to the next part */}
                 <NextStepButton onClick={(e) => {
                   nextStepButton(e, 2, stepTwoRef)
-                  getPersonData(id)
                 }}>Neste Steg</NextStepButton>
               </>
             }
