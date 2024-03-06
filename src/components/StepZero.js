@@ -8,20 +8,7 @@ import { CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 // Styles thrue js
 import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, RadioBox, Txt, DataBilder, Image, CheckMark } from "../components/styledComponents"
 
-const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
- 
-  const [id, setId] = useState(null);
-
-  const  handleChange = (number) => {
-    setId(number)
-    console.log(id)
-  }
-
-  const getPersonData = async () => {
-    const response = await fetch(`http://localhost:3000/user/${id}`)
-    const data = await response.json()
-    console.log(data)
-  }
+const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, getPersonData, handleChange}) => {
 
     return(
         <>

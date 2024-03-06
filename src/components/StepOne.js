@@ -5,7 +5,7 @@ import { PersonFillIcon, CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 // Styles thrue js
 import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, Txt, CheckMark } from "../components/styledComponents"
 
-const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, }) => {
+const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, data }) => {
 
 // fixed code
 
@@ -19,7 +19,7 @@ const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, }) => {
             {activeStep > 1 && <CheckMark><CheckmarkCircleFillIcon color='green' fontSize="2rem"></CheckmarkCircleFillIcon></CheckMark>}
             {activeStep === 1 && 
               <>
-                <Txt><b>Hei Starte Nybedrift</b></Txt>
+                <Txt><b>Hei {data?.firstName?.aaReg}</b></Txt>
                 <StepText>
                   Her finner du informasjon om 
                   deg som veilederen har hentet 

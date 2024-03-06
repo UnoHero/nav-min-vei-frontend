@@ -56,6 +56,18 @@ const Info = () => {
     }, 0);
   }
   
+  const [id, setId] = useState(null);
+  const [data, setData] = useState();
+
+  const  handleChange = (number) => {
+    setId(number)
+  }
+
+  const getPersonData = async () => {
+    const response = await fetch(`http://localhost:3000/user/${id}`)
+    setData (await response.json())
+  }
+
   // The "HTML" part
   return (
     <>
@@ -79,6 +91,8 @@ const Info = () => {
             setActiveStep={setActiveStep} 
             activeStep={activeStep} 
             nextStepButton={nextStepButton}
+            getPersonData={getPersonData}
+            handleChange={handleChange}
           ></StepZero>
         </Item>
 
@@ -92,6 +106,7 @@ const Info = () => {
             setActiveStep={setActiveStep} 
             activeStep={activeStep} 
             nextStepButton={nextStepButton}
+            data={data}
           ></StepOne>
         </Item>
 
