@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {useState} from "react";
+import { useState, useEffect } from "react";
 import { Accordion, TextField  } from "@navikt/ds-react";
 
 // Fancy nav Icons from nav aksel
@@ -10,8 +10,9 @@ import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, Txt, CheckMar
 
 const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, data }) => {
 
-
   const [etat, setEtat] = useState();
+  const [countries, setCountries] = useState([]);
+  const [grossIncome, setGrossIncome] = useState();
 
   const whichFirstName = (data) => {
     if (data?.firstName?.skattReg) {
@@ -42,10 +43,8 @@ const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, data }) =>
       return data?.lastName?.folkReg
     }
   }
-
+  
   const dateOfBirth = (data) => {
-    console.log(data?.dateOfBirth?.folkReg);
-    console.log(data);
     return data?.dateOfBirth?.folkReg
   }
 
@@ -53,6 +52,36 @@ const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, data }) =>
     const fullName = `${whichFirstName(data)} ${whichMiddleName(data)} ${whichLastName(data)}`
     return fullName
   }
+
+  useEffect(() => {
+    if (data && data.grossIncome !== undefined) {
+      setGrossIncome(data.grossIncome.toLocaleString().replace(/,/g, " "));
+    }
+  }, [data]);
+
+  const handleInputChange = (event) => {
+    // Remove spaces and commas from user input
+    const input = event.target.value.replace(/\s/g, '').replace(/,/g, '');
+    // Format the input value with spaces for readability
+    const formattedInput = input.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    // Update the state with the formatted value
+    setGrossIncome(formattedInput);
+  };
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await fetch('https://restcountries.com/v3.1/all?fields=name');
+        const data = await response.json();
+        setCountries(data.map(country => country.name.common));
+      } catch (error) {
+        console.error('Error fetching countries:', error);
+      }
+    };
+
+    fetchCountries();
+  }, []);
+
 
     return(
         <>
@@ -91,7 +120,13 @@ const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, data }) =>
                       <b>Hentet fra Folkeregisteret</b>
                       <div>
                         <TextField label="Postnummer" /> 
-                        <TextField label="Land" />
+                        <label htmlFor="countrySelect">Land</label>
+                        <select id="countrySelect">
+                          <option value="">Select a country</option>
+                          {countries.map((country, index) => (
+                            <option key={index} value={country}>{country}</option>
+                          ))}
+                        </select>
                       </div>
                     </Accordion.Content>
                   </Accordion.Item>
@@ -110,11 +145,16 @@ const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, data }) =>
                     <Accordion.Content>
                     <b>Hentet fra Skatteetaten</b>
                       <div>
-                        <TextField label="Din bruttoinntekt de siste tolv månedene" /> 
+                        <TextField
+                          label="Din bruttoinntekt de siste tolv månedene"
+                          value={grossIncome}
+                          onChange={handleInputChange}
+                        />
+
                         <TextField label="Ditt lån per dag" />
                         <TextField label="Din formue per i dag" />
                         <TextField label="Din skatteprosent" />
-                        <TextField label="Dine forsikringer" />
+                        <TextField label="Dine forsikringer" defaultValue={data?.insurance} />
 
                       </div>
                     </Accordion.Content>
