@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState, useEffect } from "react";
-import { Accordion, TextField  } from "@navikt/ds-react";
+import { TextField } from "@navikt/ds-react";
 
 // Fancy nav Icons from nav aksel
 import { PersonFillIcon, CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
@@ -83,93 +83,75 @@ const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, data }) =>
   }, []);
 
 
-    return(
-        <>
-        <TextBox cursor={activeStep === 1 ?  "default" : "pointer"} ref={stepOneRef} onClick={(e) => nextStepButton(e, 1, stepOneRef)}>
-            <StepHeader>Steg 1 av 3</StepHeader>
-            <StepTitle>Om meg</StepTitle>
-            <PersonFillIcon className="stepIcon" title="a11y-title" color={activeStep >= 1 ? "blue" : "gray"} fontSize="1.5rem" />
-            {activeStep > 1 && <CheckMark><CheckmarkCircleFillIcon color='green' fontSize="2rem"></CheckmarkCircleFillIcon></CheckMark>}
-            {activeStep === 1 && 
-              <div onClick={(e) => e.stopPropagation()}>
-                <Txt>
-                  {data ? <b>Hei {displayFullName(data)}</b> : <b>Loading...</b>}
-                </Txt>
-                <StepText>
-                  Her finner du informasjon om 
-                  deg som veilederen har hentet 
-                  fra offentlige tjenester. Er svarene feil? 
-                  Da er det bare å endre i svarboksene.  
-                </StepText>
-                <Accordion>
-                  <Accordion.Item>
-                    <Accordion.Header>Personalia</Accordion.Header>
-                    <Accordion.Content>
-                      <b>Hentet fra Folkeregisteret</b>
-                      <div>
-                        <TextField label="Fornavn" defaultValue={whichFirstName(data)} />
-                        <TextField label="Mellomnavn" defaultValue={whichMiddleName(data)} />
-                        <TextField label="EtterNavn" defaultValue={whichLastName(data)}/>
-                        <TextField label="Hvor gammel er du?" type="date" defaultValue={dateOfBirth(data)}/>
-                      </div>
-                    </Accordion.Content>
-                  </Accordion.Item>
-                  <Accordion.Item>
-                    <Accordion.Header>Din Adresse</Accordion.Header>
-                    <Accordion.Content>
-                      <b>Hentet fra Folkeregisteret</b>
-                      <div>
-                        <TextField label="Postnummer" /> 
-                        <label htmlFor="countrySelect">Land</label>
-                        <select id="countrySelect">
-                          <option value="">Select a country</option>
-                          {countries.map((country, index) => (
-                            <option key={index} value={country}>{country}</option>
-                          ))}
-                        </select>
-                      </div>
-                    </Accordion.Content>
-                  </Accordion.Item>
-                  <Accordion.Item>
-                    <Accordion.Header>Familie og sivilstatus</Accordion.Header>
-                    <Accordion.Content>
-                    <b>Hentet fra Folkeregisteret</b>
-                      <div>
-                        <TextField label="Ektefelle" /> 
-                        <TextField label="Antall barn" />
-                      </div>
-                    </Accordion.Content>
-                  </Accordion.Item>
-                  <Accordion.Item>
-                    <Accordion.Header>Din økonomiske situasjon</Accordion.Header>
-                    <Accordion.Content>
-                    <b>Hentet fra Skatteetaten</b>
-                      <div>
-                        <TextField
-                          label="Din bruttoinntekt de siste tolv månedene"
-                          value={grossIncome}
-                          onChange={handleInputChange}
-                        />
+  return(
+    <>
+      <TextBox cursor={activeStep === 1 ?  "default" : "pointer"} ref={stepOneRef} onClick={(e) => nextStepButton(e, 1, stepOneRef)}>
+        <StepHeader>Steg 1 av 3</StepHeader>
+        <StepTitle>Om meg</StepTitle>
+        <PersonFillIcon className="stepIcon" title="a11y-title" color={activeStep >= 1 ? "blue" : "gray"} fontSize="1.5rem" />
+        {activeStep > 1 && <CheckMark><CheckmarkCircleFillIcon color='green' fontSize="2rem"></CheckmarkCircleFillIcon></CheckMark>}
+        {activeStep === 1 && 
+          <div onClick={(e) => e.stopPropagation()}>
+            <Txt>
+              {data ? <b>Hei {displayFullName(data)}</b> : <b>Loading...</b>}
+            </Txt>
+            <StepText>
+              Her finner du informasjon om 
+              deg som veilederen har hentet 
+              fra offentlige tjenester. Er svarene feil? 
+              Da er det bare å endre i svarboksene.  
+            </StepText>
+            <h4>Personalia</h4>
+            <b>Hentet fra Folkeregisteret</b>
+            <div>
+              <TextField label="Fornavn" defaultValue={whichFirstName(data)} />
+              <TextField label="Mellomnavn" defaultValue={whichMiddleName(data)} />
+              <TextField label="EtterNavn" defaultValue={whichLastName(data)}/>
+              <TextField label="Hvor gammel er du?" type="date" defaultValue={dateOfBirth(data)}/>
+            </div>
+            <h4>Din Adresse</h4>
+            <b>Hentet fra Folkeregisteret</b>
+            <div>
+              <TextField label="Postnummer" /> 
+              <label htmlFor="countrySelect">Land</label>
+              <select id="countrySelect">
+                <option value="">Select a country</option>
+                {countries.map((country, index) => (
+                  <option key={index} value={country}>{country}</option>
+                ))}
+              </select>
+            </div>
+            <h4>Familie og sivilstatus</h4>
+            <b>Hentet fra Folkeregisteret</b>
+            <div>
+              <TextField label="Ektefelle" /> 
+              <TextField label="Antall barn" />
+            </div>
+            <h4>Din økonomiske situasjon</h4>
+            <b>Hentet fra Skatteetaten</b>
+            <div>
+              <TextField
+                label="Din bruttoinntekt de siste tolv månedene"
+                value={grossIncome}
+                onChange={handleInputChange}
+              />
 
-                        <TextField label="Ditt lån per dag" />
-                        <TextField label="Din formue per i dag" />
-                        <TextField label="Din skatteprosent" />
-                        <TextField label="Dine forsikringer" defaultValue={data?.insurance} />
+              <TextField label="Ditt lån per dag" />
+              <TextField label="Din formue per i dag" />
+              <TextField label="Din skatteprosent" />
+              <TextField label="Dine forsikringer" defaultValue={data?.insurance} />
 
-                      </div>
-                    </Accordion.Content>
-                  </Accordion.Item>
-                </Accordion>
-                {/* Moves the user to the next part */}
-                <NextStepButton onClick={(e) => {
-                  nextStepButton(e, 2, stepTwoRef)
-                }}>Neste Steg</NextStepButton>
-              </div>
-            }
-          </TextBox>    
-        
-        </>
-    )
+            </div>
+            {/* Moves the user to the next part */}
+            <NextStepButton onClick={(e) => {
+              nextStepButton(e, 2, stepTwoRef)
+            }}>Neste Steg</NextStepButton>
+          </div>
+        }
+      </TextBox>    
+      
+    </>
+  )
 }
 
 export default StepOne;
