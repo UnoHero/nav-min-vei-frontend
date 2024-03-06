@@ -12,16 +12,7 @@ const StepThree = ({stepTwoRef, stepThreeRef, stepFourRef, nextStepButton, activ
 
     return(
         <>
-        <TextBox ref={stepThreeRef} onClick={() => {
-            {/* Moves the user to next part */}
-              setActiveStep(3)
-              setTimeout(() => {
-                window.scrollTo({
-                  top:stepThreeRef.current.offsetTop - 20,
-                  behavior: "smooth"
-                })
-              }, 0);
-            }}>
+        <TextBox cursor={activeStep === 0 ?  "default" : "pointer"} ref={stepThreeRef} onClick={(e) => {nextStepButton(e, 3, stepThreeRef)}}>
             <StepHeader>Steg 3 av 3</StepHeader>
             <StepTitle>Spørsmål til min livssituasjon</StepTitle>
             {/* The icon beside the part header. Icon of 2 chat bubles */}
@@ -47,7 +38,9 @@ const StepThree = ({stepTwoRef, stepThreeRef, stepFourRef, nextStepButton, activ
         <Heading level="4" size="medium"> Pleie og omsorg
         </Heading>
         <br/><br/>
+        <div onClick={(e) => e.stopPropagation()}>
                 <DynamicQuestions></DynamicQuestions>
+              </div>
                 <br/><br/>
         {/* Moves the user to the next part */}
         <NextStepButton onClick={(e) => nextStepButton(e, 2, stepTwoRef)}>Forige steg</NextStepButton>

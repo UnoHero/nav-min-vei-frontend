@@ -4,11 +4,14 @@ import { Radio, RadioGroup } from "@navikt/ds-react";
 const DynamicQuestions = ({ onAnswersUpdate }) => {
     // Define all potential questions
     const allQuestions = {
-        1: { id: 1, question: "Do you have pets?", options: ["Yes", "No"] },
-        2: { id: 2, question: "What kind of pet do you have?", options: ["Dog", "Cat", "Other"] },
-        3: { id: 3, question: "Do you like outdoor activities?", options: ["Yes", "No"] },
-        // Add more questions and follow-ups as needed
+        1: { id: 1, question: "Har du eller skal du pleie noen som er syke eller skadet?", options: ["Ja", "Nei"] },
+        2: { id: 2, question: "Hvem er den du pleier for?", options: ["Barn", "Ektefelle", "Samboer", "Annet"] },
+        3: { id: 3, question: "Bor den du pleier i ditt eller sitt personlige hjem?", options: ["Ja", "Nei"] },
+        4: { id: 4, question: "Er personen du har tatt vare på i livets sluttfase i perioden du søker for?", options: ["Ja", "Nei"] },
+        5: { id: 5, question: "Har du gjort særlig tyngende oppgaver din kommune ellers måtte stått for?", options: ["Ja", "Nei"] },
+        // Add more questions if needed
     };
+    
 
     const [activeQuestionIds, setActiveQuestionIds] = useState([1]); // Start with the first question
     const [answers, setAnswers] = useState({});
@@ -28,26 +31,48 @@ const DynamicQuestions = ({ onAnswersUpdate }) => {
     };
 
     const updateQuestions = (questionId, answer) => {
-        // Logic to determine which question(s) should be active based on the current answer
         let newActiveQuestions = [...activeQuestionIds];
     
-        // For the first question, depending on Yes or No, determine the path
         if (questionId === 1) {
-            // Remove any follow-up questions of question 1 that are already in the active list
-            newActiveQuestions = newActiveQuestions.filter(id => id === 1);
-    
-            if (answer === "Yes") {
-                newActiveQuestions.push(2); // Add follow-up question for "Yes"
-            } else if (answer === "No") {
-                newActiveQuestions.push(3); // Add follow-up question for "No"
+            // If they are caring for someone, we need to determine the next question
+            if (answer === "Ja") {
+                // If 'Yes', add the question about whom they are caring for
+                newActiveQuestions = [1, 2];
+            } else {
+                // If 'No', we don't need to add more questions
+                newActiveQuestions = [1];
             }
+        } else if (questionId === 2) {
+            // After answering whom they care for, ask if the cared for person lives with them
+            newActiveQuestions = [1, 2, 3];
+        } else if (questionId === 3) {
+            // After answering where the person lives, ask if the person is in the final stages of life
+            newActiveQuestions = [1, 2, 3, 4];
+        } else if (questionId === 4) {
+            // Finally, ask if they're performing particularly burdensome tasks
+            newActiveQuestions = [1, 2, 3, 4, 5];
         }
     
         // Update the active question IDs
         setActiveQuestionIds(newActiveQuestions);
-    
-        // Add more logic for other questions and their follow-ups as needed
     };
+    useEffect(() => {
+        // Map over the activeQuestionIds to get the answers in order
+        const currentAnswers = activeQuestionIds.map(id => ({
+            questionId: id,
+            answer: answers[id] || '' // If no answer is given yet, default to an empty string
+        }));
+    
+        // Log the current answers to the console
+        console.log(currentAnswers);
+    
+        // Call the onAnswersUpdate function if it's provided
+        if (typeof onAnswersUpdate === 'function') {
+            onAnswersUpdate(currentAnswers);
+        }
+    }, [answers, activeQuestionIds, onAnswersUpdate]);
+    
+    
     
 
     return (

@@ -28,6 +28,7 @@ import { Body, MainContent, Circle, TextBox, Line, List, Item } from "../compone
 
 // Component for each box next to Stepper steps
 
+// The Page
 const Info = () => {
 
   // useStates ->
@@ -76,7 +77,10 @@ const Info = () => {
       <Navbar />
 
       {/* The Logo part */}
+
+      {/* The Logo part */}
       <Section />
+
 
       <MainContent>
 
@@ -97,6 +101,7 @@ const Info = () => {
         </Item>
 
         {/* The secon part of the site the part/question. "Om meg" */}
+        {/* The secon part of the site the part/question. "Om meg" */}
         <Item>
           {/* Changes the color of the circle 1 on the side wen it is beeing worked on or done with */}
         <div><Circle onClick={(e) => nextStepButton(e, 1, stepOneRef)} color={activeStep >= 1 ? true : false}>1</Circle><Line></Line></div>
@@ -110,6 +115,7 @@ const Info = () => {
           ></StepOne>
         </Item>
 
+        {/* The thrid part of the part/questions. "MineData" */}
         {/* The thrid part of the part/questions. "MineData" */}
         <Item>
           {/* Changes the color of the circle 2 on the side wen it is beeing worked on or done with */}

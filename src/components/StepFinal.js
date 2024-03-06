@@ -4,6 +4,29 @@ import { DownloadIcon, PrinterSmallIcon } from '@navikt/aksel-icons';
 // Styles thrue js
 import { TextBox, StepTitle, StepText, } from "../components/styledComponents"
 
+
+const ColorBoxStepFinal = styled.div `
+background-color: ${(props) => props.backgroundColor || 'white'};
+padding: 7%;
+position: relative;
+width: 131.6%;
+left: -96px;
+`;
+
+
+const TextColor = styled.span `
+font-size: 1.75rem;
+font-weight: bold;
+color: ${(props) => props.textColor || 'black'};
+white-space: nowrap;
+`;
+
+
+
+
+
+  
+
 const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
 
     return(
@@ -26,10 +49,16 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
             {activeStep === 4 && 
               <>
                 <br/><br/>
-                <StepText>Resultatene nedenfor er basert på informasjonen fra ulike databaser via MineData, samt svar du har oppgitt i veilederen. </StepText>
+                <StepText>Resultatene nedenfor er basert på informasjonen fra ulike
+                  <br/>
+                 databaser via MineData, samt svar du har oppgitt i veilederen. </StepText>
+
+                <ColorBoxStepFinal backgroundColor='#CCF1D6'><StepTitle>Stønader vi er <TextColor textColor='#06893A'>ganske sikre</TextColor> på at du har rett på</StepTitle></ColorBoxStepFinal>
+                <ColorBoxStepFinal backgroundColor='#FFECCC'><StepTitle>Stønader vi er <TextColor textColor='#F9BE26'>mindre sikre</TextColor> på at du har rett på</StepTitle></ColorBoxStepFinal>
+                <ColorBoxStepFinal backgroundColor='#FFD3D3'><StepTitle>Stønader vi er <TextColor textColor='#BA3A26'>ganske sikre</TextColor> på at du <TextColor textColor='#BA3A26'>ikke</TextColor> har rett på</StepTitle></ColorBoxStepFinal>
+                <ColorBoxStepFinal backgroundColor='#D6E7F6'><StepTitle><TextColor textColor='#0067C5'>Informasjon</TextColor> som kan være relevant for deg</StepTitle></ColorBoxStepFinal>
 
               </>
-
             }
           </TextBox>
         </>
