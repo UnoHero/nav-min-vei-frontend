@@ -1,7 +1,6 @@
 /* App.css */
 
 .App {
-  text-align: center;
   font-family: 'Source Sans 3', sans-serif;
 }
 
@@ -332,7 +331,6 @@
   p {
     max-width: 90%; 
     text-align: left;
-    margin: 0 auto; 
     font-size: 1em; 
   }
   
@@ -464,152 +462,7 @@
   
   
   /*Css for footer til hovedsiden og informasjonssiden */
-  
-  .scrollUp {
-    margin-top: 2%;
-    margin-left: 35%;
-    margin-bottom: 5%;
-  }
-  
-  
-  .flex {
-  text-align: center;
-  }
-  
-  
-  .centerdown {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-  }
-  
-  @media (max-width: 600px) {
-    .centerdown {
-      max-width: 100%;
-      padding: 0 10px; /* Legger til litt padding på sidene for mobilvisning */
-    }
-  }
-  
-  
-  
-  .flex  {
-  padding: 30px;
-  
-  }
-  
-  .h1-column-1 {
-    font-size: 14px;
-  }
-  
-  h1 {
-    font-size: 14px;
-    text-align: center;
-    color: #4cadcd;
-    margin-top: 5%;
-  }
-  
-  .h1-column-2-3 {
-    margin-top: 20%;
-    font-size: 14px;
-  }
-  
-  .column-3 {
-    margin-top: 4%;
-  }
-  
-  .p-footer-column-1 {
-    text-align: center;
-    font-size: 16px;
-    color: white;
-  } 
-  
-  .p-footer {
-    font-size: 16px;
-    text-align: center;
-    margin-top: 5%;
-    color: white;
-  }
-  
-  .stepIcon{
-    position: relative;
-    right: 30px;
-    bottom: 30px;
-    padding: 0px 0px -30px 0px;
-    display: inline;
-  }
-  
-  
-  .footer {
-    margin-top: 7%;
-    background-color: #00243a;
-    color: white;
-    font-size: 18px;
-  }
-  
-  .farge-på-tekst {
-    color: white;
-  }
-  
-  
-  
-  .footer-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .footer-column {
-    flex: 1;
-    max-width: 300px;
-  
-  }
-  
-  
-  .grid-container {
-    display: grid;
-    grid-template-columns: 500px 400px 343px;
-    gap: 0px; /* Adjust the gap as needed */
-  }
-  
-  .column-1 {
-    padding: 0px; /* Add padding as needed */
-    text-align: left; /* Align text to the left */
-    justify-content: left;
-    margin-top: 3%;
-  }
-  
-  .column-2, .column-3 {
-    padding: 0px; /* Add padding as needed */
-  
-  }
-  
-  
-  a {
-    text-decoration: none;
-    color: white;
-  }
-  
-  .scrollUpButton {
-    background-color: transparent;
-    border: none;
-    color: inherit;
-    font: inherit;
-    text-align: inherit;
-    padding: 0;
-    cursor: pointer;
-    outline: none;
-  }
-  
-  
-  
-  .flex {
-  text-align: center;
-  }
+
   
   /* Dropdown css*/
   .dropdown {

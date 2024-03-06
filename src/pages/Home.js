@@ -8,6 +8,7 @@ import Footer from '../components/footer.js';
 
 
 
+
 const Home = () => (
     <div className="App">
       <Navbar />
