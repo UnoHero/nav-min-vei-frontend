@@ -1,0 +1,146 @@
+
+  
+  .centerdown {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+  
+  
+  .flex  {
+  padding: 30px;
+  
+  }
+  
+
+  h1 {
+    font-size: 14px;
+    color: #99c4dd;
+    margin-top: 5%;
+  }
+  
+  .h1-footer {
+    font-size: 16px;
+    margin-top: 50px;
+    text-transform: uppercase; /* Transform text to uppercase */
+    letter-spacing: 2px; /* Add some spacing between letters */
+    font-weight: 300;
+
+  }
+  
+  
+  .p-footer {
+    font-size: 18px;
+    margin: 0;
+    margin-bottom: 16px;
+    color: white;
+    text-decoration: underline;
+    text-decoration-color: lightblue;
+  }
+  
+  .stepIcon{
+    position: relative;
+    right: 30px;
+    bottom: 30px;
+    padding: 0px 0px -30px 0px;
+    display: inline;
+  }
+  
+  
+  .footer {
+    margin-top: 7%;
+    background-color: #003453;
+    color: white;
+    font-size: 18px;
+    padding: 24px 16px;
+  }
+  
+  .farge-på-tekst {
+    color: white;
+  }
+  
+  
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+
+  }
+  
+  .footer-column {
+    flex: 1;
+  
+  }
+  
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0px; /* Adjust the gap as needed */
+    margin-bottom: 200px;
+    padding-left: 80px; /* Flytter gridet til høyre */
+
+
+  }
+  
+  .column-1 {
+    padding: 0px; /* Add padding as needed */
+    text-align: left; /* Align text to the left */
+    justify-content: left;
+  }
+  
+  .column-2 {
+    padding: 0px; /* Add padding as needed */
+    text-align: left; /* Align text to the left */
+    justify-content: left;
+    white-space: nowrap;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  .scrollUpButton {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    font: inherit;
+    text-align: inherit;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    padding-left: 80px; /* Flytter gridet til høyre */
+    text-decoration: underline;
+    text-decoration-color: lightblue;
+    font-weight: 300;
+
+  }
+
+  .imagenav {
+margin-top: 20px;
+white-space: nowrap;
+
+  }
+
+  @media (max-width: 800px) {
+    .centerdown {
+      padding: 0 10px; /* Legger til litt padding på sidene for mobilvisning */
+      
+    }
+    .grid-container {
+        grid-template-columns: 1fr;
+        padding-left: 0px; /* Flytter gridet til høyre */
+
+
+    }
+    .scrollUpButton {
+        padding-left: 0px; /* Flytter gridet til høyre */
+
+  }
+}
+  
