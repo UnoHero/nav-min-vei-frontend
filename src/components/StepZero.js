@@ -6,37 +6,46 @@ import { CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 
 // Styles thrue js
 import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, RadioBox, Txt, DataBilder, Image, CheckMark } from "../components/styledComponents"
+import { useTheme } from 'styled-components';
 
 const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, getPersonData, handleChange}) => {
 
-    const [smallBoxOpen, setSmallBoxOpen] = useState()
-    const [smallBoxSize, setSmallBoxSize] = useState()
-    const [boxed, setBoxed] = useState(true)
+    const [smallBoxOpen, setSmallBoxOpen] = useState(null)
+    const [boxed, setBoxed] = useState(false)
     const boxRef = useRef(null)
+    const [boxHeight, setBoxHeight] = useState()
 
-    const boxHeight = boxRef.current?.offsetHeight
+
+    useEffect(() => {
+        setBoxHeight(boxRef.current?.offsetHeight)
+    }, [boxRef])
+
+    useEffect(() => {
+        setBoxHeight(boxRef.current?.offsetHeight)
+    }, [smallBoxOpen])
 
     useEffect(() => {
         if(activeStep !== 0){
+            setBoxed(true)
+        }
+        if(activeStep === 0){
             setBoxed(false)
         }
     },[activeStep])
 
 
     useEffect(() => {
-        console.log("boxHeight", boxHeight)
-        console.log("small box size: ", smallBoxSize)
+        console.log("The box height is: ", boxHeight)
         openBox()
-    }, [smallBoxSize])
+    }, [boxHeight])
 
     const [springs, api] = useSpring(() => ({
         from: { height: 0, opacity: 0 },
-        
     }))
 
     const openBox = () => {
         api.start({
-            to: {height: boxed ? boxHeight + smallBoxSize: 0, opacity: boxed ? 1 : 0,},
+            to: {height: boxed ? 0 : boxHeight, opacity: boxed ? 0 : 1,},
             config: {
                 mass: 1,
                 tension: 170, 
@@ -46,7 +55,7 @@ const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, getPers
     }
 
     useEffect(() => {
-        //console.log("boxRef.current.offsetHeight", boxRef.current.offsetHeight)
+
         openBox()
 
     },[boxed])
@@ -55,18 +64,11 @@ const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, getPers
         setSmallBoxOpen(e)
     }
 
-    const SetSmallBoxSize = (e) => {
-        setSmallBoxSize(e)
-    }
-
-
     return(
         <>
         {/* Moves the user to next part */}
         <TextBox cursor={activeStep === 0 ?  "default" : "pointer"} ref={stepZeroRef} onClick={(e) => {
                 nextStepButton(e, 0, stepZeroRef)
-                setBoxed(!boxed)
-                
             }}>
             <StepHeader>Samling av din informasjon via</StepHeader>
 
@@ -98,14 +100,13 @@ const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, getPers
                 </DataBilder>
                 
                 <RadioBox>
-                <IdBox setNumber={handleChange} setSmallBox={setSmallBox} setSmallBoxSize={SetSmallBoxSize}/>
+                <IdBox setNumber={handleChange} setSmallBox={setSmallBox}/>
                 </RadioBox>
 
                 {/* Moves the user to the next part */}
                 <NextStepButton onClick={(e) => {
                     nextStepButton(e, 1, stepOneRef)
                     getPersonData()
-                    setBoxed(!boxed)
                 }}>Gå Videre</NextStepButton>
             </div>
             </animated.div>
