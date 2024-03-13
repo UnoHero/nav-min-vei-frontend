@@ -101,11 +101,10 @@ const Info = () => {
         </Item>
 
         {/* The secon part of the site the part/question. "Om meg" */}
-        {/* The secon part of the site the part/question. "Om meg" */}
         <Item>
           {/* Changes the color of the circle 1 on the side wen it is beeing worked on or done with */}
         <div><Circle onClick={(e) => nextStepButton(e, 1, stepOneRef)} color={activeStep >= 1 ? true : false}>1</Circle><Line></Line></div>
-          <StepOne 
+          <StepOne
             stepOneRef={stepOneRef}
             stepTwoRef={stepTwoRef}
             setActiveStep={setActiveStep} 
@@ -115,8 +114,7 @@ const Info = () => {
           ></StepOne>
         </Item>
 
-        {/* The thrid part of the part/questions. "MineData" */}
-        {/* The thrid part of the part/questions. "MineData" */}
+        {/* The thrid part of the part/questions. "Velg livssituasjon" */}
         <Item>
           {/* Changes the color of the circle 2 on the side wen it is beeing worked on or done with */}
           <div><Circle onClick={(e) => nextStepButton(e, 2, stepTwoRef)} color={activeStep >= 2 ? true : false}>2</Circle><Line></Line></div>
@@ -129,7 +127,7 @@ const Info = () => {
           ></StepTwo>
           
         </Item>
-        {/* The fourth part of the part/questions. "MineData" */}
+        {/* The fourth part of the part/questions. "Spørsmål til min livssituasjon" */}
         <Item>
           {/* Changes the color of the circle 3 on the side wen it is beeing worked on or done with */}
           <div><Circle onClick={(e) => nextStepButton(e, 3, stepThreeRef)} color={activeStep >= 3 ? true : false}>3</Circle><Line></Line></div>
@@ -143,7 +141,7 @@ const Info = () => {
           ></StepThree>
         </Item>
         
-        {/* The fifth part of the part/questions. "MineData" */}
+        {/* The fifth part of the part/questions. "Mine resultater" */}
         <Item>
           {/* Changes the color of the circle 4 on the side wen it is beeing worked on or done with */}
           <Circle onClick={(e) => nextStepButton(e, 4, stepFourRef)}><CheckmarkIcon title="a11y-title" fontSize="1.5rem" /></Circle>
