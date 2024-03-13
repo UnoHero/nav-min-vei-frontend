@@ -3,7 +3,7 @@ import Section from '../components/section.js';
 import Dropdown from '../components/dropdown.js';
 import HomeButtons from '../components/homepage_buttons.js';
 import Footer from '../components/footer.js';
-<link rel="icon" href="../../public/logo.png" />
+<link rel="icon" href="../../public/norge.no logo.png" />
 
 
 

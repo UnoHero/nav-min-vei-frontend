@@ -1,19 +1,12 @@
 
   
   .centerdown {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     margin-left: auto;
     margin-right: auto;
     text-align: left;
   }
   
-  
-  .flex  {
-  padding: 30px;
-  
-  }
+
   
 
   h1 {
@@ -39,6 +32,8 @@
     color: white;
     text-decoration: underline;
     text-decoration-color: lightblue;
+    white-space: nowrap;
+    text-wrap: wrap;
   }
   
   .stepIcon{
@@ -56,6 +51,8 @@
     color: white;
     font-size: 18px;
     padding: 24px 16px;
+    white-space: nowrap;
+
   }
   
   .farge-på-tekst {
@@ -65,18 +62,12 @@
   
   
   .footer-container {
-    display: flex;
     justify-content: space-between;
     gap: 20px;
-    flex-wrap: wrap;
 
   }
   
-  .footer-column {
-    flex: 1;
-  
-  }
-  
+
   
   .grid-container {
     display: grid;
@@ -144,3 +135,26 @@ white-space: nowrap;
   }
 }
   
+@media (max-width: 700px) {
+  body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+  }
+
+  .centerdown, .grid-container, .scrollUpButton, .any-other-class {
+    padding-left: 0; /* Adjust padding for small screens */
+    padding-right: 0; /* Ensures no extra spacing on the right */
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr; /* Adjust grid layout for small screens */
+  }
+
+  /* Ensure images or any other elements don't exceed the viewport width */
+  img, .any-other-element {
+    max-width: 100%;
+    height: auto; /* Adjust height to maintain aspect ratio */
+  }
+}
+
