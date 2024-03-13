@@ -16,6 +16,12 @@ const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, getPers
 
     const boxHeight = boxRef.current?.offsetHeight
 
+    useEffect(() => {
+        if(activeStep !== 0){
+            setBoxed(false)
+        }
+    },[activeStep])
+
 
     useEffect(() => {
         console.log("boxHeight", boxHeight)
@@ -99,6 +105,7 @@ const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, getPers
                 <NextStepButton onClick={(e) => {
                     nextStepButton(e, 1, stepOneRef)
                     getPersonData()
+                    setBoxed(!boxed)
                 }}>Gå Videre</NextStepButton>
             </div>
             </animated.div>
