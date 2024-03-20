@@ -36,6 +36,7 @@ const Info = () => {
   // "activeStep" remembers witch question you are on and were you are going
   const [activeStep, setActiveStep] = useState(0);
 
+  const [stepTwoBoxStates, setStepTwoBoxStates] = useState(null)
 
   // useRef ->
   // Were to move the user to the next part/question
@@ -67,6 +68,14 @@ const Info = () => {
   const getPersonData = async () => {
     const response = await fetch(`http://localhost:3000/user/${id}`)
     setData (await response.json())
+  }
+
+  const getLife = async (boxes) => {
+    setStepTwoBoxStates(boxes)
+  }
+
+  const getLifeAnswers = async () => {
+    return stepTwoBoxStates
   }
 
   // The "HTML" part
@@ -120,6 +129,7 @@ const Info = () => {
           {/* Changes the color of the circle 2 on the side wen it is beeing worked on or done with */}
           <div><Circle onClick={(e) => nextStepButton(e, 2, stepOneRef)} color={activeStep >= 2 ? true : false}>2</Circle><Line></Line></div>
           <StepTwo
+            getLife={getLife}
             stepTwoRef={stepTwoRef}
             stepThreeRef={stepThreeRef}
             setActiveStep={setActiveStep}
@@ -139,6 +149,7 @@ const Info = () => {
             setActiveStep={setActiveStep}
             activeStep={activeStep}
             nextStepButton={nextStepButton}
+            getLifeAnswers={getLifeAnswers}
           ></StepThree>
         </Item>
         
