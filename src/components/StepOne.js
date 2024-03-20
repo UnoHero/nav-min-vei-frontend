@@ -11,9 +11,9 @@ import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, Txt, CheckMar
 
 const StepOne = ({stepZeroRef, stepOneRef, stepTwoRef, nextStepButton, activeStep, data }) => {
 
-  const [etat, setEtat] = useState();
   const [countries, setCountries] = useState([]);
   const [grossIncome, setGrossIncome] = useState();
+  const [city, setCity] = useState('Loading...');
 
   const whichFirstName = (data) => {
     if (data?.firstName?.skattReg) {
@@ -83,7 +83,40 @@ const StepOne = ({stepZeroRef, stepOneRef, stepTwoRef, nextStepButton, activeSte
     fetchCountries();
   }, []);
 
-
+  const PostalCode = async (event) => {
+    try {
+      const zipCode = event.target.value;
+  
+      // Check if the input contains only numbers and has a maximum length of 4
+      if (/^\d{0,4}$/.test(zipCode)) {
+        // Proceed with API call and processing if the input is valid
+        if (zipCode.length === 4) {
+          const response = await fetch (`https://app.zipcodebase.com/api/v1/search?apikey=d23a3cf0-e120-11ee-8675-8b2b022ff06b&codes=${zipCode}`)
+          if (!response.ok) {
+            throw Error("Not working")
+          }
+          const data = await response.json();
+          console.log("running");
+  
+          // Filter results to include only cities from Norway
+          const norwegianCities = data.results[zipCode].filter(city => city.country_code === "NO");
+  
+          // Extract city names from the filtered results
+          const cityNames = norwegianCities.map(city => city.city);
+        
+          console.log(norwegianCities);
+          setCity(cityNames[0] || ''); // Assuming you only want to display the first city
+          return cityNames;
+        }
+      } else {
+        // If input is invalid, clear the input field
+        event.target.value = zipCode.replace(/[^\d]/g, ''); // Replace any non-digit characters with an empty string
+      }
+    } catch (error) {
+      console.error(error);
+    } 
+  }
+  
   const [boxed, setBoxed] = useState(false)
   const boxRef = useRef(null)
   const [boxHeight, setBoxHeight] = useState()
@@ -155,7 +188,16 @@ const StepOne = ({stepZeroRef, stepOneRef, stepTwoRef, nextStepButton, activeSte
             <h4>Din Adresse</h4>
             <b>Hentet fra Folkeregisteret</b>
             <div>
-              <TextField label="Postnummer" /> 
+              <TextField 
+                label="Postnummer" 
+                onChange={PostalCode}  
+                inputProps={{ 
+                  maxLength: 4, 
+                  inputMode: 'numeric', // Allow only numeric input
+                }}
+              />
+              {city && <p>{city}</p>}
+
               <label htmlFor="countrySelect">Land</label>
               <select id="countrySelect">
                 <option value="">Select a country</option>
