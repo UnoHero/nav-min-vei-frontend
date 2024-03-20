@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import { useState, useEffect, useRef } from "react";
 import { TextField } from "@navikt/ds-react";
 import { useSpring, animated } from '@react-spring/web'
@@ -14,6 +13,7 @@ const StepOne = ({stepZeroRef, stepOneRef, stepTwoRef, nextStepButton, activeSte
   const [countries, setCountries] = useState([]);
   const [grossIncome, setGrossIncome] = useState();
   const [city, setCity] = useState('Loading...');
+  const [numberOfChildren, setNumberOfChildren] = useState(0);
 
   const whichFirstName = (data) => {
     if (data?.firstName?.skattReg) {
@@ -159,6 +159,15 @@ const StepOne = ({stepZeroRef, stepOneRef, stepTwoRef, nextStepButton, activeSte
       openBox()
   },[boxed])
 
+  const handleNumberChange = (event) => {
+    let value = parseInt(event.target.value);
+    // Prevent going below 0
+    if (value < 0) {
+      value = 0;
+    }
+    setNumberOfChildren(value);
+  };
+
   return(
     <>
       <TextBox cursor={activeStep === 1 ?  "default" : "pointer"} ref={stepOneRef} onClick={(e) => nextStepButton(e, 1, stepZeroRef)}>
@@ -178,43 +187,49 @@ const StepOne = ({stepZeroRef, stepOneRef, stepTwoRef, nextStepButton, activeSte
               Da er det bare å endre i svarboksene.  
             </StepText>
             <h4>Personalia</h4>
-            <b>Hentet fra Folkeregisteret</b>
-            <div>
+            <div className="stepOneField">
               <TextField label="Fornavn" defaultValue={whichFirstName(data)} />
               <TextField label="Mellomnavn" defaultValue={whichMiddleName(data)} />
               <TextField label="EtterNavn" defaultValue={whichLastName(data)}/>
-              <TextField label="Hvor gammel er du?" type="date" defaultValue={dateOfBirth(data)}/>
+              <div className="dateField">
+                <TextField label="Hvor gammel er du?" type="date" defaultValue={dateOfBirth(data)}/>
+             </div>
             </div>
             <h4>Din Adresse</h4>
-            <b>Hentet fra Folkeregisteret</b>
             <div>
-              <TextField 
-                label="Postnummer" 
-                onChange={PostalCode}  
-                inputProps={{ 
-                  maxLength: 4, 
-                  inputMode: 'numeric', // Allow only numeric input
-                }}
-              />
-              {city && <p>{city}</p>}
-
-              <label htmlFor="countrySelect">Land</label>
-              <select id="countrySelect">
-                <option value="">Select a country</option>
-                {countries.map((country, index) => (
-                  <option key={index} value={country}>{country}</option>
-                ))}
-              </select>
+              <div className="zipCodeField">
+                <TextField 
+                  label="Postnummer" 
+                  onChange={PostalCode}  
+                  inputProps={{ 
+                    maxLength: 4, 
+                    inputMode: 'numeric', // Allow only numeric input
+                  }}
+                />
+                {city && <p className="cityNameForm">{city}</p>}
+              </div>
+              <div className="countryForm">
+                <label htmlFor="countrySelect">Land</label>
+                <select id="countrySelect">
+                  <option value="">Select a country</option>
+                  {countries.map((country, index) => (
+                    <option key={index} value={country}>{country}</option>
+                  ))}
+                </select>
+              </div>
             </div>
             <h4>Familie og sivilstatus</h4>
-            <b>Hentet fra Folkeregisteret</b>
-            <div>
+            <div className="stepOneField">
               <TextField label="Ektefelle" /> 
-              <TextField label="Antall barn" />
+              <TextField 
+                type="number" 
+                label="Antall barn" 
+                value={numberOfChildren} 
+                onChange={handleNumberChange} 
+              />
             </div>
             <h4>Din økonomiske situasjon</h4>
-            <b>Hentet fra Skatteetaten</b>
-            <div>
+            <div className="stepOneField">
               <TextField
                 label="Din bruttoinntekt de siste tolv månedene"
                 value={grossIncome}

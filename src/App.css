@@ -315,3 +315,35 @@ body, .App {
     font-size: 14px;
   }
 }
+
+
+.zipCodeField {
+  display: flex;
+  width: 10ch;
+}
+
+.cityNameForm {
+  align-items: center;
+  display: inline;
+  margin: 50% 0 0 10%;
+}
+
+.dateField {
+  width: 15ch;
+}
+
+.stepOneField {
+  max-width: 50%;
+}
+
+#countrySelect {
+  max-width: 34ch;
+  border-radius: 4px;
+  display: block;
+}
+
+.countryForm {
+  margin-top: 2.5%;
+}
+
+
