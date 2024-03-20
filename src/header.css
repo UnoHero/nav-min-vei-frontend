@@ -1,0 +1,115 @@
+/* Generelle stiler */
+.App-header {
+    background-color: white;
+    display: flex;
+    align-items: center; /* Sentrerer elementene vertikalt */
+    justify-content: space-between;
+    padding: 10px 30px;
+    border-bottom: 1px solid #e5e5e5;
+    
+}
+
+.App-logo {
+    flex: 0 1 auto; /* Logo tar bare nødvendig plass */
+}
+
+.App-navigation {
+    display: flex;
+    list-style: none;
+    gap: 24px;
+    margin-top: 0;
+    padding: 0;
+    flex: 1; /* Gir navigasjonen mer plass om nødvendig */
+    color:black;
+}
+  
+.App-logo {
+    height: 35px; /* eller en annen høyde som passer */
+    max-width: 100%; /* Sørger for at logoen ikke strekker seg utover sin container */
+    flex: 0 0 auto; /* Hindrer logoen i å vokse, men tillater den å krympe om nødvendig */
+    margin-right: 30px;
+  }
+  
+
+  .nav-link{
+  margin-top: 20px;
+  left: 0;
+  color:black;
+
+
+  }
+ 
+  .nav-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: transparent;
+    transition: width .3s, background-color .3s;
+    margin-top: 5px;
+  }
+  
+  .nav-link:hover::after, .nav-link:focus::after {
+    width: 100%;
+    background: #005bac;
+  }
+  
+  .App-header-actions {
+    display: flex;
+  }
+  
+  .icon {
+    margin-right: 8px; /* Gir litt plass mellom ikonet og teksten */
+  }
+  
+  /* Justerer knappens innhold til å være sentrert vertikalt og starter fra venstre */
+  .button {
+    border: none; /* Fjerner den grå boksen */
+    background: none;
+    color: #3386E0;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 6px 14px;
+    margin-right: 10px; /* Legger til mellomrom mellom knappene */
+    transition: all .3s;
+  }
+  
+  .button:not(:last-child) {
+    margin-right: 10px; /* Legger til mellomrom mellom knappene, bortsett fra den siste */
+  }
+  
+  .button:hover, .button:focus {
+    background-color: #cae0ff;
+    border-radius: 5px;
+  }
+  
+  
+
+  
+  /* Responsivitet */
+  @media (max-width: 768px) {
+    .App-navigation .nav-link, .search-button {
+      display: none;
+    }
+  
+    .App-header {
+      padding: 5px 15px;
+    }
+  
+    .App-logo {
+      height: 25px;
+    }
+  
+    .button {
+      padding: 5px 10px;
+      font-size: 14px;
+      margin: 0 5px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .button {
+      margin: 0 3px; /* Ytterligere justeringer for svært små skjermer */
+    }
+  }
+  

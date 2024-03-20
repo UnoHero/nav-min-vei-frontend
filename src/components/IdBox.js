@@ -3,7 +3,7 @@ import { Radio, RadioGroup } from "@navikt/ds-react";
 import {InputLabel, InputBox } from "../components/styledComponents"
 import { useSpring, animated } from '@react-spring/web'
 
-const IdBox = ({setNumber, setSmallBox, setSmallBoxSize}) => {
+const IdBox = ({ setNumber, setSmallBox, activeStep }) => {
 
     const [selectedValue, setSelectedValue] = useState('');
     // "id" becomes the social security number that is writen in the text filed
@@ -21,7 +21,12 @@ const IdBox = ({setNumber, setSmallBox, setSmallBoxSize}) => {
     }))
 
     useEffect(() => {
-        setSmallBoxSize(boxed ? boxRef.current?.offsetHeight : 0)
+        if(activeStep === 0){
+            setSelectedValue("No")
+        }
+    }, [activeStep])
+
+    useEffect(() => {
         api.start({
             to: {height: boxed ? boxRef.current?.offsetHeight : 0, opacity: boxed ? 1 : 0,},
             config: {
@@ -29,17 +34,23 @@ const IdBox = ({setNumber, setSmallBox, setSmallBoxSize}) => {
                 tension: 170, 
                 friction: 26
             },
+            onRest: () => {
+                if(selectedValue === "Yes"){
+                    setSmallBox(true)
+                }
+                if(selectedValue === "No"){
+                    setSmallBox(false)
+                }
+            }
         })
     },[api, boxed,])
 
     useEffect(() => {
         if(selectedValue === "Yes"){
             setBoxed(true)
-            setSmallBox(true)
         }
         if(selectedValue !== "Yes"){
             setBoxed(false)
-            setSmallBox(false)
         }
     }, [selectedValue])
 

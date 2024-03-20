@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { TextField } from "@navikt/ds-react";
+import { useSpring, animated } from '@react-spring/web'
 
 // Fancy nav Icons from nav aksel
 import { PersonFillIcon, CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
@@ -8,7 +9,7 @@ import { PersonFillIcon, CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 // Styles thrue js
 import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, Txt, CheckMark } from "../components/styledComponents"
 
-const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, data }) => {
+const StepOne = ({stepZeroRef, stepOneRef, stepTwoRef, nextStepButton, activeStep, data }) => {
 
   const [etat, setEtat] = useState();
   const [countries, setCountries] = useState([]);
@@ -83,15 +84,57 @@ const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, data }) =>
   }, []);
 
 
+  const [boxed, setBoxed] = useState(false)
+  const boxRef = useRef(null)
+  const [boxHeight, setBoxHeight] = useState()
+
+
+  useEffect(() => {
+      setBoxHeight(boxRef.current?.offsetHeight)
+  }, [boxRef])
+
+  useEffect(() => {
+      if(activeStep !== 1){
+          setBoxed(true)
+      }
+      if(activeStep === 1){
+          setBoxed(false)
+      }
+  },[activeStep])
+
+
+  useEffect(() => {
+      openBox()
+  }, [boxHeight])
+
+  const [springs, api] = useSpring(() => ({
+      from: { height: 0, opacity: 0 },
+  }))
+
+  const openBox = () => {
+      api.start({
+          to: {height: boxed ? 0 : boxHeight, opacity: boxed ? 0 : 1,},
+          config: {
+              mass: 1,
+              tension: 170, 
+              friction: 26
+          },
+      })
+  }
+
+  useEffect(() => {
+      openBox()
+  },[boxed])
+
   return(
     <>
-      <TextBox cursor={activeStep === 1 ?  "default" : "pointer"} ref={stepOneRef} onClick={(e) => nextStepButton(e, 1, stepOneRef)}>
+      <TextBox cursor={activeStep === 1 ?  "default" : "pointer"} ref={stepOneRef} onClick={(e) => nextStepButton(e, 1, stepZeroRef)}>
         <StepHeader>Steg 1 av 3</StepHeader>
         <StepTitle>Om meg</StepTitle>
         <PersonFillIcon className="stepIcon" title="a11y-title" color={activeStep >= 1 ? "blue" : "gray"} fontSize="1.5rem" />
         {activeStep > 1 && <CheckMark><CheckmarkCircleFillIcon color='green' fontSize="2rem"></CheckmarkCircleFillIcon></CheckMark>}
-        {activeStep === 1 && 
-          <div onClick={(e) => e.stopPropagation()}>
+        <animated.div style={{...springs}}>
+          <div ref={boxRef} onClick={(e) => e.stopPropagation()}>
             <Txt>
               {data ? <b>Hei {displayFullName(data)}</b> : <b>Loading...</b>}
             </Txt>
@@ -144,10 +187,10 @@ const StepOne = ({stepOneRef, stepTwoRef, nextStepButton, activeStep, data }) =>
             </div>
             {/* Moves the user to the next part */}
             <NextStepButton onClick={(e) => {
-              nextStepButton(e, 2, stepTwoRef)
+              nextStepButton(e, 2, stepOneRef)
             }}>Neste Steg</NextStepButton>
           </div>
-        }
+        </animated.div>
       </TextBox>    
       
     </>

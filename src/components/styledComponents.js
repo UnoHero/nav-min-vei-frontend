@@ -88,6 +88,7 @@ export const NextStepButton = styled.button`
   border-radius: 4px;
   border: 0px;
   padding: 12px 20px;
+  margin: 20px 20px 0 0;
   background-color: #0067C5;
   color: white;
   cursor: pointer;
