@@ -4,7 +4,7 @@
     display: flex;
     align-items: center; /* Sentrerer elementene vertikalt */
     justify-content: space-between;
-    padding: 10px 30px;
+    padding: 20px; /* Adjust the padding to match the design */
     border-bottom: 1px solid #e5e5e5;
     
 }
@@ -35,7 +35,8 @@
   margin-top: 20px;
   left: 0;
   color:black;
-
+  font-size: 18px; /* Adjust the font size to match the design */
+  color: #000000; /* Adjust the color to black */
 
   }
  
@@ -72,6 +73,9 @@
     padding: 6px 14px;
     margin-right: 10px; /* Legger til mellomrom mellom knappene */
     transition: all .3s;
+    display: flex;
+    align-items: center; /* This will vertically center the items within the button */
+    justify-content: center; 
   }
   
   .button:not(:last-child) {
@@ -83,7 +87,29 @@
     border-radius: 5px;
   }
   
+  .active {
+    position: relative; /* This makes it a containing block for absolute positioned pseudo-elements */
+    padding-bottom: 20px; /* Adjust the distance from text to underline as needed */
+}
+
+.active::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%; /* Start at the middle of the element */
+    bottom: 0; /* Position at the bottom of the element */
+    width: 140%; /* Making the line wider than the element itself, adjust as needed */
+    height: 5px; /* Height of the underline */
+    background-color: #005bac; /* Color of the underline */
+    transform: translateX(-50%); /* Center the line relative to the element */
+}
+
   
+  .button .button-text {
+    font-size: 16px; /* Adjust as needed */
+    line-height: 24px; /* Adjust this to the height of your icons */
+    margin-left: 8px; /* Adjust as needed, or remove if not required */
+}
 
   
   /* Responsivitet */

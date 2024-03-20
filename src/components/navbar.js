@@ -11,7 +11,7 @@ function Navbar() {
       <img src={logo} alt="norge.no logo" className="App-logo" />
 
       <nav className="App-navigation">
-        <a href="#minveileder" className="nav-link">Privat</a>
+      <a href="#minveileder" className="nav-link active">Privat</a>
         <a href="#livssituasjon" className="nav-link">Arbeidsgiver</a>
         <a href="#samarbeidspartner" className="nav-link">Samarbeidspartner</a>
       </nav>
