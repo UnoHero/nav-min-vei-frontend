@@ -105,7 +105,7 @@ const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, getPers
 
                 {/* Moves the user to the next part */}
                 <NextStepButton onClick={(e) => {
-                    nextStepButton(e, 1, stepOneRef)
+                    nextStepButton(e, 1, stepZeroRef)
                     getPersonData()
                 }}>Gå Videre</NextStepButton>
             </div>

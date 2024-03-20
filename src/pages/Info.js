@@ -106,6 +106,7 @@ const Info = () => {
           {/* Changes the color of the circle 1 on the side wen it is beeing worked on or done with */}
         <div><Circle onClick={(e) => nextStepButton(e, 1, stepOneRef)} color={activeStep >= 1 ? true : false}>1</Circle><Line></Line></div>
           <StepOne 
+            stepZeroRef={stepZeroRef}
             stepOneRef={stepOneRef}
             stepTwoRef={stepTwoRef}
             setActiveStep={setActiveStep} 
