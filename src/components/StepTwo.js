@@ -17,6 +17,7 @@ const TextBox = styled.div`
 
 const StepTitle = styled.div`
   font-size: 1.75rem;
+  pointer
 `;
 
 const StepHeader = styled.div`
@@ -216,6 +217,11 @@ const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeS
     }));
   };
 
+  const handleTextFetch = (id) => {
+    // Replace this with your logic to fetch text based on the ID
+    console.log(`Fetching text for ${id}`);
+  };
+
   return (
     <>
       <TextBox
@@ -225,7 +231,7 @@ const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeS
         }}
       >
         <StepHeader>Steg 2 av 3</StepHeader>
-        <StepTitle>Velg livssituasjon</StepTitle>
+        <StepTitle><b>Velg livssituasjon</b></StepTitle>
         <HospitalFillIcon className="stepIcon" title="a11y-title" color={activeStep >= 2 ? "Pink" : "gray"} fontSize="1.5rem" />
         {activeStep === 2 &&
           <>
@@ -565,7 +571,7 @@ const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeS
             <NextStepButton onClick={(e) => nextStepButton(e, 3, stepThreeRef)}>Neste Steg</NextStepButton>
             <LastStepButton onClick={(e) => nextStepButton(e, 1, stepOneRef)}>Forrige Steg</LastStepButton>
             </ButtonContainer>
-
+          
 
           </>
         }
