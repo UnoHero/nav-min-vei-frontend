@@ -35,7 +35,7 @@ const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, getPers
 
 
     useEffect(() => {
-        console.log("The box height is: ", boxHeight)
+        //console.log("The box height is: ", boxHeight)
         openBox()
     }, [boxHeight])
 
@@ -56,7 +56,7 @@ const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, getPers
 
     useEffect(() => {
 
-        openBox()
+        setBoxHeight(boxRef.current?.offsetHeight)
 
     },[boxed])
 
@@ -100,12 +100,12 @@ const StepZero = ({ stepZeroRef, stepOneRef, nextStepButton, activeStep, getPers
                 </DataBilder>
                 
                 <RadioBox>
-                <IdBox setNumber={handleChange} setSmallBox={setSmallBox}/>
+                <IdBox setNumber={handleChange} setSmallBox={setSmallBox} activeStep={activeStep}/>
                 </RadioBox>
 
                 {/* Moves the user to the next part */}
                 <NextStepButton onClick={(e) => {
-                    nextStepButton(e, 1, stepOneRef)
+                    nextStepButton(e, 1, stepZeroRef)
                     getPersonData()
                 }}>Gå Videre</NextStepButton>
             </div>

@@ -103,8 +103,9 @@ const Info = () => {
         {/* The secon part of the site the part/question. "Om meg" */}
         <Item>
           {/* Changes the color of the circle 1 on the side wen it is beeing worked on or done with */}
-        <div><Circle onClick={(e) => nextStepButton(e, 1, stepOneRef)} color={activeStep >= 1 ? true : false}>1</Circle><Line></Line></div>
-          <StepOne
+        <div><Circle onClick={(e) => nextStepButton(e, 1, stepZeroRef)} color={activeStep >= 1 ? true : false}>1</Circle><Line></Line></div>
+          <StepOne 
+            stepZeroRef={stepZeroRef}
             stepOneRef={stepOneRef}
             stepTwoRef={stepTwoRef}
             setActiveStep={setActiveStep} 
@@ -117,7 +118,7 @@ const Info = () => {
         {/* The thrid part of the part/questions. "Velg livssituasjon" */}
         <Item>
           {/* Changes the color of the circle 2 on the side wen it is beeing worked on or done with */}
-          <div><Circle onClick={(e) => nextStepButton(e, 2, stepTwoRef)} color={activeStep >= 2 ? true : false}>2</Circle><Line></Line></div>
+          <div><Circle onClick={(e) => nextStepButton(e, 2, stepOneRef)} color={activeStep >= 2 ? true : false}>2</Circle><Line></Line></div>
           <StepTwo
             stepTwoRef={stepTwoRef}
             stepThreeRef={stepThreeRef}
@@ -130,7 +131,7 @@ const Info = () => {
         {/* The fourth part of the part/questions. "Spørsmål til min livssituasjon" */}
         <Item>
           {/* Changes the color of the circle 3 on the side wen it is beeing worked on or done with */}
-          <div><Circle onClick={(e) => nextStepButton(e, 3, stepThreeRef)} color={activeStep >= 3 ? true : false}>3</Circle><Line></Line></div>
+          <div><Circle onClick={(e) => nextStepButton(e, 3, stepTwoRef)} color={activeStep >= 3 ? true : false}>3</Circle><Line></Line></div>
           <StepThree
             stepTwoRef={stepTwoRef}
             stepThreeRef={stepThreeRef}
@@ -144,7 +145,7 @@ const Info = () => {
         {/* The fifth part of the part/questions. "Mine resultater" */}
         <Item>
           {/* Changes the color of the circle 4 on the side wen it is beeing worked on or done with */}
-          <Circle onClick={(e) => nextStepButton(e, 4, stepFourRef)}><CheckmarkIcon title="a11y-title" fontSize="1.5rem" /></Circle>
+          <Circle onClick={(e) => nextStepButton(e, 4, stepThreeRef)}><CheckmarkIcon title="a11y-title" fontSize="1.5rem" /></Circle>
           <StepFinal
             stepFourRef={stepFourRef}
             setActiveStep={setActiveStep}
