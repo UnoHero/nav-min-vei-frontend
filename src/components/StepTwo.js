@@ -172,7 +172,7 @@ const Chosentext = styled.div `
 
 `
 
-const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeStep }) => {
+const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeStep, getLife }) => {
   const [boxStates, setBoxStates] = useState({
     box1: false,
     box2: false,
@@ -182,6 +182,11 @@ const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeS
     box6: false,
     box7: false,
   });
+
+  useEffect(() => {
+    getLife(boxStates)
+
+  }, [boxStates])
 
   const handleCheckboxChange = (e, id) => {
     setBoxStates(prevState => ({
@@ -243,7 +248,10 @@ const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeS
         cursor={activeStep === 1 ?  "default" : "pointer"}
         ref={stepTwoRef}
         onClick={(e) => {
-          nextStepButton(e, 2, stepOneRef);
+          if(activeStep !== 2){
+            nextStepButton(e, 2, stepOneRef);
+
+          }
         }}
       >
         <StepHeader>Steg 2 av 3</StepHeader>
