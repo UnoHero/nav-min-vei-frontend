@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useSpring, animated } from '@react-spring/web'
 import styled from 'styled-components';
 import { HospitalFillIcon, InformationIcon } from '@navikt/aksel-icons';
 import { RadioGroup } from "@navikt/ds-react";
@@ -10,48 +11,13 @@ import startCompany from "../Pictures/StepTwo/startCompany.svg";
 import free from "../Pictures/StepTwo/free.svg";
 import death from "../Pictures/StepTwo/death.svg";
 
-// Styles through js
-const TextBox = styled.div`
-  background-color: white;
-  border-radius: 5px;
-  padding: 1rem 6rem 0.4rem 6rem;
-  cursor: ${props => props.cursor};
-  transition: all 0.3s ease;
-  &:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-`;
+import { CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
+import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, Txt, CheckMark } from "../components/styledComponents"
 
-const StepTitle = styled.div`
-  font-size: 1.75rem;
-  pointer
-`;
-
-const StepHeader = styled.div`
-  font-size: 1rem;
-`;
-
-const StepText = styled.div`
-  font-size: 1rem;
-  margin: 2rem 0rem;
-`;
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between; // Plasserer elementer med lik avstand mellom hverandre
-`;
-
-const NextStepButton = styled.button`
-  border-radius: 4px;
-  border: 0px;
-  padding: 12px 20px;
-  background-color: #0067C5;
-  color: white;
-  cursor: pointer;
-  margin-top: 15%;
-  margin-bottom: 5%;
-  position: relative;
-
 `;
 
 const LastStepButton = styled.button`
@@ -206,7 +172,7 @@ const Chosentext = styled.div `
 
 `
 
-const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeStep, setActiveStep }) => {
+const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeStep }) => {
   const [boxStates, setBoxStates] = useState({
     box1: false,
     box2: false,
@@ -229,9 +195,52 @@ const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeS
     console.log(`Fetching text for ${id}`);
   };
 
+  const [boxed, setBoxed] = useState(false)
+  const boxRef = useRef(null)
+  const [boxHeight, setBoxHeight] = useState()
+
+
+  useEffect(() => {
+      setBoxHeight(boxRef.current?.offsetHeight)
+  }, [boxRef])
+
+  useEffect(() => {
+      if(activeStep !== 2){
+          setBoxed(true)
+      }
+      if(activeStep === 2){
+          setBoxed(false)
+      }
+  },[activeStep])
+
+
+  useEffect(() => {
+      openBox()
+  }, [boxHeight])
+
+  const [springs, api] = useSpring(() => ({
+      from: { height: 0, opacity: 0 },
+  }))
+
+  const openBox = () => {
+      api.start({
+          to: {height: boxed ? 0 : boxHeight, opacity: boxed ? 0 : 1,},
+          config: {
+              mass: 1,
+              tension: 170, 
+              friction: 26
+          },
+      })
+  }
+
+  useEffect(() => {
+      openBox()
+  },[boxed])
+
   return (
     <>
       <TextBox
+        cursor={activeStep === 1 ?  "default" : "pointer"}
         ref={stepTwoRef}
         onClick={(e) => {
           nextStepButton(e, 2, stepOneRef);
@@ -240,8 +249,9 @@ const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeS
         <StepHeader>Steg 2 av 3</StepHeader>
         <StepTitle><b>Velg livssituasjon</b></StepTitle>
         <HospitalFillIcon className="stepIcon" title="a11y-title" color={activeStep >= 2 ? "Pink" : "gray"} fontSize="1.5rem" />
-        {activeStep === 2 &&
-          <>
+        {activeStep > 2 && <CheckMark><CheckmarkCircleFillIcon color='green' fontSize="2rem"></CheckmarkCircleFillIcon></CheckMark>}
+        <animated.div style={{...springs}}>
+          <div ref={boxRef}>
             <Bold>Velg livshendelser som reflekterer din livssituasjon</Bold>
             <StepText>
               Her velger du de livshendelsene som relaterer til deg eller som
@@ -268,163 +278,154 @@ const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeS
         <Contentbox>
         <Stortext>Få barn</Stortext>
         <Litentext>
-        <ul>
-          <li>Venter eller har nylig fått barn</li>
-          <li>Bor ikke sammen med barnet mitt</li>
-          <li>Er helt eller delvis alene med barn</li>
-        </ul>
+          <ul>
+            <li>Venter eller har nylig fått barn</li>
+            <li>Bor ikke sammen med barnet mitt</li>
+            <li>Er helt eller delvis alene med barn</li>
+          </ul>
         </Litentext>
         </Contentbox>
       </div>
     </Box>
 
-
-
-    
-              <Box id="box2" checked={boxStates.box2}>
-                <input
-                  type="checkbox"
-                  checked={boxStates.box2}
-                  onChange={e => handleCheckboxChange(e, 'box2')}
-                />
-                        <Ikonbox>
-                        <img src={sickKid}></img>
-
+    <Box id="box2" checked={boxStates.box2}>
+      <input
+        type="checkbox"
+        checked={boxStates.box2}
+        onChange={e => handleCheckboxChange(e, 'box2')}
+    />
+    <Ikonbox>
+    <img src={sickKid}></img>
         </Ikonbox>
         <Contentbox>
         <Stortext>Alvorlig sykt barn</Stortext>
         <Litentext>
-        <ul>
-          <li>Barn som trenger hjelpemidler</li>
-          <li>Har barn som er kronisk syk</li>
-          <li>Har barn som er innlagt på sykehus</li>
-        </ul>
+          <ul>
+            <li>Barn som trenger hjelpemidler</li>
+            <li>Har barn som er kronisk syk</li>
+            <li>Har barn som er innlagt på sykehus</li>
+          </ul>
         </Litentext>
         </Contentbox>
-              </Box>
-              <Box id="box3" checked={boxStates.box3}>
-                <input
-                  type="checkbox"
-                  checked={boxStates.box3}
-                  onChange={e => handleCheckboxChange(e, 'box3')}
-                />
-                        <Ikonbox>
-                        <img src={findWork}></img>
-
-        </Ikonbox>
-        <Contentbox>
-        <Stortext>Miste og finne jobb</Stortext>
-        <Litentext>
+    </Box>
+              
+    <Box id="box3" checked={boxStates.box3}>
+      <input
+        type="checkbox"
+        checked={boxStates.box3}
+        onChange={e => handleCheckboxChange(e, 'box3')}
+      />
+      <Ikonbox>
+        <img src={findWork}></img>
+      </Ikonbox>
+      <Contentbox>
+      <Stortext>Miste og finne jobb</Stortext>
+      <Litentext>
         <ul>
           <li>Nylig mistet jobben</li>
           <li>Sliter med å finne jobb</li>
           <li>Skal søke jobb</li>
         </ul>
-        </Litentext>
-        </Contentbox>
-              </Box>
-              <Box id="box4" checked={boxStates.box4}>
-                <input
-                  type="checkbox"
-                  checked={boxStates.box4}
-                  onChange={e => handleCheckboxChange(e, 'box4')}
-                />
-                        <Ikonbox>
-                        <img src={newToNorway}></img>
+      </Litentext>
+      </Contentbox>
+    </Box>
 
-        </Ikonbox>
-        <Contentbox>
-        <Stortext>Ny i Norge</Stortext>
-        <Litentext>
+    <Box id="box4" checked={boxStates.box4}>
+      <input
+        type="checkbox"
+        checked={boxStates.box4}
+        onChange={e => handleCheckboxChange(e, 'box4')}
+      />
+      <Ikonbox>
+        <img src={newToNorway}></img>
+      </Ikonbox>
+      <Contentbox>
+      <Stortext>Ny i Norge</Stortext>
+      <Litentext>
         <ul>
           <li>Flytte inn/ut av Norge</li>
           <li>Har/har ikke bosted</li>
           <li>Ny adresse og bosituasjon</li>
         </ul>
-        </Litentext>
-        </Contentbox>
-              </Box>
-              <Box id="box5" checked={boxStates.box5}>
-                <input
-                  type="checkbox"
-                  checked={boxStates.box5}
-                  onChange={e => handleCheckboxChange(e, 'box5')}
-                />
-                        <Ikonbox>
-                        <img src={startCompany}></img>
+      </Litentext>
+      </Contentbox>
+    </Box>
 
-        </Ikonbox>
-        <Contentbox>
-        <Stortext>Starte og drive en bedrift</Stortext>
-        <Litentext>
+    <Box id="box5" checked={boxStates.box5}>
+      <input
+        type="checkbox"
+        checked={boxStates.box5}
+        onChange={e => handleCheckboxChange(e, 'box5')}
+      />
+      <Ikonbox>
+        <img src={startCompany}></img>
+      </Ikonbox>
+      <Contentbox>
+      <Stortext>Starte og drive en bedrift</Stortext>
+      <Litentext>
         <ul>
           <li>Skal starte et nytt enkeltmannsforetak</li>
           <li>Starter opp ny bedrift</li>
           <li>Driver en bedrift</li>
           <li>Utenlandsk arbeidstaker</li>
         </ul>
-        </Litentext>
-        </Contentbox>
-              </Box>
-              <Box id="box6" checked={boxStates.box6}>
-                <input
-                  type="checkbox"
-                  checked={boxStates.box6}
-                  onChange={e => handleCheckboxChange(e, 'box6')}
-                />
-                        <Ikonbox>
-                        <img src={free}></img>
+      </Litentext>
+      </Contentbox>
+    </Box>
 
-        </Ikonbox>
-        <Contentbox>
-        <Stortext>Skal starte opp frivillig organisasjon</Stortext>
-        <Litentext>
+    <Box id="box6" checked={boxStates.box6}>
+      <input
+        type="checkbox"
+        checked={boxStates.box6}
+        onChange={e => handleCheckboxChange(e, 'box6')}
+      />
+      <Ikonbox>
+        <img src={free}></img>
+      </Ikonbox>
+      <Contentbox>
+      <Stortext>Skal starte opp frivillig organisasjon</Stortext>
+      <Litentext>
         <ul>
           <li>Skal starte opp frivillig organisasjon</li>
           <li>Ansvar for frivillige</li>
           <li>Driver en frivillig organisasjon</li>
           <li>Trenger støtte til frivillig organisasjon</li>
         </ul>
-        </Litentext>
-        </Contentbox>
-              </Box>
-              <Box id="box7" checked={boxStates.box7}>
-                <input
-                  type="checkbox"
-                  checked={boxStates.box7}
-                  onChange={e => handleCheckboxChange(e, 'box7')}
-                />
-                        <Ikonbox>
-                        <img src={death}></img>
+      </Litentext>
+      </Contentbox>
+    </Box>
 
-        </Ikonbox>
-        <Contentbox>
-        <Stortext>Dødsfall og arv</Stortext>
-        <Litentext>
+    <Box id="box7" checked={boxStates.box7}>
+      <input
+        type="checkbox"
+        checked={boxStates.box7}
+        onChange={e => handleCheckboxChange(e, 'box7')}
+      />
+      <Ikonbox>
+        <img src={death}></img>
+      </Ikonbox>
+      <Contentbox>
+      <Stortext>Dødsfall og arv</Stortext>
+      <Litentext>
         <ul>
           <li>Planlegge livets siste fase</li>
           <li>Tar vare på noen som er alvorlig syk eller skadet</li>
           <li>Ønsker innsikt rundt dødsfall</li>
         </ul>
-        </Litentext>
-        </Contentbox>
-              </Box>
-            </BoxContainer>
-            <Chosentext>Du har valgt {Object.values(boxStates).filter(checked => checked).length} av 7 mulige livshendelser.</Chosentext>
-            <ButtonContainer>
-            <NextStepButton onClick={(e) => nextStepButton(e, 3, stepThreeRef)}>Neste Steg</NextStepButton>
-            <LastStepButton onClick={(e) => nextStepButton(e, 1, stepOneRef)}>Forrige Steg</LastStepButton>
-            </ButtonContainer>
-          
+      </Litentext>
+      </Contentbox>
+    </Box>
 
-          </>
-        }
-
-
-
-
-      </TextBox>
-    </>
+  </BoxContainer>
+  <Chosentext>Du har valgt {Object.values(boxStates).filter(checked => checked).length} av 7 mulige livshendelser.</Chosentext>
+  <ButtonContainer>
+  <NextStepButton onClick={(e) => nextStepButton(e, 3, stepThreeRef)}>Neste Steg</NextStepButton>
+  <LastStepButton onClick={(e) => nextStepButton(e, 1, stepOneRef)}>Forrige Steg</LastStepButton>
+  </ButtonContainer>
+  </div>
+  </animated.div>
+  </TextBox>
+  </>
   );
 };
 
