@@ -213,7 +213,7 @@ const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
                 <label htmlFor="countrySelect">Land</label>
                 <select id="countrySelect">
                   <option value="">Select a country</option>
-                  {countries.map((country, index) => (
+                  {countries.sort().map((country, index) => (
                     <option key={index} value={country}>{country}</option>
                   ))}
                 </select>
