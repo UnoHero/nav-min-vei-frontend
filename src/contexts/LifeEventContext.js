@@ -16,12 +16,30 @@ export const LifeEventProvider = ({ children }) => {
     box7: false
   });
 
+  const [user, setUser] = useState(null)
+
   const updateLifeEvent = (eventID, value) => {
     setLifeEvents(prev => ({ ...prev, [eventID]: value }));
   };
 
+  const updateUser = (user) => {
+    setUser(user)
+  }
+
+  const setFirstName = firstName => {
+    setUser(prev => ({...prev, firstName: {...prev.firstName, customFirstName: firstName}}))
+  }
+
+  const setMiddleName = middleName => {
+    setUser(prev => ({...prev, middleName: {...prev.middleName, customMiddleName: middleName}}))
+  }
+
+  const setLastName = lastName => {
+    setUser(prev => ({...prev, lastName: {...prev.lastName, customLastName: lastName}}))
+  }
+
   return (
-    <LifeEventContext.Provider value={{ lifeEvents, updateLifeEvent }}>
+    <LifeEventContext.Provider value={{ lifeEvents, updateLifeEvent, updateUser, user , setFirstName, setMiddleName}}>
       {children}
     </LifeEventContext.Provider>
   );

@@ -8,57 +8,58 @@ import { PersonFillIcon, CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 // Styles thrue js
 import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, Txt, CheckMark } from "../components/styledComponents"
 
-const StepOne = ({stepZeroRef, stepOneRef, stepTwoRef, nextStepButton, activeStep, data }) => {
+// context
+import { useLifeEvent } from "../contexts/LifeEventContext";
+
+const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
+
+  const { setFirstName, setMiddlename, setLastName, user } = useLifeEvent();
 
   const [countries, setCountries] = useState([]);
   const [grossIncome, setGrossIncome] = useState();
   const [city, setCity] = useState('Loading...');
   const [numberOfChildren, setNumberOfChildren] = useState(0);
 
-  const whichFirstName = (data) => {
-    if (data?.firstName?.skattReg) {
-      return data?.firstName?.skattReg
-    } else if (data?.firstName?.aaReg) {
-      return data?.firstName?.aaReg
-    } else if (data?.firstName?.folkReg) {
-      return data?.firstName?.folkReg
-    }
+  const whichFirstName = () => {
+    return user?.firstName?.customFirstName 
+    || user?.firstName?.skattReg 
+    || user?.firstName?.aaReg 
+    || user?.firstName?.folkReg
+    || ""
   }
 
-  const whichMiddleName = (data) => {
-    if (data?.middleName?.skattReg) {
-      return data?.middleName?.skattReg
-    } else if (data?.middleName?.aaReg) {
-      return data?.middleName?.aaReg
-    } else if (data?.middleName?.folkReg) {
-      return data?.middleName?.folkReg
-    }
+  const whichMiddleName = () => {
+    return user?.middleName?.customMiddlename
+    || user?.firstName?.skattReg 
+    || user?.firstName?.aaReg 
+    || user?.firstName?.folkReg
+    || ""
   }
 
-  const whichLastName = (data) => {
-    if (data?.lastName?.skattReg) {
-      return data?.lastName?.skattReg
-    } else if (data?.lastName?.aaReg) {
-      return data?.lastName?.aaReg
-    } else if (data?.lastName?.folkReg) {
-      return data?.lastName?.folkReg
+  const whichLastName = () => {
+    if (user?.lastName?.skattReg) {
+      return user?.lastName?.skattReg
+    } else if (user?.lastName?.aaReg) {
+      return user?.lastName?.aaReg
+    } else if (user?.lastName?.folkReg) {
+      return user?.lastName?.folkReg
     }
   }
   
-  const dateOfBirth = (data) => {
-    return data?.dateOfBirth?.folkReg
+  const dateOfBirth = () => {
+    return user?.dateOfBirth?.folkReg
   }
 
-  const displayFullName = (data) => {
-    const fullName = `${whichFirstName(data)} ${whichMiddleName(data)} ${whichLastName(data)}`
+  const displayFullName = () => {
+    const fullName = `${whichFirstName(user)} ${whichMiddleName(user)} ${whichLastName(user)}`
     return fullName
   }
 
   useEffect(() => {
-    if (data && data.grossIncome !== undefined) {
-      setGrossIncome(data.grossIncome.toLocaleString().replace(/,/g, " "));
+    if (user && user.grossIncome !== undefined) {
+      setGrossIncome(user.grossIncome.toLocaleString().replace(/,/g, " "));
     }
-  }, [data]);
+  }, [user]);
 
   const handleInputChange = (event) => {
     // Remove spaces and commas from user input
@@ -73,8 +74,8 @@ const StepOne = ({stepZeroRef, stepOneRef, stepTwoRef, nextStepButton, activeSte
     const fetchCountries = async () => {
       try {
         const response = await fetch('https://restcountries.com/v3.1/all?fields=name');
-        const data = await response.json();
-        setCountries(data.map(country => country.name.common));
+        const user = await response.json();
+        setCountries(user.map(country => country.name.common));
       } catch (error) {
         console.error('Error fetching countries:', error);
       }
@@ -95,11 +96,11 @@ const StepOne = ({stepZeroRef, stepOneRef, stepTwoRef, nextStepButton, activeSte
           if (!response.ok) {
             throw Error("Not working")
           }
-          const data = await response.json();
+          const user = await response.json();
           console.log("running");
   
           // Filter results to include only cities from Norway
-          const norwegianCities = data.results[zipCode].filter(city => city.country_code === "NO");
+          const norwegianCities = user.results[zipCode].filter(city => city.country_code === "NO");
   
           // Extract city names from the filtered results
           const cityNames = norwegianCities.map(city => city.city);
@@ -178,7 +179,7 @@ const StepOne = ({stepZeroRef, stepOneRef, stepTwoRef, nextStepButton, activeSte
         <animated.div style={{...springs}}>
           <div ref={boxRef} onClick={(e) => e.stopPropagation()}>
             <Txt>
-              {data ? <b>Hei {displayFullName(data)}</b> : <b>Loading...</b>}
+              {user ? <b>Hei {displayFullName()}</b> : <b>Loading...</b>}
             </Txt>
             <StepText>
               Her finner du informasjon om 
@@ -188,11 +189,11 @@ const StepOne = ({stepZeroRef, stepOneRef, stepTwoRef, nextStepButton, activeSte
             </StepText>
             <h4>Personalia</h4>
             <div className="stepOneField">
-              <TextField label="Fornavn" defaultValue={whichFirstName(data)} />
-              <TextField label="Mellomnavn" defaultValue={whichMiddleName(data)} />
-              <TextField label="EtterNavn" defaultValue={whichLastName(data)}/>
+              <TextField label="Fornavn" value={whichFirstName()} onChange={(e) => {setFirstName(e.target.value)}}/>
+              <TextField label="Mellomnavn" value={whichMiddleName()} onChange={(e) => {setMiddlename(e.target.value)}} />
+              <TextField label="EtterNavn" value={whichLastName()} onChange={(e) => {setLastName(e.target.value)}}/>
               <div className="dateField">
-                <TextField label="Hvor gammel er du?" type="date" defaultValue={dateOfBirth(data)}/>
+                <TextField label="Hvor gammel er du?" type="date" defaultValue={dateOfBirth()}/>
              </div>
             </div>
             <h4>Din Adresse</h4>
@@ -239,7 +240,7 @@ const StepOne = ({stepZeroRef, stepOneRef, stepTwoRef, nextStepButton, activeSte
               <TextField label="Ditt lån per dag" />
               <TextField label="Din formue per i dag" />
               <TextField label="Din skatteprosent" />
-              <TextField label="Dine forsikringer" defaultValue={data?.insurance} />
+              <TextField label="Dine forsikringer" defaultValue={user?.insurance} />
 
             </div>
             {/* Moves the user to the next part */}
