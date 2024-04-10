@@ -45,12 +45,6 @@ const DynamicQuestions = ({ onAnswersUpdate }) => {
         });
     };
 
-    useEffect(() => {
-        // Update the active question IDs based on the state of the boxes
-        const newActiveQuestionIds = determineQuestionsToShow(lifeEvents);
-        setActiveQuestionIds(newActiveQuestionIds);
-    }, [lifeEvents]);
-
     const determineQuestionsToShow = (boxStates) => {
         let questionIds = [];
         if (boxStates.box1) {

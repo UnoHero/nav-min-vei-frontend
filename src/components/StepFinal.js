@@ -4,6 +4,8 @@ import { DownloadIcon, PrinterSmallIcon } from '@navikt/aksel-icons';
 // Styles thrue js
 import { TextBox, StepTitle, StepText, } from "../components/styledComponents"
 
+import { useLifeEvent } from '../contexts/LifeEventContext';
+
 
 const ColorBoxStepFinal = styled.div `
 background-color: ${(props) => props.backgroundColor || 'white'};
@@ -38,7 +40,68 @@ white-space: nowrap;
 
   
 
-const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
+const StepFinal = ({ stepFourRef, nextStepButton, activeStep }) => {
+  const { lifeEvents } = useLifeEvent();
+  // Replace with actual data from DynamicQuestions
+  const answers = {}; 
+
+  const getResults = () => {
+    let results = {
+      certainBenefits: [], 
+      uncertainBenefits: [], 
+      noBenefits: [],
+      relevantInfo: []
+    };
+
+    // Logic for box1
+    if (lifeEvents.box1) {
+      if (answers[1] === "Ja") {
+        results.certainBenefits.push("Barnebidrag");
+      } else {
+        results.uncertainBenefits.push("Barnebidrag");
+      }
+    }
+
+    // Logic for box2
+    if (lifeEvents.box2) {
+      results.relevantInfo.push("Informasjon om barns helse");
+    }
+
+    // Logic for box3
+    if (lifeEvents.box3) {
+      results.relevantInfo.push("Jobbsøknadshjelp");
+      results.uncertainBenefits.push("Arbeidsledighetstrygd");
+    }
+
+    // Logic for box4
+    if (lifeEvents.box4) {
+      results.certainBenefits.push("Flyttehjelp");
+      results.relevantInfo.push("Bosituasjonsråd");
+    }
+
+    // Logic for box5
+    if (lifeEvents.box5) {
+      results.certainBenefits.push("Støtte til nye bedrifter");
+      results.uncertainBenefits.push("Investorinformasjon");
+    }
+
+    // Logic for box6
+    if (lifeEvents.box6) {
+      results.relevantInfo.push("Frivillighetsstøtte");
+    }
+
+    // Logic for box7
+    if (lifeEvents.box7) {
+      results.certainBenefits.push("Begravelsesstønad");
+      results.noBenefits.push("Arveavgiftsfritak");
+    }
+
+    // Add further logic as per the need
+
+    return results;
+  };
+
+  const results = getResults();
 
     return(
         <>
@@ -64,11 +127,28 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
                   <br/>
                  databaser via MineData, samt svar du har oppgitt i veilederen. </StepText>
 
-                <ColorBoxStepFinal backgroundColor='#CCF1D6'><StepTitle>Stønader vi er <TextColor textColor='#06893A'>ganske sikre</TextColor> på at du har rett på</StepTitle></ColorBoxStepFinal>
-                <ColorLittleBoxStepFinal backgroundColor='#94C6F3'><StepTitle>Idag</StepTitle></ColorLittleBoxStepFinal>
-                <ColorBoxStepFinal backgroundColor='#FFECCC'><StepTitle>Stønader vi er <TextColor textColor='#F9BE26'>mindre sikre</TextColor> på at du har rett på</StepTitle></ColorBoxStepFinal>
-                <ColorBoxStepFinal backgroundColor='#FFD3D3'><StepTitle>Stønader vi er <TextColor textColor='#BA3A26'>ganske sikre</TextColor> på at du <TextColor textColor='#BA3A26'>ikke</TextColor> har rett på</StepTitle></ColorBoxStepFinal>
-                <ColorBoxStepFinal backgroundColor='#94C6F3'><StepTitle><TextColor textColor='#0067C5'>Informasjon</TextColor> som kan være relevant for deg</StepTitle></ColorBoxStepFinal>
+                <ColorBoxStepFinal backgroundColor='#CCF1D6'><StepTitle>Søknader vi er <TextColor textColor='#06893A'>ganske sikre</TextColor> på at du har rett på</StepTitle>
+                {results.certainBenefits.map((benefit, index) => (
+                <p key={index}>{benefit}</p>
+                ))}
+                </ColorBoxStepFinal>
+
+                <ColorBoxStepFinal backgroundColor='#FFECCC'><StepTitle>Søknader vi er <TextColor textColor='#F9BE26'>mindre sikre</TextColor> på at du har rett på</StepTitle>
+                {results.uncertainBenefits.map((benefit, index) => (
+                <p key={index}>{benefit}</p>
+                ))}
+                </ColorBoxStepFinal>
+
+                <ColorBoxStepFinal backgroundColor='#FFD3D3'><StepTitle>Søknader vi er <TextColor textColor='#BA3A26'>ganske sikre</TextColor> på at du <TextColor textColor='#BA3A26'>ikke</TextColor> har rett på</StepTitle>
+                {results.noBenefits.map((benefit, index) => (
+                <p key={index}>{benefit}</p>
+                ))}
+                </ColorBoxStepFinal>
+                <ColorBoxStepFinal backgroundColor='#94C6F3'><StepTitle><TextColor textColor='#0067C5'>Informasjon</TextColor> som kan være relevant for deg</StepTitle>
+                {results.relevantInfo.map((benefit, index) => (
+                <p key={index}>{benefit}</p>
+                ))}
+                </ColorBoxStepFinal>
 
               </>
             }
