@@ -249,7 +249,7 @@ const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeS
         <StepTitle><b>Velg livssituasjon</b></StepTitle>
         <HospitalFillIcon className="stepIcon" title="a11y-title" color={activeStep >= 2 ? "Pink" : "gray"} fontSize="1.5rem" />
         {activeStep > 2 && <CheckMark><CheckmarkCircleFillIcon color='green' fontSize="2rem"></CheckmarkCircleFillIcon></CheckMark>}
-        <animated.div style={{...springs}}>
+        <animated.div style={{...springs}} onClick={(e) => e.stopPropagation()}>
           <div ref={boxRef}>
             <Bold>Velg livshendelser som reflekterer din livssituasjon</Bold>
             <StepText>
