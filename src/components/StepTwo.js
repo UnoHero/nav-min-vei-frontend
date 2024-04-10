@@ -15,6 +15,9 @@ import { CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, Txt, CheckMark } from "../components/styledComponents"
 
 
+import { useLifeEvent } from '../contexts/LifeEventContext';
+
+
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between; // Plasserer elementer med lik avstand mellom hverandre
@@ -172,7 +175,9 @@ const Chosentext = styled.div `
 
 `
 
-const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeStep, getLife }) => {
+const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeStep }) => {
+  const { updateLifeEvent } = useLifeEvent();
+
   const [boxStates, setBoxStates] = useState({
     box1: false,
     box2: false,
@@ -183,17 +188,17 @@ const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeS
     box7: false,
   });
 
-  useEffect(() => {
-    getLife(boxStates)
-
-  }, [boxStates])
-
   const handleCheckboxChange = (e, id) => {
+    // Update the local state
     setBoxStates(prevState => ({
       ...prevState,
       [id]: e.target.checked,
     }));
+
+    // Update the global state in the context
+    updateLifeEvent(id, e.target.checked);
   };
+
 
   const handleTextFetch = (id) => {
     // Replace this with your logic to fetch text based on the ID

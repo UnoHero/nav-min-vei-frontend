@@ -21,6 +21,8 @@ import StepOne from '../components/StepOne';
 import StepTwo from '../components/StepTwo';
 import StepThree from "../components/StepThree";
 import StepFinal from "../components/StepFinal";
+
+import { LifeEventProvider } from '../contexts/LifeEventContext';
  
 
 // Styles through js
@@ -81,6 +83,7 @@ const Info = () => {
   // The "HTML" part
   return (
     <>
+    <LifeEventProvider>
     <Body>
       {/* Navigation bar */}
       <Navbar />
@@ -170,6 +173,7 @@ const Info = () => {
       </MainContent>
       <Footer />
     </Body>
+    </LifeEventProvider>
     </>
   );
 };
