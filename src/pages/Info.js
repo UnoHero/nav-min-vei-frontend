@@ -52,7 +52,7 @@ const Info = () => {
     setActiveStep(step)
     setTimeout(() => {
       window.scrollTo({
-        top:ref.current.offsetTop - 20,
+        top:ref?.current?.offsetTop - 20,
         behavior: "smooth"
       })
     }, 0);
@@ -130,6 +130,7 @@ const Info = () => {
           <div><Circle onClick={(e) => nextStepButton(e, 2, stepOneRef)} color={activeStep >= 2 ? true : false}>2</Circle><Line></Line></div>
           <StepTwo
             getLife={getLife}
+            stepOneRef={stepOneRef}
             stepTwoRef={stepTwoRef}
             stepThreeRef={stepThreeRef}
             setActiveStep={setActiveStep}

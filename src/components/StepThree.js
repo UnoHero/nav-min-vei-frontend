@@ -12,7 +12,7 @@ const StepThree = ({stepTwoRef, stepThreeRef, stepFourRef, nextStepButton, activ
 
     return(
         <>
-        <TextBox cursor={activeStep === 0 ?  "default" : "pointer"} ref={stepThreeRef} onClick={(e) => {nextStepButton(e, 3, stepThreeRef)}}>
+        <TextBox cursor={activeStep === 3 ?  "default" : "pointer"} ref={stepThreeRef} onClick={(e) => {nextStepButton(e, 3, stepTwoRef)}}>
             <StepHeader>Steg 3 av 3</StepHeader>
             <StepTitle>Spørsmål til min livssituasjon</StepTitle>
             {/* The icon beside the part header. Icon of 2 chat bubles */}
@@ -47,11 +47,11 @@ const StepThree = ({stepTwoRef, stepThreeRef, stepFourRef, nextStepButton, activ
         <NextStepButton onClick={(e) => nextStepButton(e, 4, stepFourRef)}>Gå Videre</NextStepButton>
 
       </div>
-              </>
-            }
-          </TextBox>
-        
-        </>
+          </>
+        }
+      </TextBox>
+    
+    </>
     )
 }
 

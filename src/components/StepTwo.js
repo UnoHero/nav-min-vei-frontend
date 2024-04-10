@@ -206,7 +206,7 @@ const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeS
 
 
   useEffect(() => {
-      setBoxHeight(boxRef.current?.offsetHeight)
+      setBoxHeight(boxRef?.current?.offsetHeight)
   }, [boxRef])
 
   useEffect(() => {
@@ -244,21 +244,12 @@ const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeS
 
   return (
     <>
-      <TextBox
-        cursor={activeStep === 1 ?  "default" : "pointer"}
-        ref={stepTwoRef}
-        onClick={(e) => {
-          if(activeStep !== 2){
-            nextStepButton(e, 2, stepOneRef);
-
-          }
-        }}
-      >
+      <TextBox cursor={activeStep === 2 ?  "default" : "pointer"} ref={stepTwoRef} onClick={(e) => nextStepButton(e, 2, stepOneRef)}>
         <StepHeader>Steg 2 av 3</StepHeader>
         <StepTitle><b>Velg livssituasjon</b></StepTitle>
         <HospitalFillIcon className="stepIcon" title="a11y-title" color={activeStep >= 2 ? "Pink" : "gray"} fontSize="1.5rem" />
         {activeStep > 2 && <CheckMark><CheckmarkCircleFillIcon color='green' fontSize="2rem"></CheckmarkCircleFillIcon></CheckMark>}
-        <animated.div style={{...springs}}>
+        <animated.div style={{...springs}} onClick={(e) => e.stopPropagation()}>
           <div ref={boxRef}>
             <Bold>Velg livshendelser som reflekterer din livssituasjon</Bold>
             <StepText>
