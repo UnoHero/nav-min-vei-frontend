@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Radio, RadioGroup } from "@navikt/ds-react";
+import { useLifeEvent } from '../contexts/LifeEventContext';
+
 
 const DynamicQuestions = ({ onAnswersUpdate }) => {
-    // Define all potential questions
-    const allQuestions = {
+    const { lifeEvents } = useLifeEvent();
+        const allQuestions = {
         1: { id: 1, question: "Har du eller skal du pleie noen som er syke eller skadet?", options: ["Ja", "Nei"] },
         2: { id: 2, question: "Hvem er den du pleier for?", options: ["Barn", "Ektefelle", "Samboer", "Annet"] },
         3: { id: 3, question: "Bor den du pleier i ditt eller sitt personlige hjem?", options: ["Ja", "Nei"] },
@@ -17,61 +19,39 @@ const DynamicQuestions = ({ onAnswersUpdate }) => {
     const [answers, setAnswers] = useState({});
 
     useEffect(() => {
-        if (typeof onAnswersUpdate === 'function') {
-            onAnswersUpdate(answers);
-        }
-    }, [answers, onAnswersUpdate]);
+        const newActiveQuestionIds = determineQuestionsToShow(lifeEvents);
+        setActiveQuestionIds(newActiveQuestionIds);
+      }, [lifeEvents]);
+      
 
     const handleAnswerChange = (questionId, value) => {
         setAnswers(prevAnswers => {
-            const newAnswers = { ...prevAnswers, [questionId]: value };
-            updateQuestions(questionId, value);
-            return newAnswers;
+            return { ...prevAnswers, [questionId]: value };
         });
     };
 
-    const updateQuestions = (questionId, answer) => {
-        let newActiveQuestions = [...activeQuestionIds];
-    
-        if (questionId === 1) {
-            // If they are caring for someone, we need to determine the next question
-            if (answer === "Ja") {
-                // If 'Yes', add the question about whom they are caring for
-                newActiveQuestions = [1, 2];
-            } else {
-                // If 'No', we don't need to add more questions
-                newActiveQuestions = [1];
-            }
-        } else if (questionId === 2) {
-            // After answering whom they care for, ask if the cared for person lives with them
-            newActiveQuestions = [1, 2, 3];
-        } else if (questionId === 3) {
-            // After answering where the person lives, ask if the person is in the final stages of life
-            newActiveQuestions = [1, 2, 3, 4];
-        } else if (questionId === 4) {
-            // Finally, ask if they're performing particularly burdensome tasks
-            newActiveQuestions = [1, 2, 3, 4, 5];
-        }
-    
-        // Update the active question IDs
-        setActiveQuestionIds(newActiveQuestions);
-    };
     useEffect(() => {
-        // Map over the activeQuestionIds to get the answers in order
-        const currentAnswers = activeQuestionIds.map(id => ({
-            questionId: id,
-            answer: answers[id] || '' // If no answer is given yet, default to an empty string
-        }));
-    
-        // Log the current answers to the console
-        console.log(currentAnswers);
-    
-        // Call the onAnswersUpdate function if it's provided
-        if (typeof onAnswersUpdate === 'function') {
-            onAnswersUpdate(currentAnswers);
+        // Update the active question IDs based on the state of the boxes
+        const newActiveQuestionIds = determineQuestionsToShow(lifeEvents);
+        setActiveQuestionIds(newActiveQuestionIds);
+    }, [lifeEvents]);
+
+    const determineQuestionsToShow = (boxStates) => {
+        let questionIds = [];
+        if (boxStates.box1) {
+          // If box1 is checked, show specific questions related to it
+          questionIds.push(1, 2); // Add question IDs related to box1
         }
-    }, [answers, activeQuestionIds, onAnswersUpdate]);
-    
+        // Repeat for other boxes
+        if (boxStates.box2) {
+          questionIds.push(3, 4); // Add question IDs related to box2
+        }
+        // ... add conditions for other boxes as needed ...
+      
+        return questionIds;
+      };
+      
+
     
     
 

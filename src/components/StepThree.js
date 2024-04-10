@@ -6,10 +6,12 @@ import { Heading } from "@navikt/ds-react";
 
 // Styles thrue js
 import { TextBox, StepTitle, StepHeader, StepText, NextStepButton, GreenButton, CheckMark } from "../components/styledComponents"
+import { useLifeEvent } from '../contexts/LifeEventContext';
 import DynamicQuestions from './DynamicQuestions';
 
-const StepThree = ({stepTwoRef, stepThreeRef, stepFourRef, nextStepButton, activeStep, setActiveStep }) => {
-
+const StepThree = ({stepTwoRef, stepThreeRef, stepFourRef, nextStepButton, activeStep, setActiveStep, getLifeAnswers }) => {
+  const { lifeEvents } = useLifeEvent();
+  console.log(getLifeAnswers())
     return(
         <>
         <TextBox cursor={activeStep === 3 ?  "default" : "pointer"} ref={stepThreeRef} onClick={(e) => {nextStepButton(e, 3, stepTwoRef)}}>
@@ -39,7 +41,10 @@ const StepThree = ({stepTwoRef, stepThreeRef, stepFourRef, nextStepButton, activ
         </Heading>
         <br/><br/>
         <div onClick={(e) => e.stopPropagation()}>
-                <DynamicQuestions></DynamicQuestions>
+        <DynamicQuestions 
+        lifeAwnsers={getLifeAnswers} 
+        stepTwoBoxStates={lifeEvents} // Pass lifeEvents here
+    />
               </div>
                 <br/><br/>
         {/* Moves the user to the next part */}
