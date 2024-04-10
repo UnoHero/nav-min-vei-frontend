@@ -1,7 +1,7 @@
 // Info The site were we get information, the user can answer questions and more
 
 // Imports
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // Styled wil let you make styles(css) in a react component.
 import styled from 'styled-components';
 // CSS
@@ -22,11 +22,11 @@ import StepTwo from '../components/StepTwo';
 import StepThree from "../components/StepThree";
 import StepFinal from "../components/StepFinal";
 
-import { LifeEventProvider } from '../contexts/LifeEventContext';
- 
 
 // Styles through js
 import { Body, MainContent, Circle, TextBox, Line, List, Item } from "../components/styledComponents"
+
+import { useLifeEvent } from "../contexts/LifeEventContext";
 
 // Component for each box next to Stepper steps
 
@@ -48,6 +48,8 @@ const Info = () => {
   const stepThreeRef = useRef(null);
   const stepFourRef = useRef(null);
 
+  const { updateUser, user } = useLifeEvent();
+  
   // Moves the user to the next part/question
   const nextStepButton = (e, step, ref) => {
     e.stopPropagation()
@@ -66,11 +68,16 @@ const Info = () => {
   const  handleChange = (number) => {
     setId(number)
   }
-
+  
   const getPersonData = async () => {
     const response = await fetch(`http://localhost:3000/user/${id}`)
-    setData (await response.json())
+    
+    updateUser(await response.json())
   }
+
+  useEffect(() => {
+    console.log(user)
+  }, [user])
 
   const getLife = async (boxes) => {
     setStepTwoBoxStates(boxes)
@@ -83,7 +90,6 @@ const Info = () => {
   // The "HTML" part
   return (
     <>
-    <LifeEventProvider>
     <Body>
       {/* Navigation bar */}
       <Navbar />
@@ -173,7 +179,6 @@ const Info = () => {
       </MainContent>
       <Footer />
     </Body>
-    </LifeEventProvider>
     </>
   );
 };

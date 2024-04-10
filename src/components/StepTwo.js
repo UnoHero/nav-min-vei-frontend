@@ -196,7 +196,7 @@ const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeS
     }));
 
     // Update the global state in the context
-    updateLifeEvent(id, e.target.checked);
+    updateLifeEvent(id, e.target.checked, "boxStates");
   };
 
 
