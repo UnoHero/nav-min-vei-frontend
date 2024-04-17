@@ -13,7 +13,7 @@ import { useLifeEvent } from "../contexts/LifeEventContext";
 
 const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
 
-  const { setFirstName, setMiddlename, setLastName, user, setPostalCode, setCountry} = useLifeEvent();
+  const { setFirstName, setMiddleName, setLastName, user, setPostalCode, setCountry} = useLifeEvent();
 
   const [countries, setCountries] = useState([]);
   const [grossIncome, setGrossIncome] = useState();
@@ -21,7 +21,10 @@ const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
   const [numberOfChildren, setNumberOfChildren] = useState(0);
 
   const whichFirstName = () => {
-    return user?.firstName?.customFirstName 
+    if(user?.firstName?.customFirstName === ""){
+      return user?.firstName.customFirstName
+    }
+    return user?.firstName?.customFirstName
     || user?.firstName?.skatt 
     || user?.firstName?.aaReg 
     || user?.firstName?.folkReg
@@ -29,21 +32,30 @@ const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
   }
 
   const whichMiddleName = () => {
-    return user?.middleName?.customMiddlename
-    || user?.firstName?.skatt 
-    || user?.firstName?.aaReg 
-    || user?.firstName?.folkReg
+    if(user?.middleName?.customMiddleName === ""){
+      return user?.middleName.customMiddleName
+    }
+    return user?.middleName?.customMiddleName
+    || user?.middleName?.skatt 
+    || user?.middleName?.aaReg 
+    || user?.middleName?.folkReg
     || ""
   }
 
   const whichLastName = () => {
-    return user?.lastName?.customLastname 
+    if(user?.lastName?.customLastName === ""){
+      return user?.firstName.customLastName
+    }
+    return user?.lastName?.customLastName 
     || user?.lastName?.skatt
     || user?.lastName?.aaReg
     || user?.lastName?.folkReg
   }
 
   const whichPostalCode = () => {
+    if(user?.firstName?.customPostalCode === ""){
+      return user?.firstName.customPostalCode
+    }
     return user?.postalCode?.customPostalCode
     || user?.postalCode?.skatt
     || user?.postalCode?.aaReg
@@ -51,10 +63,13 @@ const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
   }
 
   const whichCountry = () => {
-    return user?.country.customCountry
-    || user?.country.skatt
-    || user?.country.aaReg
-    || user?.country.folkReg
+    if(user?.country?.customCountry === ""){
+      return user?.country?.customCountry
+    }
+    return user?.country?.customCountry
+    || user?.country?.skatt
+    || user?.country?.aaReg
+    || user?.country?.folkReg
   }
   
   const dateOfBirth = () => {
@@ -201,7 +216,7 @@ const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
             <h4>Personalia</h4>
             <div className="stepOneField">
               <TextField label="Fornavn" value={whichFirstName()} onChange={(e) => {setFirstName(e.target.value)}}/>
-              <TextField label="Mellomnavn" value={whichMiddleName()} onChange={(e) => {setMiddlename(e.target.value)}} />
+              <TextField label="Mellomnavn" value={whichMiddleName()} onChange={(e) => {setMiddleName(e.target.value)}} />
               <TextField label="EtterNavn" value={whichLastName()} onChange={(e) => {setLastName(e.target.value)}}/>
               <div className="dateField">
                 <TextField label="Hvor gammel er du?" type="date" defaultValue={dateOfBirth()}/>
@@ -213,7 +228,7 @@ const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
                 <TextField 
                   label="Postnummer" 
                   value={whichPostalCode()}
-                  onChange={(e) => {setPostalCode(e.target.value); PostalCode()}}  
+                  onChange={(e) => {setPostalCode(e.target.value); PostalCode(e)}}  
                   inputProps={{ 
                     maxLength: 4, 
                     inputMode: 'numeric', // Allow only numeric input
