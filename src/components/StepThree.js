@@ -27,7 +27,6 @@ const StepThree = ({stepTwoRef, stepThreeRef, stepFourRef, nextStepButton, activ
             {activeStep > 3 && <CheckMark><CheckmarkCircleFillIcon color='green' fontSize="2rem"></CheckmarkCircleFillIcon></CheckMark>}
             {activeStep === 3 && 
               <>
-                <StepHeader>Test steg 3</StepHeader>
                   <StepText>
                   Under ser du livshendelsene du har valgt, og tilhørende spørsmål du må svare på for at vi skal kunne beregne hva du kan ha krav på.
               </StepText>
