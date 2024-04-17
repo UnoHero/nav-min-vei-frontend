@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 import { DownloadIcon, PrinterSmallIcon } from '@navikt/aksel-icons';
 
+// Import Svg
+import NavLogo from '../Pictures/FinalStep/NavLogo.svg';
+import PleiePenger from '../Pictures/FinalStep/PleiePenger.svg';
+
 // Styles thrue js
 import { TextBox, StepTitle, StepText, } from "../components/styledComponents"
+import { CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 
-import { useLifeEvent } from '../contexts/LifeEventContext';
-
+// Css components for the colored header boxes
 
 const ColorBoxStepFinal = styled.div `
 background-color: ${(props) => props.backgroundColor || 'white'};
@@ -34,74 +38,73 @@ color: ${(props) => props.textColor || 'black'};
 white-space: nowrap;
 `;
 
+// Components for boxes beneath  the colored headers
 
+// Text for which criteria you fulfill
+const UnderText = styled.h1`
+  color: black;
+  font-size: 16px;
+  text-align: left;
+  margin-left: 3%;
+`;
 
+// The whole box
+const FinalBox = styled.div`
+  width: 200px;
+  height: 300px; 
+  background-color: #ffffff; 
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+  margin-bottom: 5%;
+  padding-left: 10px;
+  padding-right: 20px;
+`;
 
+// Grid container inside The box that contains the Text
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns with equal width */
+  grid-gap: 20px; /* Gap between grid items */
+`;
+
+// Styled component for each grid item
+const GridItem = styled.div`
+  display: flex; /* Use flexbox */
+  align-items: center; /* Center items vertically */
+`;
+
+// The text on the top that says which type of benefit it is
+const HeadText = styled.p`
+font-size: 12px;
+padding: 2%;
+white-space: nowrap;
+margin-right: 2%;
+`;
+
+// The big image in the middle
+const BigImage = styled.img`
+
+`;
+
+// The image that shows which company offers this benefit
+const FinalBoxIcon = styled.img`
+padding-left: 20%;
+margin-top: 6%;
+margin-left: 5%;
+`;
+
+const gridItems = [
+  { icon: '📱', text: 'Mobile' },
+  { icon: '💻', text: 'Desktop' },
+  { icon: '🖥️', text: 'Laptop' },
+  { icon: '📺', text: 'TV' }
+];
 
   
 
-const StepFinal = ({ stepFourRef, nextStepButton, activeStep }) => {
-  const { lifeEvents } = useLifeEvent();
-  // Replace with actual data from DynamicQuestions
-  const answers = {}; 
-
-  const getResults = () => {
-    let results = {
-      certainBenefits: [], 
-      uncertainBenefits: [], 
-      noBenefits: [],
-      relevantInfo: []
-    };
-
-    // Logic for box1
-    if (lifeEvents.box1) {
-      if (answers[1] === "Ja") {
-        results.certainBenefits.push("Barnebidrag");
-      } else {
-        results.uncertainBenefits.push("Barnebidrag");
-      }
-    }
-
-    // Logic for box2
-    if (lifeEvents.box2) {
-      results.relevantInfo.push("Informasjon om barns helse");
-    }
-
-    // Logic for box3
-    if (lifeEvents.box3) {
-      results.relevantInfo.push("Jobbsøknadshjelp");
-      results.uncertainBenefits.push("Arbeidsledighetstrygd");
-    }
-
-    // Logic for box4
-    if (lifeEvents.box4) {
-      results.certainBenefits.push("Flyttehjelp");
-      results.relevantInfo.push("Bosituasjonsråd");
-    }
-
-    // Logic for box5
-    if (lifeEvents.box5) {
-      results.certainBenefits.push("Støtte til nye bedrifter");
-      results.uncertainBenefits.push("Investorinformasjon");
-    }
-
-    // Logic for box6
-    if (lifeEvents.box6) {
-      results.relevantInfo.push("Frivillighetsstøtte");
-    }
-
-    // Logic for box7
-    if (lifeEvents.box7) {
-      results.certainBenefits.push("Begravelsesstønad");
-      results.noBenefits.push("Arveavgiftsfritak");
-    }
-
-    // Add further logic as per the need
-
-    return results;
-  };
-
-  const results = getResults();
+const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
+  const navText = 'NAV';
+  const kommuneText = 'KOMMUNE';
+  const husbankenText = 'HUSBANKEN';
 
     return(
         <>
@@ -127,29 +130,29 @@ const StepFinal = ({ stepFourRef, nextStepButton, activeStep }) => {
                   <br/>
                  databaser via MineData, samt svar du har oppgitt i veilederen. </StepText>
 
-                <ColorBoxStepFinal backgroundColor='#CCF1D6'><StepTitle>Søknader vi er <TextColor textColor='#06893A'>ganske sikre</TextColor> på at du har rett på</StepTitle>
-                {results.certainBenefits.map((benefit, index) => (
-                <p key={index}>{benefit}</p>
-                ))}
-                </ColorBoxStepFinal>
+                <ColorBoxStepFinal backgroundColor='#CCF1D6'><StepTitle>Stønader vi er <TextColor textColor='#06893A'>ganske sikre</TextColor> på at du har rett på</StepTitle></ColorBoxStepFinal>
 
-                <ColorBoxStepFinal backgroundColor='#FFECCC'><StepTitle>Søknader vi er <TextColor textColor='#F9BE26'>mindre sikre</TextColor> på at du har rett på</StepTitle>
-                {results.uncertainBenefits.map((benefit, index) => (
-                <p key={index}>{benefit}</p>
-                ))}
-                </ColorBoxStepFinal>
+                <ColorLittleBoxStepFinal backgroundColor='#94C6F3'><StepTitle>Idag</StepTitle></ColorLittleBoxStepFinal>
+                 <FinalBox>
+                    <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
+                    <BigImage src={PleiePenger} alt='Pleie penger logo' />
+                    <UnderText>Pleiepenger ved livets sluttfase</UnderText>
+                    <GridContainer>
+                    <GridItem>
+                      <CheckmarkCircleFillIcon color='green' fontSize="2rem" />
+                      <StepText>Medlem av folketrygden</StepText>
+                    </GridItem>
+                    <GridItem>
+                      <CheckmarkCircleFillIcon color='green' fontSize="2rem" />
+                      <StepText>Another Step</StepText>
+                    </GridItem>
+                    {/* Add more GridItem components for additional rows */}
+                  </GridContainer>
+                  </FinalBox>    
 
-                <ColorBoxStepFinal backgroundColor='#FFD3D3'><StepTitle>Søknader vi er <TextColor textColor='#BA3A26'>ganske sikre</TextColor> på at du <TextColor textColor='#BA3A26'>ikke</TextColor> har rett på</StepTitle>
-                {results.noBenefits.map((benefit, index) => (
-                <p key={index}>{benefit}</p>
-                ))}
-                </ColorBoxStepFinal>
-                <ColorBoxStepFinal backgroundColor='#94C6F3'><StepTitle><TextColor textColor='#0067C5'>Informasjon</TextColor> som kan være relevant for deg</StepTitle>
-                {results.relevantInfo.map((benefit, index) => (
-                <p key={index}>{benefit}</p>
-                ))}
-                </ColorBoxStepFinal>
-
+                <ColorBoxStepFinal backgroundColor='#FFECCC'><StepTitle>Stønader vi er <TextColor textColor='#F9BE26'>mindre sikre</TextColor> på at du har rett på</StepTitle></ColorBoxStepFinal>
+                <ColorBoxStepFinal backgroundColor='#FFD3D3'><StepTitle>Stønader vi er <TextColor textColor='#BA3A26'>ganske sikre</TextColor> på at du <TextColor textColor='#BA3A26'>ikke</TextColor> har rett på</StepTitle></ColorBoxStepFinal>
+                <ColorBoxStepFinal backgroundColor='#94C6F3'><StepTitle><TextColor textColor='#0067C5'>Informasjon</TextColor> som kan være relevant for deg</StepTitle></ColorBoxStepFinal>
               </>
             }
           </TextBox>
