@@ -13,7 +13,7 @@ import { useLifeEvent } from "../contexts/LifeEventContext";
 
 const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
 
-  const { setFirstName, setMiddlename, setLastName, user } = useLifeEvent();
+  const { setFirstName, setMiddlename, setLastName, user, setPostalCode, setCountry} = useLifeEvent();
 
   const [countries, setCountries] = useState([]);
   const [grossIncome, setGrossIncome] = useState();
@@ -37,13 +37,24 @@ const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
   }
 
   const whichLastName = () => {
-    if (user?.lastName?.skattReg) {
-      return user?.lastName?.skattReg
-    } else if (user?.lastName?.aaReg) {
-      return user?.lastName?.aaReg
-    } else if (user?.lastName?.folkReg) {
-      return user?.lastName?.folkReg
-    }
+    return user?.lastName?.customLastname 
+    || user?.lastName?.skattReg
+    || user?.lastName?.aaReg
+    || user?.lastName?.folkReg
+  }
+
+  const whichPostalCode = () => {
+    return user?.postalCode?.customPostalCode
+    || user?.postalCode?.skattReg
+    || user?.postalCode?.aaReg
+    || user?.postalCode?.folkReg
+  }
+
+  const whichCountry = () => {
+    return user?.country.customCountry
+    || user?.country.skattReg
+    || user?.country.aaReg
+    || user?.country.folkReg
   }
   
   const dateOfBirth = () => {
@@ -201,7 +212,8 @@ const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
               <div className="zipCodeField">
                 <TextField 
                   label="Postnummer" 
-                  onChange={PostalCode}  
+                  value={whichPostalCode()}
+                  onChange={(e) => {setPostalCode(e.target.value); PostalCode()}}  
                   inputProps={{ 
                     maxLength: 4, 
                     inputMode: 'numeric', // Allow only numeric input
@@ -211,7 +223,7 @@ const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
               </div>
               <div className="countryForm">
                 <label htmlFor="countrySelect">Land</label>
-                <select id="countrySelect">
+                <select id="countrySelect" value={whichCountry()} onChange={(e) => setCountry(e.target.value)}>
                   <option value="">Select a country</option>
                   {countries.sort().map((country, index) => (
                     <option key={index} value={country}>{country}</option>

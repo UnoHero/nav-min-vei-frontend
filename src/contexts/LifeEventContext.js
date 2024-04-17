@@ -38,8 +38,16 @@ export const LifeEventProvider = ({ children }) => {
     setUser(prev => ({...prev, lastName: {...prev.lastName, customLastName: lastName}}))
   }
 
+  const setPostalCode = postalCode => {
+    setUser(prev => ({...prev, postalCode: {...prev.postalCode, customPostalCode: postalCode}}))
+  }
+
+  const setCountry = country => {
+    setUser(prev => ({...prev, country: {...prev.country, customCountry: country}}))
+  }
+
   return (
-    <LifeEventContext.Provider value={{ lifeEvents, updateLifeEvent, updateUser, user , setFirstName, setMiddleName}}>
+    <LifeEventContext.Provider value={{ lifeEvents, updateLifeEvent, updateUser, user , setFirstName, setMiddleName, setLastName, setPostalCode, setCountry}}>
       {children}
     </LifeEventContext.Provider>
   );
