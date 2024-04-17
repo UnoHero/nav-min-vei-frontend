@@ -265,7 +265,7 @@ const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeS
 
             <BlueBox>
               <Icon><Round><InformationIcon /></Round> </Icon>
-              <StepText></StepText>
+              <StepText>Markerte kategorier i gult er kun foreslåtte livshendelser, du kan selv velge de livshendelsene som passer deg.</StepText>
             </BlueBox>
 
             <BoxContainer>
