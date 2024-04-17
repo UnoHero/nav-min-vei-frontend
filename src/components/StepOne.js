@@ -22,7 +22,7 @@ const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
 
   const whichFirstName = () => {
     return user?.firstName?.customFirstName 
-    || user?.firstName?.skattReg 
+    || user?.firstName?.skatt 
     || user?.firstName?.aaReg 
     || user?.firstName?.folkReg
     || ""
@@ -30,7 +30,7 @@ const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
 
   const whichMiddleName = () => {
     return user?.middleName?.customMiddlename
-    || user?.firstName?.skattReg 
+    || user?.firstName?.skatt 
     || user?.firstName?.aaReg 
     || user?.firstName?.folkReg
     || ""
@@ -38,21 +38,21 @@ const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
 
   const whichLastName = () => {
     return user?.lastName?.customLastname 
-    || user?.lastName?.skattReg
+    || user?.lastName?.skatt
     || user?.lastName?.aaReg
     || user?.lastName?.folkReg
   }
 
   const whichPostalCode = () => {
     return user?.postalCode?.customPostalCode
-    || user?.postalCode?.skattReg
+    || user?.postalCode?.skatt
     || user?.postalCode?.aaReg
     || user?.postalCode?.folkReg
   }
 
   const whichCountry = () => {
     return user?.country.customCountry
-    || user?.country.skattReg
+    || user?.country.skatt
     || user?.country.aaReg
     || user?.country.folkReg
   }
