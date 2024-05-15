@@ -19,6 +19,8 @@ import { useLifeEvent } from '../contexts/LifeEventContext';
 
 
 const ButtonContainer = styled.div`
+  margin: 40px;
+  height: 100px;
   display: flex;
   justify-content: space-between; // Plasserer elementer med lik avstand mellom hverandre
 `;
@@ -26,15 +28,14 @@ const ButtonContainer = styled.div`
 const LastStepButton = styled.button`
   border-radius: 4px;
   border: 3px solid #0067C5; /* Blue border */
-  padding: 12px 20px;
+  background-color: white;
   color: #0067C5;
   cursor: pointer;
-  margin-top: 15%;
-  margin-bottom: 5%;
-  position: relative;
-  background: white;
-  font-weight: bold;
-  
+  height: 50px;  
+  padding: 12px 20px;
+  margin: 20px 20px 0 0;
+  box-sizing: borde-box;
+
   &:hover {
     background-color: #0067C5;
     color: white;
@@ -169,10 +170,8 @@ align-items: flex-start; /* Align children to the left */
 
 
 const Chosentext = styled.div `
-  position: relative;
-  left: 50%;
-  top: 70px;
-
+  float: right;
+  margin: 20px;
 `
 
 const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeStep }) => {
@@ -422,9 +421,12 @@ const StepTwo = ({ stepThreeRef, stepOneRef, stepTwoRef, nextStepButton, activeS
 
   </BoxContainer>
   <Chosentext>Du har valgt {Object.values(boxStates).filter(checked => checked).length} av 7 mulige livshendelser.</Chosentext>
+  <br></br>
   <ButtonContainer>
-  <NextStepButton onClick={(e) => nextStepButton(e, 3, stepThreeRef)}>Neste Steg</NextStepButton>
-  <LastStepButton onClick={(e) => nextStepButton(e, 1, stepOneRef)}>Forrige Steg</LastStepButton>
+    <div>
+    <NextStepButton onClick={(e) => nextStepButton(e, 3, stepThreeRef)}>Neste Steg</NextStepButton>
+    </div>
+    <LastStepButton onClick={(e) => nextStepButton(e, 1, stepOneRef)}>Forrige Steg</LastStepButton>
   </ButtonContainer>
   </div>
   </animated.div>
