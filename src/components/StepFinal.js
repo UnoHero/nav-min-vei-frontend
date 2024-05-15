@@ -9,6 +9,8 @@ import Kvalifiserings_programmet from "../Pictures/FinalStep/Kvalifiserings-prog
 import Arbeidstrening from "../Pictures/FinalStep/Arbeidstrening.svg"
 import Avklaring from "../Pictures/FinalStep/Avklaring.svg"
 import Arbeidsavklaring from "../Pictures/FinalStep/Arbeidsavklaring.svg"
+import Tree from "../Pictures/FinalStep/Tree.svg"
+import Arbeidsledighet from "../Pictures/FinalStep/Arbeidsledighet.svg"
 
 // Styles thrue js
 import { TextBox, StepTitle, StepText, } from "../components/styledComponents"
@@ -66,8 +68,10 @@ const FinalBox = styled.div`
 
 // Grid container inside The box that contains the Text
 const GridContainer = styled.div`
+  position: relative;
+  left: -20px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two columns with equal width */
+  grid-template-columns: repeat(3, 1fr); /* Two columns with equal width */
   grid-gap: 20px; /* Gap between grid items */
 `;
 
@@ -87,7 +91,6 @@ margin-right: 2%;
 
 // The big image in the middle
 const BigImage = styled.img`
-
 `;
 
 // The image that shows which company offers this benefit
@@ -114,10 +117,19 @@ const ListIcon = styled.div`
   left: -20%;
   font-size: 20px;
 `
-
 const ListText = styled.div`
   font-size: 1rem;
   margin: 10px 0;
+`
+
+const InfoTitle = styled.div`
+  font-size: 2rem;
+`
+const InfoText = styled.div`
+  font-size: 1.4rem;
+`
+const ImageDiv = styled.div`
+  margin: auto;
 `
 
 const gridItems = [
@@ -373,6 +385,10 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
 
                 <ColorBoxStepFinal backgroundColor='#94C6F3'><StepTitle><TextColor textColor='#0067C5'>Informasjon</TextColor> som kan være relevant for deg</StepTitle></ColorBoxStepFinal>
 
+                <BigImage src={Tree}></BigImage>
+                <InfoTitle>Enkeltpersonsforetak</InfoTitle>
+                <InfoText>Du er interessert i å starte ditt eget firma. Da er det en rekke ting det er lurt for deg å ha kunnskap om tidlig i prosessen. Under finner du aktuell informasjon</InfoText>
+
                 <GridContainer>
                   <FinalBox>
                     <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
@@ -387,7 +403,13 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
                     <UnderText>Kurs for nye næringsdrivende</UnderText>
                     <ListText>Skatteetaten arrangerer kurs tilpasset deg som skal starte virksomhet. Helt gratis. Du kan velge mellom kurs for enkeltpersonforetak (ENK) eller aksjeselskap (AS).</ListText>
                   </FinalBox>
+                </GridContainer>
 
+                <BigImage src={Arbeidsledighet}></BigImage>
+                <InfoTitle>Arbeidsledighet</InfoTitle>
+                <InfoText>Du er blitt arbeidsledig, og vi forstår at det kan gi mange spørsmål. Under finner du mer informasjon om viktig informasjon som kan hjelpe deg på vei.</InfoText>
+
+                <GridContainer>
                   <FinalBox>
                     <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
                     <BigImage src={Lønnsgaranti} alt='Lønnsgaranti logo' />
