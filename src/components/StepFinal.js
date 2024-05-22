@@ -174,27 +174,6 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
 
                 <ColorLittleBoxStepFinal backgroundColor='#94C6F3'><StepTitle>Idag</StepTitle></ColorLittleBoxStepFinal>
                 <GridContainer>
-                  <FinalBox>
-                      <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
-                      <BigImage src={PleiePenger} alt='Pleie penger logo' />
-                      <UnderText>Pleiepenger ved livets sluttfase</UnderText>
-                      <List>
-                        <ListItem>
-                          <ListIcon>
-                            <CheckmarkCircleFillIcon color='green'/>
-                          </ListIcon>
-                          <ListText>Medlem av folketrygden</ListText>
-                        </ListItem>
-
-                        <ListItem>
-                          <ListIcon>
-                            <CheckmarkCircleFillIcon color='green'/>
-                          </ListIcon>
-                          <ListText>Another Stepe eee ee eeeeee e ee ee eee</ListText>
-                        </ListItem>
-                      </List>
-                    </FinalBox>   
-
                     <FinalBox>
                       <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
                       <BigImage src={Lønnsgaranti} alt='Pleie penger logo' />
@@ -220,6 +199,12 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
                         </ListItem>
                       </List>
                     </FinalBox>    
+
+                  </GridContainer>
+
+                  <ColorLittleBoxStepFinal backgroundColor='#94C6F3'><StepTitle>Senere</StepTitle></ColorLittleBoxStepFinal>
+                  
+                  <GridContainer>
 
                    <FinalBox>
                       <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
@@ -254,7 +239,7 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
                         </ListItem>
                       </List>
                     </FinalBox>
-                  </GridContainer>
+                </GridContainer>
 
                 <ColorBoxStepFinal backgroundColor='#FFECCC'><StepTitle>Stønader vi er <TextColor textColor='#F9BE26'>mindre sikre</TextColor> på at du har rett på</StepTitle></ColorBoxStepFinal>
 
