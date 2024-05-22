@@ -95,6 +95,12 @@ white-space: nowrap;
 margin-right: 2%;
 `;
 
+const HeadText2 = styled.p`
+font-size: 12px;
+white-space: nowrap;
+margin-right: 2%;
+`;
+
 // The big image in the middle
 const BigImage = styled.img`
 `;
@@ -255,7 +261,7 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
 
                 <GridContainer>
                   <FinalBox>
-                    <HeadText>Pengerstøtte, OPPFØLGINGOG<br></br>OG VEILEDNING  fra {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
+                    <HeadText2>Pengestøtte, oppfølging<br />og veiledning fra {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText2> 
                     <BigImage src={Kvalifiserings_programmet} alt='Kvalifiserings-programmet logo' />
                     <UnderText>Kvalifiserings-programmet</UnderText>
                     <List>
