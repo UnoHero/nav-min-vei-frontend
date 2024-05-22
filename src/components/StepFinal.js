@@ -58,10 +58,11 @@ const UnderText = styled.h1`
 // The whole box
 const FinalBox = styled.div`
   width: 200px;
-  
+  border-radius: 2px;
   background-color: #ffffff; 
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
-  margin-bottom: 5%;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1); 
+  margin-top: 20px;
+  margin-bottom: 20px;
   padding-left: 10px;
   padding-right: 20px;
 `;
@@ -119,7 +120,7 @@ const ListIcon = styled.div`
 `
 const ListText = styled.div`
   font-size: 1rem;
-  margin: 10px 0;
+  margin: 4px 0;
 `
 
 const InfoTitle = styled.div`
@@ -129,7 +130,8 @@ const InfoText = styled.div`
   font-size: 1.4rem;
 `
 const ImageDiv = styled.div`
-  margin: auto;
+  margin: 50px auto;
+  text-align: center;
 `
 
 const gridItems = [
@@ -370,9 +372,11 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
 
                 <ColorBoxStepFinal backgroundColor='#94C6F3'><StepTitle><TextColor textColor='#0067C5'>Informasjon</TextColor> som kan være relevant for deg</StepTitle></ColorBoxStepFinal>
 
-                <BigImage src={Tree}></BigImage>
-                <InfoTitle>Enkeltpersonsforetak</InfoTitle>
-                <InfoText>Du er interessert i å starte ditt eget firma. Da er det en rekke ting det er lurt for deg å ha kunnskap om tidlig i prosessen. Under finner du aktuell informasjon</InfoText>
+                <ImageDiv>
+                  <BigImage src={Tree}></BigImage>
+                  <InfoTitle>Enkeltpersonsforetak</InfoTitle>
+                  <InfoText>Du er interessert i å starte ditt eget firma. Da er det en rekke ting det er lurt for deg å ha kunnskap om tidlig i prosessen. Under finner du aktuell informasjon</InfoText>
+                </ImageDiv>
 
                 <GridContainer>
                   <FinalBox>
@@ -390,9 +394,11 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
                   </FinalBox>
                 </GridContainer>
 
-                <BigImage src={Arbeidsledighet}></BigImage>
-                <InfoTitle>Arbeidsledighet</InfoTitle>
-                <InfoText>Du er blitt arbeidsledig, og vi forstår at det kan gi mange spørsmål. Under finner du mer informasjon om viktig informasjon som kan hjelpe deg på vei.</InfoText>
+                <ImageDiv>
+                  <BigImage src={Arbeidsledighet}></BigImage>
+                  <InfoTitle>Arbeidsledighet</InfoTitle>
+                  <InfoText>Du er blitt arbeidsledig, og vi forstår at det kan gi mange spørsmål. Under finner du mer informasjon om viktig informasjon som kan hjelpe deg på vei.</InfoText>
+                </ImageDiv>
 
                 <GridContainer>
                   <FinalBox>
