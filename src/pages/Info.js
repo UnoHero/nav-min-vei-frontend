@@ -29,6 +29,45 @@ import { Body, MainContent, Circle, TextBox, Line, List, Item } from "../compone
 import { useLifeEvent } from "../contexts/LifeEventContext";
 
 // Component for each box next to Stepper steps
+const InfoBox = styled.div`
+  width: 230px;
+  height: 250px;
+  position: absolute;
+  top: 200px;
+  left: 6%;
+  background-color: white;
+  border-radius: 4px;
+`;
+
+const InfoBoxTitle = styled.h2`
+  margin: 40px auto 10px auto;
+  width: 150px;
+`;
+
+const InfoBoxDivider = styled.div`
+  margin: auto;
+  width: 150px;
+  height: 2px;
+  background-color: black;
+  border-radius: 4px;
+`
+
+const InfoBoxText = styled.h3`
+  box-sizing: border-box;
+  border: 3px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-size: 1.3rem;
+  color: #0067C5;
+
+  &:hover {
+    cursor: pointer;
+    box-sizing: border-box;
+    border-left: #0067C5 3px solid ;
+  }
+`
 
 // The Page
 const Info = () => {
@@ -47,6 +86,11 @@ const Info = () => {
   const stepTwoRef = useRef(null);
   const stepThreeRef = useRef(null);
   const stepFourRef = useRef(null);
+
+  const verySureRef = useRef(null);
+  const kindaSureRef = useRef(null)
+  const extremlySureRef = useRef(null)
+  const infoRef = useRef(null)
 
   const { updateUser, user } = useLifeEvent();
   
@@ -172,9 +216,57 @@ const Info = () => {
             setActiveStep={setActiveStep}
             activeStep={activeStep}
             nextStepButton={nextStepButton}
+            verySureRef={verySureRef}
+            kindaSureRef={kindaSureRef}
+            extremlySureRef={extremlySureRef}
+            infoRef={infoRef}
           ></StepFinal>
         </Item>
       </List>
+
+      {activeStep === 4 &&
+      <InfoBox>
+        <InfoBoxTitle>Innhold</InfoBoxTitle>
+
+        <InfoBoxDivider></InfoBoxDivider>
+
+        <InfoBoxText onClick={() => {
+          setTimeout(() => {
+            window.scrollTo({
+              top:verySureRef?.current?.offsetTop ,
+              behavior: "smooth"
+            })
+          }, 0);
+        }}>Kan ha krav på</InfoBoxText>
+
+        <InfoBoxText onClick={() => {
+          setTimeout(() => {
+            window.scrollTo({
+              top:kindaSureRef?.current?.offsetTop ,
+              behavior: "smooth"
+            })
+          }, 0)
+        }}>Kanskje krav på</InfoBoxText>
+
+        <InfoBoxText onClick={() => {
+          setTimeout(() => {
+            window.scrollTo({
+              top:extremlySureRef?.current?.offsetTop ,
+              behavior: "smooth"
+            })
+          }, 0)
+        }}>Ikke krav på</InfoBoxText>
+        
+        <InfoBoxText onClick={() => {
+          setTimeout(() => {
+            window.scrollTo({
+              top:infoRef?.current?.offsetTop ,
+              behavior: "smooth"
+            })
+          }, 0)
+        }}>Informasjon</InfoBoxText>
+      </InfoBox>
+      }
 
       </MainContent>
       <Footer />

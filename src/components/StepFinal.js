@@ -148,7 +148,7 @@ const gridItems = [
 
   
 
-const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
+const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kindaSureRef, extremlySureRef, infoRef }) => {
   const navText = 'NAV';
   const kommuneText = 'KOMMUNE';
   const husbankenText = 'HUSBANKEN';
@@ -180,7 +180,7 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
                   <br/>
                  databaser via MineData, samt svar du har oppgitt i veilederen. </StepText>
 
-                <ColorBoxStepFinal backgroundColor='#CCF1D6'><StepTitle>Stønader vi er <TextColor textColor='#06893A'>ganske sikre</TextColor> på at du har rett på</StepTitle></ColorBoxStepFinal>
+                <ColorBoxStepFinal ref={verySureRef} backgroundColor='#CCF1D6'><StepTitle>Stønader vi er <TextColor textColor='#06893A'>ganske sikre</TextColor> på at du har rett på</StepTitle></ColorBoxStepFinal>
 
                 <ColorLittleBoxStepFinal backgroundColor='#94C6F3'><StepTitle>Idag</StepTitle></ColorLittleBoxStepFinal>
                 <GridContainer>
@@ -212,7 +212,7 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
 
                   </GridContainer>
 
-                  <ColorLittleBoxStepFinal backgroundColor='#94C6F3'><StepTitle>Senere</StepTitle></ColorLittleBoxStepFinal>
+                  <ColorLittleBoxStepFinal ref={kindaSureRef} backgroundColor='#94C6F3'><StepTitle>Senere</StepTitle></ColorLittleBoxStepFinal>
                   
                   <GridContainer>
 
@@ -251,7 +251,7 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
                     </FinalBox>
                 </GridContainer>
 
-                <ColorBoxStepFinal backgroundColor='#FFECCC'><StepTitle>Stønader vi er <TextColor textColor='#F9BE26'>mindre sikre</TextColor> på at du har rett på</StepTitle></ColorBoxStepFinal>
+                <ColorBoxStepFinal ref={extremlySureRef} backgroundColor='#FFECCC'><StepTitle>Stønader vi er <TextColor textColor='#F9BE26'>mindre sikre</TextColor> på at du har rett på</StepTitle></ColorBoxStepFinal>
 
                 <GridContainer>
                   <FinalBox>
@@ -311,7 +311,7 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
                   </FinalBox>
                 </GridContainer>
 
-                <ColorBoxStepFinal backgroundColor='#FFD3D3'><StepTitle>Stønader vi er <TextColor textColor='#BA3A26'>ganske sikre</TextColor> på at du <TextColor textColor='#BA3A26'>ikke</TextColor> har rett på</StepTitle></ColorBoxStepFinal>
+                <ColorBoxStepFinal ref={infoRef} backgroundColor='#FFD3D3'><StepTitle>Stønader vi er <TextColor textColor='#BA3A26'>ganske sikre</TextColor> på at du <TextColor textColor='#BA3A26'>ikke</TextColor> har rett på</StepTitle></ColorBoxStepFinal>
 
                 <GridContainer>
                   <FinalBox>
