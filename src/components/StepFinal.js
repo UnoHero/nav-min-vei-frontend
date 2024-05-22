@@ -3,6 +3,11 @@ import { DownloadIcon, PrinterSmallIcon } from '@navikt/aksel-icons';
 
 // Import Svg
 import NavLogo from '../Pictures/FinalStep/NavLogo.svg';
+import HusbankenLogo from '../Pictures/FinalStep/HusbankenLogo.svg';
+import KsLogo from '../Pictures/FinalStep/KsLogo.svg';
+import HelsenorgeLogo from '../Pictures/FinalStep/HelsenorgeLogo.svg';
+import SkattLogo from '../Pictures/FinalStep/SkattLogo.svg';
+import AltinnLogo from '../Pictures/FinalStep/AltinnLogo.svg';
 import PleiePenger from '../Pictures/FinalStep/PleiePenger.svg';
 import Lønnsgaranti from "../Pictures/FinalStep/Lønnsgaranti.svg"
 import Kvalifiserings_programmet from "../Pictures/FinalStep/Kvalifiserings-programmet.svg"
