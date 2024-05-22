@@ -77,9 +77,20 @@ const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
   }
 
   const displayFullName = () => {
-    const fullName = `${whichFirstName(user)} ${whichMiddleName(user)} ${whichLastName(user)}`
-    return fullName
-  }
+    const firstName = whichFirstName();
+    const middleName = whichMiddleName();
+    const lastName = whichLastName();
+
+    // Check if any part of the name is undefined, and return an empty string if so
+    if (firstName === undefined || middleName === undefined || lastName === undefined) {
+        return "";
+    }
+
+    // Concatenate the parts of the name
+    const fullName = `${firstName} ${middleName} ${lastName}`;
+    return fullName.trim(); // Trim any extra whitespace
+}
+
 
   useEffect(() => {
     if (user && user.grossIncome !== undefined) {
