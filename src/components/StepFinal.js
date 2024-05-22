@@ -152,7 +152,10 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
   const navText = 'NAV';
   const kommuneText = 'KOMMUNE';
   const husbankenText = 'HUSBANKEN';
-
+  const altinnText = 'ALTINN';
+  const skattText = 'SKATTEETATEN';
+  const helsenorgeText = 'HELSENORGE';
+ 
     return(
         <>
         
@@ -385,14 +388,14 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
 
                 <GridContainer>
                   <FinalBox>
-                    <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
+                    <HeadText>INFO FRA {altinnText} <FinalBoxIcon src={AltinnLogo} alt='Altinn logo'/> </HeadText> 
                     <BigImage src={Lønnsgaranti} alt='Lønnsgaranti logo' />
                     <UnderText>Starte og registrere enkeltpersonforetak</UnderText>
                     <ListText>Her får du vite hva som kreves for å starte et enkeltpersonforetak, og hvordan du går frem når du skal registrere foretaket.</ListText>
                   </FinalBox>
 
                   <FinalBox>
-                    <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
+                    <HeadText>KURS FRA {skattText} <FinalBoxIcon src={SkattLogo} alt='Nav logo'/> </HeadText> 
                     <BigImage src={Lønnsgaranti} alt='Lønnsgaranti logo' />
                     <UnderText>Kurs for nye næringsdrivende</UnderText>
                     <ListText>Skatteetaten arrangerer kurs tilpasset deg som skal starte virksomhet. Helt gratis. Du kan velge mellom kurs for enkeltpersonforetak (ENK) eller aksjeselskap (AS).</ListText>
@@ -414,7 +417,7 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep }) => {
                   </FinalBox>
 
                   <FinalBox>
-                    <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
+                    <HeadText>INFO FRA {helsenorgeText} <FinalBoxIcon src={HelsenorgeLogo} alt='Nav logo'/> </HeadText> 
                     <BigImage src={Lønnsgaranti} alt='Lønnsgaranti logo' />
                     <UnderText>Noen å snakke med i en krevende tid</UnderText>
                     <ListText>Å miste jobben er for mange en livskrise. Det kan hjelpe å snakke med noen, en rådgiver eller psykolog.</ListText>
