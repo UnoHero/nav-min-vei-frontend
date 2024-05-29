@@ -31,7 +31,7 @@ import { useLifeEvent } from "../contexts/LifeEventContext";
 // Component for each box next to Stepper steps
 const InfoBox = styled.div`
   width: 230px;
-  height: 250px;
+  height: 300px;
   position: absolute;
   top: 200px;
   left: 6%;
@@ -55,8 +55,9 @@ const InfoBoxDivider = styled.div`
 const InfoBoxText = styled.h3`
   box-sizing: border-box;
   border: 3px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
   padding-left: 40px;
   padding-right: 40px;
   font-size: 1.3rem;
@@ -64,6 +65,7 @@ const InfoBoxText = styled.h3`
 
   &:hover {
     cursor: pointer;
+    background-color: #F4F4F4;
     box-sizing: border-box;
     border-left: #0067C5 3px solid ;
   }
