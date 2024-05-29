@@ -229,19 +229,6 @@ p {
   height: 100%;
 }
 
-.footer-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-}
 
 .p-livssituasjon {
   padding-bottom: 10%;
