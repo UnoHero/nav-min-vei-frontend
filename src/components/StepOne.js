@@ -76,6 +76,27 @@ const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
     return user?.dateOfBirth?.folkReg
   }
 
+  const children = () => {
+    let amount = 0
+    user?.relations?.forEach(e => {
+      if(e.relation === "child"){
+        amount += 1
+      }
+    });
+    return amount
+
+  }
+
+  const married = () => {
+    let partner = ""
+    user?.relations?.forEach(e => {
+      if(e.relation === "married"){
+        partner = e.name
+      }
+    });
+    return partner
+  }
+
   const displayFullName = () => {
     const firstName = whichFirstName();
     const middleName = whichMiddleName();
@@ -123,6 +144,7 @@ const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
 
   useEffect (() => {
     PostalCode();
+    console.log(married())
   }, [user]);
 
   const PostalCode = async (event) => {
@@ -261,11 +283,11 @@ const StepOne = ({stepZeroRef, stepOneRef, nextStepButton, activeStep }) => {
             </div>
             <h4>Familie og sivilstatus</h4>
             <div className="stepOneField">
-              <TextField label="Ektefelle" /> 
+              <TextField label="Ektefelle" value={married()}/> 
               <TextField 
                 type="number" 
                 label="Antall barn" 
-                value={numberOfChildren} 
+                value={children()} 
                 onChange={handleNumberChange} 
               />
             </div>
