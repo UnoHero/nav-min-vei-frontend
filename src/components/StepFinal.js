@@ -62,7 +62,7 @@ const UnderText = styled.h1`
 
 // The whole box
 const FinalBox = styled.div`
-  width: 200px;
+  width: 220px;
   border-radius: 2px;
   background-color: #ffffff; 
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1); 
@@ -75,7 +75,7 @@ const FinalBox = styled.div`
 // Grid container inside The box that contains the Text
 const GridContainer = styled.div`
   position: relative;
-  left: -20px;
+  left: -45px;
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Two columns with equal width */
   grid-gap: 20px; /* Gap between grid items */
@@ -294,6 +294,34 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kind
                           <CheckmarkCircleFillIcon color='#FFC166'/>
                         </ListIcon>
                         <ListText>Trenger ekstra oppfølging for å komme ut i jobb </ListText>
+                      </ListItem>
+                    </List>
+                  </FinalBox>
+
+                  <FinalBox>
+                    <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
+                    <BigImage src={Arbeidstrening} alt='Arbeidstrening logo' />
+                    <UnderText>Arbeidstrening</UnderText>
+                    <List>
+                      <ListItem>
+                        <ListIcon>
+                          <CheckmarkCircleFillIcon color='green'/>
+                        </ListIcon>
+                        <ListText>Medlem av folketrygden</ListText>
+                      </ListItem>
+
+                      <ListItem>
+                        <ListIcon>
+                          <CheckmarkCircleFillIcon color='green'/>
+                        </ListIcon>
+                        <ListText>Arbeidssøker</ListText>
+                      </ListItem>
+
+                      <ListItem>
+                        <ListIcon>
+                          <CheckmarkCircleFillIcon color='#FFC166'/>
+                        </ListIcon>
+                        <ListText>Trenger hjelp med å komme tilbake i jobb</ListText>
                       </ListItem>
                     </List>
                   </FinalBox>
