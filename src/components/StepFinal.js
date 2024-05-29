@@ -145,6 +145,12 @@ const ImageDiv = styled.div`
   text-align: center;
 `
 
+const BlueText = styled.div`
+  color: #0067C5;
+  text-align: center;
+  margin: 50px 20px;
+`
+
 const gridItems = [
   { icon: '📱', text: 'Mobile' },
   { icon: '💻', text: 'Desktop' },
@@ -218,6 +224,8 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kind
 
                   </GridContainer>
 
+                  <BlueText>Viser 1 av 1 ytelser</BlueText>
+
                   <ColorLittleBoxStepFinal ref={kindaSureRef} backgroundColor='#94C6F3'><StepTitle>Senere</StepTitle></ColorLittleBoxStepFinal>
                   
                   <GridContainer>
@@ -256,6 +264,8 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kind
                       </List>
                     </FinalBox>
                 </GridContainer>
+
+                <BlueText>Viser 1 av 1 ytelser</BlueText>
 
                 <ColorBoxStepFinal ref={extremlySureRef} backgroundColor='#FFECCC'><StepTitle>Stønader vi er <TextColor textColor='#F9BE26'>mindre sikre</TextColor> på at du har rett på</StepTitle></ColorBoxStepFinal>
 
@@ -316,6 +326,8 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kind
                     </List>
                   </FinalBox>
                 </GridContainer>
+
+                <BlueText>Viser 2 av 2 ytelser</BlueText>
 
                 <ColorBoxStepFinal ref={infoRef} backgroundColor='#FFD3D3'><StepTitle>Stønader vi er <TextColor textColor='#BA3A26'>ganske sikre</TextColor> på at du <TextColor textColor='#BA3A26'>ikke</TextColor> har rett på</StepTitle></ColorBoxStepFinal>
 
@@ -384,6 +396,8 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kind
                   </FinalBox>
                 </GridContainer>
 
+                <BlueText>Viser 2 av 2 ytelser</BlueText>
+
                 <ColorBoxStepFinal backgroundColor='#94C6F3'><StepTitle><TextColor textColor='#0067C5'>Informasjon</TextColor> som kan være relevant for deg</StepTitle></ColorBoxStepFinal>
 
                 <ImageDiv>
@@ -428,7 +442,9 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kind
                     <UnderText>Noen å snakke med i en krevende tid</UnderText>
                     <ListText>Å miste jobben er for mange en livskrise. Det kan hjelpe å snakke med noen, en rådgiver eller psykolog.</ListText>
                   </FinalBox>
-                </GridContainer>              
+                </GridContainer>            
+
+                <BlueText>Viser 4 av 4 ytelser</BlueText>  
 
               </div>
             }
