@@ -86,7 +86,7 @@ export const StepText = styled.div`
 
 export const NextStepButton = styled.button`
   border-radius: 4px;
-  border: 0px;
+  border: 3px solid #0067c5;
   padding: 12px 20px;
   margin: 20px 20px 0 0;
   background-color: #0067C5;
@@ -103,7 +103,7 @@ export const RadioBox = styled.div`
 `;
 
 export const Txt = styled.div`
-fontSize: 20%;
+  font-size: 1.3rem;
 `;
 
 export const DataBilder = styled.div`
