@@ -1,0 +1,292 @@
+/* General Styles */
+body, .App {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .text, .button {
+    padding: 10px;
+    margin: 10px 0;
+    width: auto;
+  }
+  
+  /* Responsive Text and Elements */
+  .text {
+    font-size: 1em;
+  }
+  
+  .button {
+    padding: 10px;
+    font-size: 1em;
+  }
+  
+  /* Responsive Layout */
+  .firstsection {
+    height: 20em;
+    background-color: rgb(211, 230, 237);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+  }
+  
+  .section-name {
+    text-align: center;
+    color: blue;
+  }
+  
+  p {
+    max-width: 90%;
+    text-align: left;
+    font-size: 1em;
+  }
+  
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .firstsection {
+      height: 15em;
+    }
+  
+    .logo {
+      width: 60%;
+    }
+  
+    p {
+      max-width: 95%;
+      font-size: 0.9em;
+    }
+  
+    .text {
+      font-size: 4vw;
+    }
+  
+    .button {
+      padding: 5px;
+      font-size: 3.5vw;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .firstsection {
+      height: 12em;
+    }
+  
+    .logo {
+      width: 70%;
+    }
+  
+    p {
+      max-width: 100%;
+      font-size: 0.85em;
+    }
+  
+    .text {
+      font-size: 5vw;
+    }
+  
+    .button {
+      padding: 5px;
+      font-size: 4vw;
+    }
+  
+    .start-veileder, .help-b {
+      width: 100%;
+      font-size: 3.5vw;
+      padding: 10px 5px;
+    }
+  
+    .content-container, .flex, .footer-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .help-b {
+      margin-left: 0;
+    }
+  }
+  
+  @media (min-width: 1025px) {
+    .logo {
+      width: 40%;
+    }
+  
+    p {
+      max-width: 50%;
+      font-size: 1.2em;
+    }
+  }
+  
+  @media (min-width: 1440px) {
+    .logo {
+      width: 35%;
+    }
+  
+    p {
+      max-width: 40%;
+      font-size: 1.4em;
+    }
+  }
+  
+  /* Additional Styles */
+  .p-tekst {
+    margin-top: 2%;
+    margin-left: 5%;
+  }
+  
+  .b-text {
+    margin-top: 2%;
+    margin-left: 5%; /* Adjusted for better responsiveness */
+  }
+  
+  .start-veileder, .help-b {
+    padding: 15px 15px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    height: 10%;
+    font-size: medium;
+  }
+  
+  .start-veileder {
+    margin: 20px 10px;
+    color: white;
+    background-color: #095bb2;
+    border: none;
+  }
+  
+  .start-veileder:hover {
+    background-color: #004bb2;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .help-b {
+    margin: 20px 10px;
+    background-color: white;
+    border: 2px solid #0056b3;
+  }
+  
+  .help-b:hover {
+    border-color: #004bb2;
+    color: #0056b3;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    padding-left: 20px;
+  }
+  
+  .panel.open {
+    max-height: 500px;
+  }
+  
+  .radio-box {
+    background-color: #00bfff42;
+    text-align: center;
+  }
+  
+  .content-container {
+    background-color: rgb(211, 230, 237);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh; /* Ensure it takes up the full height of the viewport */
+  }
+  
+  .white-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+    min-height: 700px; /* Adjust this value as needed */
+  }
+  
+  
+  .heading {
+    color: #0056b3;
+    margin-bottom: 20px;
+  }
+  
+  .intro-text {
+    color: #333;
+    margin-bottom: 30px;
+    line-height: 1.5;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2em; /* Adjust font size for better readability */
+  }
+  
+  .buttons {
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Increase the gap between buttons */
+  }
+  
+  .flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .p-livssituasjon {
+    padding-bottom: 10%;
+    font-size: 15px;
+    margin-left: 2px;
+  }
+  
+  .info {
+    color: #888;
+    font-size: 0.9em;
+  }
+  
+  .zipCodeField {
+    display: flex;
+    width: 10ch;
+  }
+  
+  .cityNameForm {
+    align-items: center;
+    display: inline;
+    margin: 50% 0 0 10%;
+  }
+  
+  .dateField {
+    width: 15ch;
+  }
+  
+  .stepOneField {
+    max-width: 50%;
+  }
+  
+  #countrySelect {
+    max-width: 34ch;
+    border-radius: 4px;
+    display: block;
+  }
+  
+  .countryForm {
+    margin-top: 2.5%;
+  }
+  
