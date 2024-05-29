@@ -212,7 +212,7 @@ body, .App {
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 90%;
+    width: 80%;
     max-width: 800px;
     text-align: center;
     min-height: 700px; /* Adjust this value as needed */
@@ -235,10 +235,18 @@ body, .App {
   }
   
   .buttons {
-    margin-bottom: 100px;
+    margin-right: 30px; /* Increase the gap between buttons */
+    margin-top: 50px;
     display: flex;
-    justify-content: center;
-    gap: 10px; /* Increase the gap between buttons */
+    justify-content: space-between;
+  
+}
+
+  .buttons2 {
+    margin-left: 30px; /* Increase the gap between buttons */
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
   }
   
   .flex {
