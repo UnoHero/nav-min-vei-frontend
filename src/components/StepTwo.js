@@ -26,18 +26,19 @@ import { useLifeEvent } from "../contexts/LifeEventContext";
 
 const ButtonContainer = styled.div`
   position: relative;
+  margin: 20px 0;
 `;
 
 const LastStepButton = styled.button`
   border-radius: 4px;
   border: 3px solid #0067c5; /* Blue border */
+  box-sizing: border-box;
   padding: 12px 20px;
   color: #0067c5;
   cursor: pointer;
   position: absolute;
   right: 0;
   bottom: 0;
-  transform: translateX(-50%);
   background: white;
   font-weight: bold;
 
