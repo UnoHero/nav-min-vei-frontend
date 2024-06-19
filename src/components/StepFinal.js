@@ -9,7 +9,6 @@ import HelsenorgeLogo from '../Pictures/FinalStep/HelsenorgeLogo.svg';
 import SkattLogo from '../Pictures/FinalStep/SkattLogo.svg';
 import AltinnLogo from '../Pictures/FinalStep/AltinnLogo.svg';
 import PleiePenger from '../Pictures/FinalStep/PleiePenger.svg';
-import Lønnsgaranti from "../Pictures/FinalStep/Lønnsgaranti.svg"
 import Kvalifiserings_programmet from "../Pictures/FinalStep/Kvalifiserings-programmet.svg"
 import Tree from "../Pictures/FinalStep/Tree.svg"
 import Arbeidsledighet from "../Pictures/FinalStep/Arbeidsledighet.svg"
@@ -24,6 +23,8 @@ import Kvalifisering from "./finalStep/Kvalifisering"
 import Arbeidstrening from './finalStep/Arbeidstrening';
 import Avklaring from './finalStep/Avklaring'
 import Arbeidsavklaring from './finalStep/ArbeidsAvklaring';
+import Lønnsgaranti from './finalStep/Lønnsgaranti';
+import Kurs from './finalStep/Kurs';
 
 // Css components for the colored header boxes
 
@@ -246,19 +247,9 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kind
                 </ImageDiv>
 
                 <GridContainer>
-                  <FinalBox>
-                    <HeadText>INFO FRA {altinnText} <FinalBoxIcon src={AltinnLogo} alt='Altinn logo'/> </HeadText> 
-                    <BigImage src={Lønnsgaranti} alt='Lønnsgaranti logo' />
-                    <UnderText>Starte og registrere enkeltpersonforetak</UnderText>
-                    <ListText>Her får du vite hva som kreves for å starte et enkeltpersonforetak, og hvordan du går frem når du skal registrere foretaket.</ListText>
-                  </FinalBox>
+                  <Lønnsgaranti></Lønnsgaranti>
 
-                  <FinalBox>
-                    <HeadText>KURS FRA {skattText} <FinalBoxIcon src={SkattLogo} alt='Nav logo'/> </HeadText> 
-                    <BigImage src={Lønnsgaranti} alt='Lønnsgaranti logo' />
-                    <UnderText>Kurs for nye næringsdrivende</UnderText>
-                    <ListText>Skatteetaten arrangerer kurs tilpasset deg som skal starte virksomhet. Helt gratis. Du kan velge mellom kurs for enkeltpersonforetak (ENK) eller aksjeselskap (AS).</ListText>
-                  </FinalBox>
+                  <Kurs></Kurs>
                 </GridContainer>
 
                 <ImageDiv>
