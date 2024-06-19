@@ -11,7 +11,6 @@ import AltinnLogo from '../Pictures/FinalStep/AltinnLogo.svg';
 import PleiePenger from '../Pictures/FinalStep/PleiePenger.svg';
 import Lønnsgaranti from "../Pictures/FinalStep/Lønnsgaranti.svg"
 import Kvalifiserings_programmet from "../Pictures/FinalStep/Kvalifiserings-programmet.svg"
-import Avklaring from "../Pictures/FinalStep/Avklaring.svg"
 import Arbeidsavklaring from "../Pictures/FinalStep/Arbeidsavklaring.svg"
 import Tree from "../Pictures/FinalStep/Tree.svg"
 import Arbeidsledighet from "../Pictures/FinalStep/Arbeidsledighet.svg"
@@ -24,6 +23,7 @@ import Pengestøtte from './finalStep/Pengestætte';
 import Pleiepenger from "./finalStep/Pleiepenger"
 import Kvalifisering from "./finalStep/Kvalifisering"
 import Arbeidstrening from './finalStep/Arbeidstrening';
+import Avklaring from './finalStep/Avklaring'
 
 // Css components for the colored header boxes
 
@@ -230,33 +230,7 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kind
                 <ColorBoxStepFinal ref={infoRef} backgroundColor='#FFD3D3'><StepTitle>Stønader vi er <TextColor textColor='#BA3A26'>ganske sikre</TextColor> på at du <TextColor textColor='#BA3A26'>ikke</TextColor> har rett på</StepTitle></ColorBoxStepFinal>
 
                 <GridContainer>
-                  <FinalBox>
-                    <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
-                    <BigImage src={Avklaring} alt='Avklaring logo' />
-                    <UnderText>Avklaring</UnderText>
-                    <List>
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='green'/>
-                        </ListIcon>
-                        <ListText>Medlem av folketrygden</ListText>
-                      </ListItem>
-
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='#BA3A26'/>
-                        </ListIcon>
-                        <ListText>Dårligere helse</ListText>
-                      </ListItem>
-
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='green'/>
-                        </ListIcon>
-                        <ListText>Lenge ute av arbeidslivet</ListText>
-                      </ListItem>
-                    </List>
-                  </FinalBox>
+                  <Avklaring></Avklaring>
 
                   <FinalBox>
                     <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
