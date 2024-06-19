@@ -9,17 +9,23 @@ import HelsenorgeLogo from '../Pictures/FinalStep/HelsenorgeLogo.svg';
 import SkattLogo from '../Pictures/FinalStep/SkattLogo.svg';
 import AltinnLogo from '../Pictures/FinalStep/AltinnLogo.svg';
 import PleiePenger from '../Pictures/FinalStep/PleiePenger.svg';
-import Lønnsgaranti from "../Pictures/FinalStep/Lønnsgaranti.svg"
 import Kvalifiserings_programmet from "../Pictures/FinalStep/Kvalifiserings-programmet.svg"
-import Arbeidstrening from "../Pictures/FinalStep/Arbeidstrening.svg"
-import Avklaring from "../Pictures/FinalStep/Avklaring.svg"
-import Arbeidsavklaring from "../Pictures/FinalStep/Arbeidsavklaring.svg"
 import Tree from "../Pictures/FinalStep/Tree.svg"
 import Arbeidsledighet from "../Pictures/FinalStep/Arbeidsledighet.svg"
 
 // Styles thrue js
 import { TextBox, StepTitle, StepText, } from "../components/styledComponents"
 import { CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
+
+import Pengestøtte from './finalStep/Pengestætte';
+import Pleiepenger from "./finalStep/Pleiepenger"
+import Kvalifisering from "./finalStep/Kvalifisering"
+import Arbeidstrening from './finalStep/Arbeidstrening';
+import Avklaring from './finalStep/Avklaring'
+import Arbeidsavklaring from './finalStep/ArbeidsAvklaring';
+import Lønnsgaranti from './finalStep/Lønnsgaranti';
+import Kurs from './finalStep/Kurs';
+import InfoArbeidsledighet from './finalStep/InfoArbeidsledighet';
 
 // Css components for the colored header boxes
 
@@ -196,73 +202,19 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kind
 
                 <ColorLittleBoxStepFinal backgroundColor='#94C6F3'><StepTitle>Idag</StepTitle></ColorLittleBoxStepFinal>
                 <GridContainer>
-                    <FinalBox>
-                      <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
-                      <BigImage src={Lønnsgaranti} alt='Pleie penger logo' />
-                      <UnderText>Lønnsgaranti</UnderText>
-                      <List>
-                        <ListItem>
-                          <ListIcon>
-                            <CheckmarkCircleFillIcon color='green'/>
-                          </ListIcon>
-                          <ListText>Medlem av folketrygden</ListText>
-                        </ListItem>
-                        <ListItem>
-                          <ListIcon>
-                            <CheckmarkCircleFillIcon color='green'/>
-                          </ListIcon>
-                          <ListText>Arbeidsledig</ListText>
-                        </ListItem>
-                        <ListItem>
-                          <ListIcon>
-                            <CheckmarkCircleFillIcon color='green'/>
-                          </ListIcon>
-                          <ListText>Arbeidsgiver konkurs</ListText>
-                        </ListItem>
-                      </List>
-                    </FinalBox>    
 
-                  </GridContainer>
+                  <Pengestøtte></Pengestøtte>    
 
-                  <BlueText>Viser 1 av 1 ytelser</BlueText>
+                </GridContainer>
 
-                  <ColorLittleBoxStepFinal ref={kindaSureRef} backgroundColor='#94C6F3'><StepTitle>Senere</StepTitle></ColorLittleBoxStepFinal>
-                  
-                  <GridContainer>
+                <BlueText>Viser 1 av 1 ytelser</BlueText>
 
-                   <FinalBox>
-                      <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
-                      <BigImage src={PleiePenger} alt='Pleie penger logo' />
-                      <UnderText>Dagpenger</UnderText>
-                      <List>
-                        <ListItem>
-                          <ListIcon>
-                            <CheckmarkCircleFillIcon color='green'/>
-                          </ListIcon>
-                          <ListText>Oppholder deg i Norge og medlem av folketrygden</ListText>
-                        </ListItem>
+                <ColorLittleBoxStepFinal ref={kindaSureRef} backgroundColor='#94C6F3'><StepTitle>Senere</StepTitle></ColorLittleBoxStepFinal>
+                
+                <GridContainer>
 
-                        <ListItem>
-                          <ListIcon>
-                            <CheckmarkCircleFillIcon color='green'/>
-                          </ListIcon>
-                          <ListText>Du er en reell arbeidssøker</ListText>
-                        </ListItem>
+                  <Pleiepenger></Pleiepenger>
 
-                        <ListItem>
-                          <ListIcon>
-                            <CheckmarkCircleFillIcon color='green'/>
-                          </ListIcon>
-                          <ListText>Mistet minst 50% av arbeids-tiden din</ListText>
-                        </ListItem>
-                        <ListItem>
-                          <ListIcon>
-                            <CheckmarkCircleFillIcon color='green'/>
-                          </ListIcon>
-                          <ListText>Under 67 år</ListText>
-                        </ListItem>
-                      </List>
-                    </FinalBox>
                 </GridContainer>
 
                 <BlueText>Viser 1 av 1 ytelser</BlueText>
@@ -270,61 +222,9 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kind
                 <ColorBoxStepFinal ref={extremlySureRef} backgroundColor='#FFECCC'><StepTitle>Stønader vi er <TextColor textColor='#F9BE26'>mindre sikre</TextColor> på at du har rett på</StepTitle></ColorBoxStepFinal>
 
                 <GridContainer>
-                  <FinalBox>
-                    <HeadText2>Pengestøtte, oppfølging<br />og veiledning fra {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText2> 
-                    <BigImage src={Kvalifiserings_programmet} alt='Kvalifiserings-programmet logo' />
-                    <UnderText>Kvalifiserings-programmet</UnderText>
-                    <List>
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='green'/>
-                        </ListIcon>
-                        <ListText>Medlem av folketrygden</ListText>
-                      </ListItem>
+                  <Kvalifisering></Kvalifisering>
 
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='green'/>
-                        </ListIcon>
-                        <ListText>Arbeidsledig</ListText>
-                      </ListItem>
-
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='#FFC166'/>
-                        </ListIcon>
-                        <ListText>Trenger ekstra oppfølging for å komme ut i jobb </ListText>
-                      </ListItem>
-                    </List>
-                  </FinalBox>
-
-                  <FinalBox>
-                    <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
-                    <BigImage src={Arbeidstrening} alt='Arbeidstrening logo' />
-                    <UnderText>Arbeidstrening</UnderText>
-                    <List>
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='green'/>
-                        </ListIcon>
-                        <ListText>Medlem av folketrygden</ListText>
-                      </ListItem>
-
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='green'/>
-                        </ListIcon>
-                        <ListText>Arbeidssøker</ListText>
-                      </ListItem>
-
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='#FFC166'/>
-                        </ListIcon>
-                        <ListText>Trenger hjelp med å komme tilbake i jobb</ListText>
-                      </ListItem>
-                    </List>
-                  </FinalBox>
+                  <Arbeidstrening></Arbeidstrening>
                 </GridContainer>
 
                 <BlueText>Viser 2 av 2 ytelser</BlueText>
@@ -332,68 +232,9 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kind
                 <ColorBoxStepFinal ref={infoRef} backgroundColor='#FFD3D3'><StepTitle>Stønader vi er <TextColor textColor='#BA3A26'>ganske sikre</TextColor> på at du <TextColor textColor='#BA3A26'>ikke</TextColor> har rett på</StepTitle></ColorBoxStepFinal>
 
                 <GridContainer>
-                  <FinalBox>
-                    <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
-                    <BigImage src={Avklaring} alt='Avklaring logo' />
-                    <UnderText>Avklaring</UnderText>
-                    <List>
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='green'/>
-                        </ListIcon>
-                        <ListText>Medlem av folketrygden</ListText>
-                      </ListItem>
+                  <Avklaring></Avklaring>
 
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='#BA3A26'/>
-                        </ListIcon>
-                        <ListText>Dårligere helse</ListText>
-                      </ListItem>
-
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='green'/>
-                        </ListIcon>
-                        <ListText>Lenge ute av arbeidslivet</ListText>
-                      </ListItem>
-                    </List>
-                  </FinalBox>
-
-                  <FinalBox>
-                    <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
-                    <BigImage src={Arbeidsavklaring} alt='Arbeidstrening logo' />
-                    <UnderText>Arbeidsavklarings-penger (AAP)</UnderText>
-                    <List>
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='#BA3A26'/>
-                        </ListIcon>
-                        <ListText>Medlem av folketrygden i minst 5 år</ListText>
-                      </ListItem>
-
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='#BA3A26'/>
-                        </ListIcon>
-                        <ListText>Nedsatt arbeidsevne på grunn av sykdom eller skade</ListText>
-                      </ListItem>
-
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='#BA3A26'/>
-                        </ListIcon>
-                        <ListText>Behov for behandling</ListText>
-                      </ListItem>
-
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='green'/>
-                        </ListIcon>
-                        <ListText>Du er mellom 18 og 67 år</ListText>
-                      </ListItem>
-                    </List>
-                  </FinalBox>
+                  <Arbeidsavklaring></Arbeidsavklaring>
                 </GridContainer>
 
                 <BlueText>Viser 2 av 2 ytelser</BlueText>
@@ -407,19 +248,9 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kind
                 </ImageDiv>
 
                 <GridContainer>
-                  <FinalBox>
-                    <HeadText>INFO FRA {altinnText} <FinalBoxIcon src={AltinnLogo} alt='Altinn logo'/> </HeadText> 
-                    <BigImage src={Lønnsgaranti} alt='Lønnsgaranti logo' />
-                    <UnderText>Starte og registrere enkeltpersonforetak</UnderText>
-                    <ListText>Her får du vite hva som kreves for å starte et enkeltpersonforetak, og hvordan du går frem når du skal registrere foretaket.</ListText>
-                  </FinalBox>
+                  <Lønnsgaranti></Lønnsgaranti>
 
-                  <FinalBox>
-                    <HeadText>KURS FRA {skattText} <FinalBoxIcon src={SkattLogo} alt='Nav logo'/> </HeadText> 
-                    <BigImage src={Lønnsgaranti} alt='Lønnsgaranti logo' />
-                    <UnderText>Kurs for nye næringsdrivende</UnderText>
-                    <ListText>Skatteetaten arrangerer kurs tilpasset deg som skal starte virksomhet. Helt gratis. Du kan velge mellom kurs for enkeltpersonforetak (ENK) eller aksjeselskap (AS).</ListText>
-                  </FinalBox>
+                  <Kurs></Kurs>
                 </GridContainer>
 
                 <ImageDiv>
@@ -429,12 +260,7 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kind
                 </ImageDiv>
 
                 <GridContainer>
-                  <FinalBox>
-                    <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
-                    <BigImage src={Lønnsgaranti} alt='Lønnsgaranti logo' />
-                    <UnderText>Informasjon om arbeidsledighet</UnderText>
-                    <ListText>Har du blitt arbeidsledig kan du ha rett til dagpenger eller annen økonomisk støtte fra NAV, og hjelp til å komme i arbeid. Ler mer her. </ListText>
-                  </FinalBox>
+                  <InfoArbeidsledighet></InfoArbeidsledighet>
 
                   <FinalBox>
                     <HeadText>INFO FRA {helsenorgeText} <FinalBoxIcon src={HelsenorgeLogo} alt='Nav logo'/> </HeadText> 
