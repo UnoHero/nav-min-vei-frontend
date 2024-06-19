@@ -11,7 +11,6 @@ import AltinnLogo from '../Pictures/FinalStep/AltinnLogo.svg';
 import PleiePenger from '../Pictures/FinalStep/PleiePenger.svg';
 import Lønnsgaranti from "../Pictures/FinalStep/Lønnsgaranti.svg"
 import Kvalifiserings_programmet from "../Pictures/FinalStep/Kvalifiserings-programmet.svg"
-import Arbeidstrening from "../Pictures/FinalStep/Arbeidstrening.svg"
 import Avklaring from "../Pictures/FinalStep/Avklaring.svg"
 import Arbeidsavklaring from "../Pictures/FinalStep/Arbeidsavklaring.svg"
 import Tree from "../Pictures/FinalStep/Tree.svg"
@@ -24,6 +23,7 @@ import { CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 import Pengestøtte from './finalStep/Pengestætte';
 import Pleiepenger from "./finalStep/Pleiepenger"
 import Kvalifisering from "./finalStep/Kvalifisering"
+import Arbeidstrening from './finalStep/Arbeidstrening';
 
 // Css components for the colored header boxes
 
@@ -222,33 +222,7 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kind
                 <GridContainer>
                   <Kvalifisering></Kvalifisering>
 
-                  <FinalBox>
-                    <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
-                    <BigImage src={Arbeidstrening} alt='Arbeidstrening logo' />
-                    <UnderText>Arbeidstrening</UnderText>
-                    <List>
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='green'/>
-                        </ListIcon>
-                        <ListText>Medlem av folketrygden</ListText>
-                      </ListItem>
-
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='green'/>
-                        </ListIcon>
-                        <ListText>Arbeidssøker</ListText>
-                      </ListItem>
-
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='#FFC166'/>
-                        </ListIcon>
-                        <ListText>Trenger hjelp med å komme tilbake i jobb</ListText>
-                      </ListItem>
-                    </List>
-                  </FinalBox>
+                  <Arbeidstrening></Arbeidstrening>
                 </GridContainer>
 
                 <BlueText>Viser 2 av 2 ytelser</BlueText>
