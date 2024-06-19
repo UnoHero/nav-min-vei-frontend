@@ -25,6 +25,7 @@ import Avklaring from './finalStep/Avklaring'
 import Arbeidsavklaring from './finalStep/ArbeidsAvklaring';
 import Lønnsgaranti from './finalStep/Lønnsgaranti';
 import Kurs from './finalStep/Kurs';
+import InfoArbeidsledighet from './finalStep/InfoArbeidsledighet';
 
 // Css components for the colored header boxes
 
@@ -259,12 +260,7 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kind
                 </ImageDiv>
 
                 <GridContainer>
-                  <FinalBox>
-                    <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
-                    <BigImage src={Lønnsgaranti} alt='Lønnsgaranti logo' />
-                    <UnderText>Informasjon om arbeidsledighet</UnderText>
-                    <ListText>Har du blitt arbeidsledig kan du ha rett til dagpenger eller annen økonomisk støtte fra NAV, og hjelp til å komme i arbeid. Ler mer her. </ListText>
-                  </FinalBox>
+                  <InfoArbeidsledighet></InfoArbeidsledighet>
 
                   <FinalBox>
                     <HeadText>INFO FRA {helsenorgeText} <FinalBoxIcon src={HelsenorgeLogo} alt='Nav logo'/> </HeadText> 
