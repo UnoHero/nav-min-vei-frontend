@@ -21,6 +21,10 @@ import Arbeidsledighet from "../Pictures/FinalStep/Arbeidsledighet.svg"
 import { TextBox, StepTitle, StepText, } from "../components/styledComponents"
 import { CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 
+import Pengestøtte from './finalStep/Pengestætte';
+import Pleiepenger from "./finalStep/Pleiepenger"
+import Kvalifisering from "./finalStep/Kvalifisering"
+
 // Css components for the colored header boxes
 
 const ColorBoxStepFinal = styled.div `
@@ -196,73 +200,19 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kind
 
                 <ColorLittleBoxStepFinal backgroundColor='#94C6F3'><StepTitle>Idag</StepTitle></ColorLittleBoxStepFinal>
                 <GridContainer>
-                    <FinalBox>
-                      <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
-                      <BigImage src={Lønnsgaranti} alt='Pleie penger logo' />
-                      <UnderText>Lønnsgaranti</UnderText>
-                      <List>
-                        <ListItem>
-                          <ListIcon>
-                            <CheckmarkCircleFillIcon color='green'/>
-                          </ListIcon>
-                          <ListText>Medlem av folketrygden</ListText>
-                        </ListItem>
-                        <ListItem>
-                          <ListIcon>
-                            <CheckmarkCircleFillIcon color='green'/>
-                          </ListIcon>
-                          <ListText>Arbeidsledig</ListText>
-                        </ListItem>
-                        <ListItem>
-                          <ListIcon>
-                            <CheckmarkCircleFillIcon color='green'/>
-                          </ListIcon>
-                          <ListText>Arbeidsgiver konkurs</ListText>
-                        </ListItem>
-                      </List>
-                    </FinalBox>    
 
-                  </GridContainer>
+                  <Pengestøtte></Pengestøtte>    
 
-                  <BlueText>Viser 1 av 1 ytelser</BlueText>
+                </GridContainer>
 
-                  <ColorLittleBoxStepFinal ref={kindaSureRef} backgroundColor='#94C6F3'><StepTitle>Senere</StepTitle></ColorLittleBoxStepFinal>
-                  
-                  <GridContainer>
+                <BlueText>Viser 1 av 1 ytelser</BlueText>
 
-                   <FinalBox>
-                      <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
-                      <BigImage src={PleiePenger} alt='Pleie penger logo' />
-                      <UnderText>Dagpenger</UnderText>
-                      <List>
-                        <ListItem>
-                          <ListIcon>
-                            <CheckmarkCircleFillIcon color='green'/>
-                          </ListIcon>
-                          <ListText>Oppholder deg i Norge og medlem av folketrygden</ListText>
-                        </ListItem>
+                <ColorLittleBoxStepFinal ref={kindaSureRef} backgroundColor='#94C6F3'><StepTitle>Senere</StepTitle></ColorLittleBoxStepFinal>
+                
+                <GridContainer>
 
-                        <ListItem>
-                          <ListIcon>
-                            <CheckmarkCircleFillIcon color='green'/>
-                          </ListIcon>
-                          <ListText>Du er en reell arbeidssøker</ListText>
-                        </ListItem>
+                  <Pleiepenger></Pleiepenger>
 
-                        <ListItem>
-                          <ListIcon>
-                            <CheckmarkCircleFillIcon color='green'/>
-                          </ListIcon>
-                          <ListText>Mistet minst 50% av arbeids-tiden din</ListText>
-                        </ListItem>
-                        <ListItem>
-                          <ListIcon>
-                            <CheckmarkCircleFillIcon color='green'/>
-                          </ListIcon>
-                          <ListText>Under 67 år</ListText>
-                        </ListItem>
-                      </List>
-                    </FinalBox>
                 </GridContainer>
 
                 <BlueText>Viser 1 av 1 ytelser</BlueText>
@@ -270,33 +220,7 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kind
                 <ColorBoxStepFinal ref={extremlySureRef} backgroundColor='#FFECCC'><StepTitle>Stønader vi er <TextColor textColor='#F9BE26'>mindre sikre</TextColor> på at du har rett på</StepTitle></ColorBoxStepFinal>
 
                 <GridContainer>
-                  <FinalBox>
-                    <HeadText2>Pengestøtte, oppfølging<br />og veiledning fra {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText2> 
-                    <BigImage src={Kvalifiserings_programmet} alt='Kvalifiserings-programmet logo' />
-                    <UnderText>Kvalifiserings-programmet</UnderText>
-                    <List>
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='green'/>
-                        </ListIcon>
-                        <ListText>Medlem av folketrygden</ListText>
-                      </ListItem>
-
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='green'/>
-                        </ListIcon>
-                        <ListText>Arbeidsledig</ListText>
-                      </ListItem>
-
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='#FFC166'/>
-                        </ListIcon>
-                        <ListText>Trenger ekstra oppfølging for å komme ut i jobb </ListText>
-                      </ListItem>
-                    </List>
-                  </FinalBox>
+                  <Kvalifisering></Kvalifisering>
 
                   <FinalBox>
                     <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
