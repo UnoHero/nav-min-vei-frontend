@@ -11,7 +11,6 @@ import AltinnLogo from '../Pictures/FinalStep/AltinnLogo.svg';
 import PleiePenger from '../Pictures/FinalStep/PleiePenger.svg';
 import Lønnsgaranti from "../Pictures/FinalStep/Lønnsgaranti.svg"
 import Kvalifiserings_programmet from "../Pictures/FinalStep/Kvalifiserings-programmet.svg"
-import Arbeidsavklaring from "../Pictures/FinalStep/Arbeidsavklaring.svg"
 import Tree from "../Pictures/FinalStep/Tree.svg"
 import Arbeidsledighet from "../Pictures/FinalStep/Arbeidsledighet.svg"
 
@@ -24,6 +23,7 @@ import Pleiepenger from "./finalStep/Pleiepenger"
 import Kvalifisering from "./finalStep/Kvalifisering"
 import Arbeidstrening from './finalStep/Arbeidstrening';
 import Avklaring from './finalStep/Avklaring'
+import Arbeidsavklaring from './finalStep/ArbeidsAvklaring';
 
 // Css components for the colored header boxes
 
@@ -232,40 +232,7 @@ const StepFinal = ({ stepFourRef,  nextStepButton, activeStep, verySureRef, kind
                 <GridContainer>
                   <Avklaring></Avklaring>
 
-                  <FinalBox>
-                    <HeadText>PENGESTØTTE FRA {navText} <FinalBoxIcon src={NavLogo} alt='Nav logo'/> </HeadText> 
-                    <BigImage src={Arbeidsavklaring} alt='Arbeidstrening logo' />
-                    <UnderText>Arbeidsavklarings-penger (AAP)</UnderText>
-                    <List>
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='#BA3A26'/>
-                        </ListIcon>
-                        <ListText>Medlem av folketrygden i minst 5 år</ListText>
-                      </ListItem>
-
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='#BA3A26'/>
-                        </ListIcon>
-                        <ListText>Nedsatt arbeidsevne på grunn av sykdom eller skade</ListText>
-                      </ListItem>
-
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='#BA3A26'/>
-                        </ListIcon>
-                        <ListText>Behov for behandling</ListText>
-                      </ListItem>
-
-                      <ListItem>
-                        <ListIcon>
-                          <CheckmarkCircleFillIcon color='green'/>
-                        </ListIcon>
-                        <ListText>Du er mellom 18 og 67 år</ListText>
-                      </ListItem>
-                    </List>
-                  </FinalBox>
+                  <Arbeidsavklaring></Arbeidsavklaring>
                 </GridContainer>
 
                 <BlueText>Viser 2 av 2 ytelser</BlueText>
